@@ -29,7 +29,7 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.33"
+    "next": "16.2.12"
   },
   "devDependencies": {
     "typescript": "^5",
