@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import GoogleTagManager from '@/components/GoogleTagManager';
+import { CONSENT_MODE_BOOTSTRAP } from '@/lib/consent-mode';
 import { basePath, siteOrigin } from '@/lib/site-config';
 
 export const metadata: Metadata = {
@@ -32,6 +33,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Consent Mode v2 defaults — MUST run before any Google tag
+            (the GoogleTagManager component below and the GA loader in
+            CookieConsent) so the region-scoped defaults are already on the
+            dataLayer when they initialise. Granted worldwide, denied
+            (cookieless pings) only where Google's EU User Consent Policy
+            requires opt-in. See lib/consent-mode.ts. */}
+        <script dangerouslySetInnerHTML={{ __html: CONSENT_MODE_BOOTSTRAP }} />
         <link rel="manifest" href={`${basePath}/manifest.json`} />
         <meta name="theme-color" content="#2c5aa0" />
         <script
@@ -62,7 +70,8 @@ export default function RootLayout({
         <main id="main-content">{children}</main>
         <Footer />
         <CookieConsent />
-        {/* Consent-gated: only loads after analytics consent is granted. */}
+        {/* Loads on every pageview; the Consent Mode defaults set in <head>
+            decide, per region, whether its tags may use cookies. */}
         <GoogleTagManager />
       </body>
     </html>

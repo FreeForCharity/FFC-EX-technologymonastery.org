@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Privacy Policy</h1>
             <p className="text-xl text-gray-300">
-              <em>Last Updated: 2024</em>
+              <em>Last Updated: August 30, 2026</em>
             </p>
           </div>
         </div>
@@ -79,12 +79,68 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="text-2xl font-bold text-white mb-3">Cookies and Tracking</h2>
+              <p className="leading-relaxed mb-3">
+                We use Google Tag Manager and Google Analytics under Google Consent Mode v2 with
+                regional defaults. Whether the permissive or the opt-in default applies to
+                Google&apos;s tags is determined by Google from your IP address at the time of your
+                visit; IP geolocation is approximate. In the European Economic Area, the United
+                Kingdom, and Switzerland, Google Analytics runs cookie-free until you accept
+                through the cookie consent banner. Everywhere else, including the United States,
+                analytics cookies are set from your first pageview.
+              </p>
               <p className="leading-relaxed">
-                We use an on-site cookie consent banner to obtain your consent before any
-                analytics scripts (Google Tag Manager and Google Analytics) are loaded. You can
-                control cookie preferences through the banner, the &quot;Cookie Preferences&quot;
-                link in the site footer, or your browser settings. See our Cookie Policy for
-                details.
+                You can control cookie preferences through the banner, the &quot;Cookie
+                Preferences&quot; link in the site footer, or your browser settings; withdrawing
+                consent deletes the analytics cookies this site set and returns Google&apos;s tags
+                to the cookieless state. See our Cookie Policy for details.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-3">
+                Your Rights in the EU, UK, and EEA (GDPR)
+              </h2>
+              <p className="leading-relaxed mb-3">
+                If you visit from the European Union, the United Kingdom, or the wider European
+                Economic Area, the EU General Data Protection Regulation (GDPR) or the UK GDPR
+                applies to our handling of your personal data. You have the right to: access the
+                personal data we hold about you; have inaccurate data rectified; have your data
+                erased; restrict or object to processing; receive your data in a portable format;
+                and withdraw any consent you have given, at any time, without affecting the
+                lawfulness of processing before withdrawal.
+              </p>
+              <p className="leading-relaxed">
+                In these regions, Google&apos;s tags set no cookies and read no identifiers until
+                you accept through the cookie consent banner &mdash; until then only aggregate,
+                cookieless measurement takes place. To exercise any of these rights, contact us
+                using the details below; you also have the right to lodge a complaint with your
+                national data protection supervisory authority (in the UK, the Information
+                Commissioner&apos;s Office).
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-3">
+                Your California Privacy Rights (CCPA/CPRA)
+              </h2>
+              <p className="leading-relaxed mb-3">
+                We do not sell personal information, and we do not share it for cross-context
+                behavioral advertising, as those terms are defined by California law &mdash; and
+                have not done so in the preceding 12 months. We do not knowingly collect or sell
+                the personal information of anyone under 16.
+              </p>
+              <p className="leading-relaxed">
+                California residents have the right to: know what personal information we collect,
+                use, and disclose, and to access it; delete personal information we collected from
+                you; correct inaccurate personal information; opt out of any sale or sharing of
+                personal information (not applicable, since we do neither); and not be
+                discriminated against for exercising any of these rights. This site does not read
+                or respond to the Global Privacy Control or Do Not Track browser signals; because
+                we do not sell or share personal information, there is nothing for those signals to
+                opt out of. Analytics cookies are set automatically for visitors outside the EEA,
+                the UK, and Switzerland; any visitor can turn them off at any time via the Cookie
+                Preferences link in the footer, and we delete the cookies when you do. Submit
+                requests using the contact details below.
               </p>
             </div>
 

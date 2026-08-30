@@ -4,14 +4,21 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { analyticsConfig, isProvisioned } from '@/lib/analytics.config';
+import { updateGoogleConsent } from '@/lib/consent-mode';
 
 // Cookie consent banner + preferences modal, aligned with the behavior of
-// FFC_Single_Page_Template src/components/cookie-consent and restyled for
-// this site's dark/purple aesthetic. Consent is stored as a JSON preferences
-// object in localStorage under `cookie-consent` (plus a matching cookie).
-// Analytics/marketing scripts load only after the corresponding consent is
-// granted; GTM (components/GoogleTagManager.tsx) listens for the
-// `ffc-consent-change` CustomEvent dispatched here.
+// the FFC-EX-canary reference (Google Consent Mode v2 with regional
+// defaults) and restyled for this site's dark/purple aesthetic. Consent is
+// stored as a JSON preferences object in localStorage under
+// `cookie-consent` (plus a matching cookie).
+//
+// Google tags (GTM in the layout, the direct GA4 loader here) load on
+// every pageview; the Consent Mode defaults set in the layout <head>
+// (lib/consent-mode.ts) decide per region whether they may use cookies,
+// and this component pushes the `consent update` reflecting the visitor's
+// actual choice. Non-Google tags (Microsoft Clarity, Meta Pixel) do not
+// speak Consent Mode, so they stay strictly opt-in everywhere — both are
+// currently unprovisioned placeholders on this site.
 //
 // The banner itself is rendered into the static export (initial state is
 // visible) so a fresh browser sees it on first load; the mount effect hides
@@ -82,18 +89,21 @@ export default function CookieConsent() {
     useState<CookiePreferences>(preferences);
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
-  // Current applied analytics consent + the last path a page_view was sent
-  // for (the initial gtag config already reports the page it loaded on).
-  const analyticsConsentRef = useRef(false);
+  // Whether the direct GA4 tag has been loaded + the last path a page_view
+  // was sent for (the initial gtag config already reports the page it
+  // loaded on).
+  const gaLoadedRef = useRef(false);
   const lastTrackedPathRef = useRef<string | null>(null);
   const pathname = usePathname();
 
+  // Google tags speak Consent Mode, so loading is NOT gated on the
+  // analytics toggle: the direct GA4 tag loads on every pageview (like GTM
+  // in the layout) and the Consent Mode defaults/updates decide whether it
+  // may use cookies. With the shipped placeholder ID this loader is inert.
   const loadGoogleAnalytics = useCallback(() => {
-    if (
-      isProvisioned(GA_MEASUREMENT_ID) &&
-      typeof window !== 'undefined' &&
-      !document.querySelector('script[src*="googletagmanager.com/gtag"]')
-    ) {
+    if (!isProvisioned(GA_MEASUREMENT_ID) || typeof window === 'undefined') return;
+    gaLoadedRef.current = true;
+    if (!document.querySelector('script[src*="googletagmanager.com/gtag"]')) {
       const gaScript = document.createElement('script');
       gaScript.async = true;
       gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
@@ -111,9 +121,13 @@ export default function CookieConsent() {
         });
       `;
       document.head.appendChild(gaConfigScript);
+      // The gtag config just sent covers the current page.
+      lastTrackedPathRef.current = window.location.pathname;
     }
   }, []);
 
+  // Meta Pixel does NOT speak Consent Mode, so it stays strictly opt-in:
+  // it loads only on an explicit marketing grant, everywhere in the world.
   const loadMetaPixel = useCallback(() => {
     if (
       isProvisioned(META_PIXEL_ID) &&
@@ -137,6 +151,8 @@ export default function CookieConsent() {
     }
   }, []);
 
+  // Microsoft Clarity does NOT speak Consent Mode, so it stays strictly
+  // opt-in: it loads only on an explicit analytics grant, everywhere.
   const loadMicrosoftClarity = useCallback(() => {
     if (
       isProvisioned(CLARITY_PROJECT_ID) &&
@@ -155,24 +171,52 @@ export default function CookieConsent() {
     }
   }, []);
 
-  const deleteAnalyticsCookies = useCallback(() => {
-    const expire = 'expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    // Delete host-only, exact-domain, and leading-dot domain variants —
-    // GA/FB/Clarity typically set cookies on `.example.org`.
-    const domainVariants = ['', window.location.hostname, `.${window.location.hostname}`];
-    const deleteCookie = (name: string) => {
-      domainVariants.forEach((domain) => {
-        document.cookie = `${name}=; ${expire}${domain ? ` domain=${domain};` : ''}`;
+  const expireCookies = useCallback((names: string[]) => {
+    // A cookie can only be deleted by a request whose domain attribute
+    // MATCHES the one it was set with. GA4 scopes `_ga` to the registrable
+    // domain with a leading dot (e.g. `.example.org`) so it is readable
+    // across subdomains — expiring it with only the bare hostname silently
+    // does nothing and the visitor keeps the identifier they just asked us
+    // to drop.
+    //
+    // Best-effort candidate set, no public-suffix list needed: walk up the
+    // hostname's labels and try every suffix that keeps at least two
+    // labels, each with and without a leading dot, plus the host-only
+    // form. Candidates that happen to be public suffixes (e.g. `co.uk`)
+    // are harmless no-ops — browsers reject cookie writes (and therefore
+    // expirations) scoped to a public suffix.
+    const labels = window.location.hostname.split('.');
+    const domains = new Set<string>();
+    for (let i = 0; i < labels.length - 1; i++) {
+      const suffix = labels.slice(i).join('.');
+      domains.add(suffix);
+      domains.add(`.${suffix}`);
+    }
+
+    names.forEach((name) => {
+      const expiry = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      // Host-only (no domain attribute).
+      document.cookie = expiry;
+      domains.forEach((domain) => {
+        document.cookie = `${expiry} domain=${domain};`;
       });
-    };
-    ['_ga', '_gid', '_fbp', 'fr', '_clck', '_clsk'].forEach(deleteCookie);
-    document.cookie.split(';').forEach((cookie) => {
-      const cookieName = cookie.split('=')[0].trim();
-      if (cookieName.startsWith('_ga_')) {
-        deleteCookie(cookieName);
-      }
     });
   }, []);
+
+  // Deletes both analytics (GA4, Clarity) and marketing (Meta Pixel)
+  // cookies — it runs on any withdrawal, so the name says "tracking",
+  // not "analytics".
+  const deleteTrackingCookies = useCallback(() => {
+    // Static cookie names: GA4, Meta Pixel, Microsoft Clarity
+    expireCookies(['_ga', '_gid', '_fbp', 'fr', '_clck', '_clsk']);
+
+    // Dynamically delete all cookies matching _ga_* (e.g., _ga_G-XXXXXXXXXX)
+    const dynamicNames = document.cookie
+      .split(';')
+      .map((cookie) => cookie.split('=')[0].trim())
+      .filter((cookieName) => cookieName.startsWith('_ga_'));
+    expireCookies(dynamicNames);
+  }, [expireCookies]);
 
   const applyConsent = useCallback(
     (prefs: CookiePreferences, previousPrefs?: CookiePreferences) => {
@@ -185,7 +229,7 @@ export default function CookieConsent() {
           (previousPrefs.analytics && !prefs.analytics) ||
           (previousPrefs.marketing && !prefs.marketing)
         ) {
-          deleteAnalyticsCookies();
+          deleteTrackingCookies();
         }
       }
 
@@ -194,14 +238,23 @@ export default function CookieConsent() {
       document.documentElement.dataset.cookieConsent =
         prefs.analytics || prefs.marketing ? 'accepted' : 'declined';
 
-      // GA4 documented opt-out flag: prevents an already-loaded gtag.js from
-      // recreating cookies or sending further hits after withdrawal.
-      if (isProvisioned(GA_MEASUREMENT_ID)) {
-        (window as unknown as Record<string, boolean>)[`ga-disable-${GA_MEASUREMENT_ID}`] =
-          !prefs.analytics;
-      }
+      // NOTE: the previous `ga-disable-<ID>` window flag is intentionally
+      // gone — it would fully silence gtag.js on decline, defeating the
+      // Consent Mode model where a declined visitor is still measured via
+      // cookieless pings. The `consent update` below is what makes gtag.js
+      // stop using cookies after withdrawal (and deleteTrackingCookies
+      // removes the ones already set), matching the canary reference.
 
-      // Push consent update to the GTM dataLayer.
+      // Push the Google Consent Mode `update` mirroring this choice. For an
+      // EEA/UK/CH visitor this is what lifts the regional denied default to
+      // granted; for everyone else it matters when they decline (storage
+      // flips to denied and GA4 falls back to cookieless pings). Pushed
+      // BEFORE the loaders below so a stored denial is on the queue ahead
+      // of the tag's first hit.
+      updateGoogleConsent(prefs);
+
+      // Also push the legacy consent_update dataLayer event so any GTM
+      // container triggers keyed on it keep working.
       window.dataLayer = window.dataLayer || [];
       const consentEvent: DataLayerEvent = {
         event: 'consent_update',
@@ -211,40 +264,46 @@ export default function CookieConsent() {
       };
       window.dataLayer.push(consentEvent);
 
-      // Signal the consent-gated GTM loader (components/GoogleTagManager.tsx).
-      window.dispatchEvent(
-        new CustomEvent('ffc-consent-change', {
-          detail: { analytics: prefs.analytics, marketing: prefs.marketing },
-        })
-      );
+      // Google tags load regardless of the toggle — Consent Mode (above)
+      // gates whether they may use cookies. Inert with a placeholder ID.
+      // The direct gtag.js load alongside the GTM container mirrors the FFC
+      // template architecture (cookie-consent loads gtag; GTM is the tag
+      // management umbrella). The FFC-provisioned GTM container does not
+      // duplicate the GA4 page_view tag, so this does not double-count.
+      loadGoogleAnalytics();
 
-      analyticsConsentRef.current = prefs.analytics;
+      // Non-Google tags don't speak Consent Mode, so they stay strictly
+      // opt-in everywhere: Clarity needs an explicit analytics grant, Meta
+      // Pixel an explicit marketing grant.
       if (prefs.analytics) {
-        // Direct gtag.js load alongside the GTM container mirrors the FFC
-        // template architecture (cookie-consent loads gtag; GTM is the tag
-        // management umbrella). The FFC-provisioned GTM container does not
-        // duplicate the GA4 page_view tag, so this does not double-count.
-        loadGoogleAnalytics();
         loadMicrosoftClarity();
-        // The gtag config just sent covers the current page.
-        lastTrackedPathRef.current = window.location.pathname;
       }
       if (prefs.marketing) {
         loadMetaPixel();
       }
     },
-    [deleteAnalyticsCookies, loadGoogleAnalytics, loadMetaPixel, loadMicrosoftClarity]
+    [deleteTrackingCookies, loadGoogleAnalytics, loadMetaPixel, loadMicrosoftClarity]
   );
 
   const loadPreferencesFromLocalStorage = useCallback(
     (hideBannerIfPresent = true) => {
       try {
         const consent = readStoredConsentRaw();
-        if (!consent) return;
+        if (!consent) {
+          // No stored choice: the Consent Mode defaults set in the layout
+          // <head> govern, so the Google tag loads now (a first-time EEA
+          // visitor is measured cookielessly until they accept) and we ask.
+          // Ordering matters — when a stored choice DOES exist, applyConsent
+          // below pushes the consent update BEFORE loading GA, so a stored
+          // denial is on the queue ahead of the tag's first hit.
+          loadGoogleAnalytics();
+          return;
+        }
         let savedPreferences: CookiePreferences;
         try {
           savedPreferences = JSON.parse(consent);
         } catch {
+          loadGoogleAnalytics();
           return;
         }
         if (
@@ -265,12 +324,17 @@ export default function CookieConsent() {
           setSavedPreferencesBackup(updatedPreferences);
           applyConsent(updatedPreferences);
           if (hideBannerIfPresent) setShowBanner(false);
+        } else {
+          // Invalid stored data — the regional defaults govern.
+          loadGoogleAnalytics();
         }
       } catch {
-        // localStorage unavailable — keep the banner visible.
+        // localStorage unavailable — keep the banner visible; the regional
+        // defaults govern.
+        loadGoogleAnalytics();
       }
     },
-    [applyConsent]
+    [applyConsent, loadGoogleAnalytics]
   );
 
   const handleCancelPreferences = useCallback(() => {
@@ -298,9 +362,12 @@ export default function CookieConsent() {
 
   // Report client-side route transitions to GA (app-router navigations do a
   // full page_view only on first load; subsequent navigation is SPA-style).
+  // Gated on the tag being loaded, not on the analytics toggle: under
+  // Consent Mode the tag decides per region whether the hit is
+  // cookie-based or a cookieless ping.
   useEffect(() => {
     if (!pathname) return;
-    if (!analyticsConsentRef.current || !isProvisioned(GA_MEASUREMENT_ID)) return;
+    if (!gaLoadedRef.current || !isProvisioned(GA_MEASUREMENT_ID)) return;
     if (lastTrackedPathRef.current === pathname) return;
     lastTrackedPathRef.current = pathname;
     const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
@@ -388,7 +455,7 @@ export default function CookieConsent() {
     };
     setPreferences(onlyNecessary);
     persist(onlyNecessary);
-    deleteAnalyticsCookies();
+    deleteTrackingCookies();
     applyConsent(onlyNecessary, savedPreferencesBackup);
     setSavedPreferencesBackup(onlyNecessary);
     setShowBanner(false);

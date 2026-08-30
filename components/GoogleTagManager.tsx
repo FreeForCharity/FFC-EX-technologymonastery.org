@@ -1,61 +1,31 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect, useState } from 'react';
 import { analyticsConfig, isProvisioned } from '@/lib/analytics.config';
-import { readStoredConsentRaw } from '@/components/CookieConsent';
 
-// Google Tag Manager integration, ported from FFC_Single_Page_Template
-// src/components/google-tag-manager. One deliberate difference from the
-// template: GTM here is CONSENT-GATED. The container only loads after the
-// visitor grants analytics consent in the cookie banner (CookieConsent
-// signals via the `ffc-consent-change` CustomEvent and persists the choice
-// in the `cookie-consent` localStorage entry).
+// Google Tag Manager integration. GTM loads on EVERY pageview; whether its
+// tags may use cookies is governed by Google Consent Mode v2 with regional
+// defaults (see lib/consent-mode.ts, whose bootstrap runs from the root
+// layout <head> BEFORE this component's script executes):
 //
-// The template's noscript iframe fallback is intentionally omitted: without
-// JavaScript the consent banner cannot collect a choice, so loading the
-// noscript tracking iframe would bypass consent.
+//   - Outside EEA/UK/CH → storage granted by default; full measurement
+//     from the first pageview, no banner interaction needed.
+//   - Inside EEA/UK/CH  → storage denied until the visitor accepts via
+//     the cookie banner (components/CookieConsent.tsx pushes the
+//     `consent update`); until then GA4 sends cookieless pings only.
+//
+// This replaces the previous consent-gated loader, which kept GTM from
+// loading at all until an explicit analytics grant — that model made every
+// visitor who ignored the banner invisible, worldwide. Matches the
+// FFC-EX-canary reference implementation.
+//
+// The template's noscript iframe fallback remains intentionally omitted:
+// the noscript iframe does not participate in Consent Mode, so it could
+// not honor the region-scoped denial.
 const GTM_ID = analyticsConfig.gtmId;
 
-export type ConsentChangeDetail = {
-  analytics: boolean;
-  marketing: boolean;
-};
-
-function hasStoredAnalyticsConsent(): boolean {
-  try {
-    // Reads localStorage with a cookie fallback (consent persists to both).
-    const raw = readStoredConsentRaw();
-    if (!raw) return false;
-    const prefs = JSON.parse(raw) as { analytics?: boolean };
-    return prefs.analytics === true;
-  } catch {
-    return false;
-  }
-}
-
 export default function GoogleTagManager() {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    if (!isProvisioned(GTM_ID)) return;
-    if (hasStoredAnalyticsConsent()) {
-      setEnabled(true);
-    }
-    const onConsentChange = (event: Event) => {
-      const detail = (event as CustomEvent<ConsentChangeDetail>).detail;
-      // Track the LATEST consent value: if consent is withdrawn before the
-      // GTM script has actually executed, this prevents it from loading at
-      // all. An already-running container cannot be unloaded — for that case
-      // CookieConsent deletes analytics cookies and pushes a consent_update
-      // event so GTM tags stop firing.
-      setEnabled(detail?.analytics === true);
-    };
-    window.addEventListener('ffc-consent-change', onConsentChange);
-    return () => window.removeEventListener('ffc-consent-change', onConsentChange);
-  }, []);
-
-  if (!enabled || !isProvisioned(GTM_ID)) {
+  if (!isProvisioned(GTM_ID)) {
     return null;
   }
 

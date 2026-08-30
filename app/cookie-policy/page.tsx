@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 // Update this date when the policy changes
-const LAST_UPDATED = 'July 20, 2026';
+const LAST_UPDATED = 'August 30, 2026';
 
 const thClass = 'text-left py-2 pr-4 text-white';
 const tdClass = 'py-2 pr-4 text-gray-300';
@@ -49,8 +49,10 @@ export default function CookiePolicy() {
               <p className="leading-relaxed mb-3">When you visit our website, we use cookies to:</p>
               <ul className="list-disc list-inside space-y-2">
                 <li>Remember your cookie consent preferences</li>
-                <li>Understand how you use our website (with your consent)</li>
-                <li>Analyze website traffic and user behavior (with your consent)</li>
+                <li>
+                  Understand how you use our website and analyze traffic (in the EEA, the UK, and
+                  Switzerland, only after you consent &mdash; see Section 3.3)
+                </li>
                 <li>Improve our website and user experience</li>
               </ul>
             </div>
@@ -113,14 +115,36 @@ export default function CookiePolicy() {
               </div>
 
               <p className="leading-relaxed mb-2">
-                <strong className="text-white">3.3 Analytics Cookies (Requires Consent)</strong>
+                <strong className="text-white">3.3 Analytics Cookies</strong>
               </p>
               <p className="leading-relaxed mb-3">
                 These cookies help us understand how visitors interact with our website by
                 collecting and reporting information anonymously. We use this information to
                 improve our website and user experience. We use Google Tag Manager and Google
-                Analytics, which load only after you grant analytics consent.
+                Analytics, which run under Google Consent Mode v2 with regional defaults.
               </p>
+              <div className="bg-purple-900/20 border-l-4 border-purple-400 p-4 rounded-lg mb-4">
+                <p className="text-sm text-white mb-2">
+                  <strong>When we ask permission first</strong>
+                </p>
+                <p className="text-sm mb-2">
+                  If you are in the European Economic Area, the United Kingdom, or Switzerland,
+                  Google Analytics sets <strong className="text-white">no cookies and collects no
+                  identifiers</strong>{' '}
+                  until you accept. It still counts your visit in an aggregate, cookie-free way so
+                  we know how many people used the site &mdash; that measurement cannot be tied
+                  back to you or to your next visit.
+                </p>
+                <p className="text-sm mb-2">
+                  Everywhere else, Google Analytics cookies are set from your first visit. You can
+                  turn them off at any time using the Cookie Preferences link in our footer, and we
+                  will delete the cookies listed below when you do.
+                </p>
+                <p className="text-sm">
+                  Which of these rules applies to your visit is determined by Google from your IP
+                  address at the time of your visit; IP geolocation is approximate.
+                </p>
+              </div>
               <div className="bg-purple-900/20 border border-purple-500/20 p-4 rounded-lg mb-6 overflow-x-auto">
                 <h3 className="font-semibold mb-2 text-white">Google Analytics</h3>
                 <p className="text-sm mb-2">
@@ -172,8 +196,9 @@ export default function CookiePolicy() {
               </p>
               <p className="leading-relaxed">
                 These cookies are used to track visitors across websites. No marketing services are
-                currently active on this site; if that changes, this policy will be updated and
-                your consent will be requested first.
+                currently active on this site; if that changes, this policy will be updated and any
+                marketing tag will load only after you explicitly enable marketing cookies through
+                the consent banner &mdash; everywhere in the world, in every region.
               </p>
             </div>
 
@@ -201,6 +226,11 @@ export default function CookiePolicy() {
                   you want to allow
                 </li>
               </ul>
+              <p className="leading-relaxed mb-4">
+                You can change your mind at any time: the Cookie Preferences link in the footer
+                reopens these choices, and withdrawing consent deletes the analytics cookies this
+                site set.
+              </p>
 
               <p className="leading-relaxed mb-2">
                 <strong className="text-white">4.2 Browser Settings</strong>
@@ -243,12 +273,19 @@ export default function CookiePolicy() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-white mb-3">5. Do Not Track Signals</h2>
+              <h2 className="text-2xl font-bold text-white mb-3">
+                5. Do Not Track and Global Privacy Control
+              </h2>
               <p className="leading-relaxed">
-                Some browsers have a &quot;Do Not Track&quot; feature that lets you tell websites
-                that you do not want to have your online activities tracked. At this time, we do
-                not respond to browser &quot;Do Not Track&quot; signals. However, you can control
-                cookies through our cookie consent banner.
+                This site does not read or respond to the &quot;Do Not Track&quot; or Global
+                Privacy Control browser signals. We do not sell or share personal information as
+                defined by the CCPA/CPRA, so there is nothing for those signals to opt out of. In
+                the EEA, the UK, and Switzerland, analytics cookies stay off until you opt in
+                through the consent banner; everywhere else they are set from your first visit, and
+                you can turn them off at any time via the Cookie Preferences link in the footer
+                &mdash; we delete the cookies when you do. No session recording or marketing tools
+                are currently used on this site; if any are added, they will load only with your
+                explicit opt-in, anywhere in the world.
               </p>
             </div>
 
