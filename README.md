@@ -85,12 +85,12 @@ cd Technologymonastery.org
 
 2. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 3. Run the development server:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 4. Open your browser to `http://localhost:3000`
@@ -98,7 +98,7 @@ npm run dev
 ### Build for Production
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 The static site will be generated in the `out/` directory.

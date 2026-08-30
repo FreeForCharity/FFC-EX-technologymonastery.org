@@ -111,13 +111,13 @@ python3 -m http.server 8000
 open http://localhost:8000
 
 # Validate HTML (if html5validator installed)
-npm run validate
+pnpm run validate
 
 # Lint CSS
-npm run lint:css
+pnpm run lint:css
 
 # Lint JavaScript  
-npm run lint:js
+pnpm run lint:js
 ```
 
 ## File Structure
