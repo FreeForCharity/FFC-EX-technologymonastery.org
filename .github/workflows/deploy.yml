@@ -37,6 +37,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
@@ -47,13 +50,13 @@ jobs:
         uses: actions/configure-pages@v6
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build Next.js site
         env:
           # Input (dispatch) > repo variable > default project-URL build.
           CUSTOM_DOMAIN: ${{ inputs.custom_domain || vars.CUSTOM_DOMAIN || '' }}
-        run: npm run build
+        run: pnpm run build
 
       - name: Emit origin files (sitemap origin + conditional CNAME)
         env:
@@ -288,6 +291,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
@@ -295,12 +301,12 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build with CUSTOM_DOMAIN=technologymonastery.org
         env:
           CUSTOM_DOMAIN: technologymonastery.org
-        run: npm run build
+        run: pnpm run build
 
       - name: Emit origin files
         env:
