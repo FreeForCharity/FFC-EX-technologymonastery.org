@@ -203,34 +203,57 @@ export default function CookieConsent() {
     });
   }, []);
 
-  // Deletes both analytics (GA4, Clarity) and marketing (Meta Pixel)
-  // cookies — it runs on any withdrawal, so the name says "tracking",
-  // not "analytics".
-  const deleteTrackingCookies = useCallback(() => {
-    // Static cookie names: GA4, Meta Pixel, Microsoft Clarity
-    expireCookies(['_ga', '_gid', '_fbp', 'fr', '_clck', '_clsk']);
+  // Expires the cookies of each category that is NOT granted in `prefs`.
+  // Called with no argument it drops both categories (the "withdraw
+  // everything" case), which is why the name says "tracking" rather than
+  // "analytics".
+  //
+  // Keyed on the RESULTING preference state rather than on what changed:
+  // withdrawing marketing alone must not wipe GA4/Clarity cookies while
+  // analytics consent still stands, and a first-time decline must still
+  // clear cookies that the granted-by-default regional bootstrap allowed
+  // to be set before any choice was stored.
+  const deleteTrackingCookies = useCallback(
+    (prefs?: CookiePreferences) => {
+      const deleteAnalytics = !prefs || !prefs.analytics;
+      const deleteMarketing = !prefs || !prefs.marketing;
 
-    // Dynamically delete all cookies matching _ga_* (e.g., _ga_G-XXXXXXXXXX)
-    const dynamicNames = document.cookie
-      .split(';')
-      .map((cookie) => cookie.split('=')[0].trim())
-      .filter((cookieName) => cookieName.startsWith('_ga_'));
-    expireCookies(dynamicNames);
-  }, [expireCookies]);
+      if (deleteAnalytics) {
+        // GA4 + Microsoft Clarity
+        expireCookies(['_ga', '_gid', '_clck', '_clsk']);
+
+        // Dynamically expire all cookies matching _ga_* (e.g. _ga_G-XXXXXXXXXX)
+        const dynamicNames = document.cookie
+          .split(';')
+          .map((cookie) => cookie.split('=')[0].trim())
+          .filter((cookieName) => cookieName.startsWith('_ga_'));
+        expireCookies(dynamicNames);
+      }
+
+      if (deleteMarketing) {
+        // Meta Pixel. `fr` is normally a third-party cookie on facebook.com,
+        // which document.cookie cannot touch — expiring it here is a no-op
+        // in that case and is kept only for a first-party copy.
+        expireCookies(['_fbp', 'fr']);
+      }
+    },
+    [expireCookies]
+  );
 
   const applyConsent = useCallback(
-    (prefs: CookiePreferences, previousPrefs?: CookiePreferences) => {
+    (prefs: CookiePreferences) => {
       const cookieValue = JSON.stringify(prefs);
       const secureFlag = window.location.protocol === 'https:' ? '; Secure' : '';
       document.cookie = `${STORAGE_KEY}=${encodeURIComponent(cookieValue)}; path=/; max-age=31536000; SameSite=Lax${secureFlag}`;
 
-      if (previousPrefs) {
-        if (
-          (previousPrefs.analytics && !prefs.analytics) ||
-          (previousPrefs.marketing && !prefs.marketing)
-        ) {
-          deleteTrackingCookies();
-        }
+      // Expire each non-granted category's cookies on EVERY apply — not only
+      // when a stored grant is withdrawn. Under the regional Consent Mode
+      // defaults, storage is granted outside the EEA/UK/CH before any choice
+      // is made, so cookies can already exist the first time a visitor
+      // declines, and a restore from storage carries no `previousPrefs` at
+      // all.
+      if (!prefs.analytics || !prefs.marketing) {
+        deleteTrackingCookies(prefs);
       }
 
       // Expose the coarse choice for styling/other scripts. "accepted" when
@@ -441,7 +464,7 @@ export default function CookieConsent() {
     };
     setPreferences(allAccepted);
     persist(allAccepted);
-    applyConsent(allAccepted, savedPreferencesBackup);
+    applyConsent(allAccepted);
     setSavedPreferencesBackup(allAccepted);
     setShowBanner(false);
   };
@@ -455,15 +478,17 @@ export default function CookieConsent() {
     };
     setPreferences(onlyNecessary);
     persist(onlyNecessary);
-    deleteTrackingCookies();
-    applyConsent(onlyNecessary, savedPreferencesBackup);
+    // No deleteTrackingCookies() here: applyConsent expires every
+    // non-granted category itself, so calling it first only repeated the
+    // same expiry writes.
+    applyConsent(onlyNecessary);
     setSavedPreferencesBackup(onlyNecessary);
     setShowBanner(false);
   };
 
   const handleSavePreferences = () => {
     persist(preferences);
-    applyConsent(preferences, savedPreferencesBackup);
+    applyConsent(preferences);
     setSavedPreferencesBackup(preferences);
     setShowBanner(false);
     setShowPreferences(false);
