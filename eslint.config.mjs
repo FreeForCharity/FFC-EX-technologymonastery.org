@@ -1,11 +1,19 @@
 import nextPlugin from 'eslint-config-next';
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
+import nextTypeScript from 'eslint-config-next/typescript';
 
 // ESLint 9 uses flat config, and Next 16 dropped `next lint`, so the old
-// .eslintrc.json no longer applies. eslint-config-next@16 exports a flat
-// config array natively; `next/core-web-vitals` + `next/typescript` are both
-// part of that default export, so this covers what the old file extended.
+// .eslintrc.json no longer applies. That file extended BOTH
+// `next/core-web-vitals` and `next/typescript`; eslint-config-next 16
+// publishes those as separate flat-config entrypoints, and the base export
+// does not include the TypeScript set. Spreading all three keeps coverage
+// identical to the .eslintrc.json this replaces -- verified with
+// `eslint --print-config`, which shows @typescript-eslint rules present
+// (they are absent from the base export alone).
 const eslintConfig = [
   ...nextPlugin,
+  ...nextCoreWebVitals,
+  ...nextTypeScript,
   {
     rules: {
       'react/no-unescaped-entities': 'off',
