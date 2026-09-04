@@ -143,15 +143,15 @@ export default function CookiePolicy() {
                 website by collecting and reporting information anonymously. We
                 use this information to improve our website and user experience.
                 We use Google Tag Manager and Google Analytics, which run under
-                Google Consent Mode v2 with regional defaults.
+                Google Consent Mode v2, denied by default for every visitor
+                until you accept.
               </p>
               <div className="bg-purple-900/20 border-l-4 border-purple-400 p-4 rounded-lg mb-4">
                 <p className="text-sm text-white mb-2">
                   <strong>When we ask permission first</strong>
                 </p>
                 <p className="text-sm mb-2">
-                  If you are in the European Economic Area, the United Kingdom,
-                  or Switzerland, Google Analytics sets{" "}
+                  Wherever in the world you are, Google Analytics sets{" "}
                   <strong className="text-white">
                     no analytics or advertising cookies and collects no
                     identifiers from your device

@@ -82,8 +82,9 @@ export default function RootLayout({
         <main id="main-content">{children}</main>
         <Footer />
         <CookieConsent />
-        {/* Loads on every pageview; the Consent Mode defaults set in <head>
-            decide, per region, whether its tags may use cookies. */}
+        {/* Loads on every pageview; the Consent Mode default set in <head>
+            denies its tags cookie storage until the visitor opts in, with no
+            region carve-out. */}
         <GoogleTagManager />
       </body>
     </html>

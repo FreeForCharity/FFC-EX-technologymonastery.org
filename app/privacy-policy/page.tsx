@@ -100,10 +100,8 @@ export default function PrivacyPolicy() {
               </h2>
               <p className="leading-relaxed mb-3">
                 We use Google Tag Manager and Google Analytics under Google
-                Consent Mode v2 with regional defaults. Whether the permissive
-                or the opt-in default applies to Google&apos;s tags is
-                determined by Google from your IP address at the time of your
-                visit; IP geolocation is approximate. Google Analytics runs
+                Consent Mode v2. The same rule applies to every visitor, so
+                nothing depends on where you are: Google Analytics runs
                 cookie-free until you accept through the cookie consent banner,
                 wherever in the world you are. There is no country in which
                 analytics cookies are set before you choose.

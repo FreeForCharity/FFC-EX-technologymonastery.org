@@ -1,27 +1,32 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
-import { analyticsConfig, isProvisioned } from '@/lib/analytics.config';
+import Script from "next/script";
+import { analyticsConfig, isProvisioned } from "@/lib/analytics.config";
 
 // Google Tag Manager integration. GTM loads on EVERY pageview; whether its
-// tags may use cookies is governed by Google Consent Mode v2 with regional
-// defaults (see lib/consent-mode.ts, whose bootstrap runs from the root
-// layout <head> BEFORE this component's script executes):
+// tags may use cookies is governed by Google Consent Mode v2 (see
+// lib/consent-mode.ts, whose bootstrap runs from the root layout <head>
+// BEFORE this component's script executes). There is one default and it
+// applies everywhere:
 //
-//   - Outside EEA/UK/CH → storage granted by default; full measurement
-//     from the first pageview, no banner interaction needed.
-//   - Inside EEA/UK/CH  → storage denied until the visitor accepts via
-//     the cookie banner (components/CookieConsent.tsx pushes the
-//     `consent update`); until then GA4 sends cookieless pings only.
+//   - Analytics and advertising storage is DENIED for every visitor,
+//     worldwide, until they accept via the cookie banner
+//     (components/CookieConsent.tsx pushes the `consent update`). Until
+//     then GA4 sends cookieless pings only.
 //
-// This replaces the previous consent-gated loader, which kept GTM from
-// loading at all until an explicit analytics grant — that model made every
-// visitor who ignored the banner invisible, worldwide. Matches the
-// FFC-EX-canary reference implementation.
+// There is no second, permissive branch. This used to read "outside
+// EEA/UK/CH → storage granted by default", which was the shipped behaviour
+// and is now the opposite of it.
+//
+// Loading GTM unconditionally still matters, and is not the same thing as
+// measuring unconditionally: the previous consent-gated loader kept GTM
+// from loading at all until an explicit grant, which made every visitor who
+// ignored the banner invisible. Cookieless pings keep aggregate measurement
+// while storing nothing on the device.
 //
 // The template's noscript iframe fallback remains intentionally omitted:
 // the noscript iframe does not participate in Consent Mode, so it could
-// not honor the region-scoped denial.
+// not honor the denial.
 const GTM_ID = analyticsConfig.gtmId;
 
 export default function GoogleTagManager() {

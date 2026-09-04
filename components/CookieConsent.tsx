@@ -6,17 +6,30 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { analyticsConfig, isProvisioned } from "@/lib/analytics.config";
 import { updateGoogleConsent } from "@/lib/consent-mode";
 
+// Focusable elements inside the preferences modal, for both the initial
+// focus and the Tab trap. One constant because these were two literals that
+// drifted: the trap excluded `[disabled]` and the initial focus did not, and
+// the first control in the modal is the always-on "Necessary" checkbox,
+// which is disabled. A disabled element cannot take focus, so `.focus()` on
+// it silently did nothing and focus stayed on <body> — the dialog opened
+// with focus outside itself, which defeats the trap and leaves a screen
+// reader with no idea the dialog is there. Nothing threw and nothing looked
+// wrong on screen, which is why it survived review until Copilot flagged it.
+const FOCUSABLE =
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 // Cookie consent banner + preferences modal, aligned with the behavior of
-// the FFC-EX-canary reference (Google Consent Mode v2 with regional
-// defaults) and restyled for this site's dark/purple aesthetic. Consent is
+// the FFC-EX-canary reference (Google Consent Mode v2, denied by default
+// worldwide) and restyled for this site's dark/purple aesthetic. Consent is
 // stored as a JSON preferences object in localStorage under
 // `cookie-consent` (plus a matching cookie).
 //
 // Google tags (GTM in the layout, the direct GA4 loader here) load on
-// every pageview; the Consent Mode defaults set in the layout <head>
-// (lib/consent-mode.ts) decide per region whether they may use cookies,
-// and this component pushes the `consent update` reflecting the visitor's
-// actual choice. Non-Google tags (Microsoft Clarity, Meta Pixel) do not
+// every pageview; the Consent Mode default set in the layout <head>
+// (lib/consent-mode.ts) denies them cookie storage for every visitor until
+// this component pushes the `consent update` reflecting an actual choice.
+// There is no region in which that default is permissive, so this banner is
+// the only thing that ever grants storage. Non-Google tags (Microsoft Clarity, Meta Pixel) do not
 // speak Consent Mode, so they stay strictly opt-in everywhere — both are
 // currently unprovisioned placeholders on this site.
 //
@@ -249,11 +262,13 @@ export default function CookieConsent() {
       document.cookie = `${STORAGE_KEY}=${encodeURIComponent(cookieValue)}; path=/; max-age=31536000; SameSite=Lax${secureFlag}`;
 
       // Expire each non-granted category's cookies on EVERY apply — not only
-      // when a stored grant is withdrawn. Under the regional Consent Mode
-      // defaults, storage is granted outside the EEA/UK/CH before any choice
-      // is made, so cookies can already exist the first time a visitor
-      // declines, and a restore from storage carries no `previousPrefs` at
-      // all.
+      // when a stored grant is withdrawn. The original reason for this was
+      // that storage was granted outside the EEA/UK/CH before any choice, so
+      // cookies could already exist the first time a visitor declined. That
+      // is no longer true and the sweep is still right: a restore from
+      // storage carries no `previousPrefs` at all, and cookies set under an
+      // earlier grant (or by anything outside Consent Mode) outlive the
+      // choice that allowed them.
       if (!prefs.analytics || !prefs.marketing) {
         deleteTrackingCookies(prefs);
       }
@@ -354,12 +369,12 @@ export default function CookieConsent() {
           applyConsent(updatedPreferences);
           if (hideBannerIfPresent) setShowBanner(false);
         } else {
-          // Invalid stored data — the regional defaults govern.
+          // Invalid stored data — the denied-by-default state governs.
           loadGoogleAnalytics();
         }
       } catch {
-        // localStorage unavailable — keep the banner visible; the regional
-        // defaults govern.
+        // localStorage unavailable — keep the banner visible; the
+        // denied-by-default state governs.
         loadGoogleAnalytics();
       }
     },
@@ -392,8 +407,9 @@ export default function CookieConsent() {
   // Report client-side route transitions to GA (app-router navigations do a
   // full page_view only on first load; subsequent navigation is SPA-style).
   // Gated on the tag being loaded, not on the analytics toggle: under
-  // Consent Mode the tag decides per region whether the hit is
-  // cookie-based or a cookieless ping.
+  // Consent Mode the tag decides from the current consent state whether the
+  // hit is cookie-based or a cookieless ping. Before any choice it is always
+  // the latter.
   useEffect(() => {
     if (!pathname) return;
     if (!gaLoadedRef.current || !isProvisioned(GA_MEASUREMENT_ID)) return;
@@ -416,11 +432,10 @@ export default function CookieConsent() {
   useEffect(() => {
     if (showPreferences && modalRef.current) {
       previousFocusRef.current = document.activeElement as HTMLElement;
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
+      const focusableElements =
+        modalRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
       if (focusableElements.length > 0) {
-        (focusableElements[0] as HTMLElement).focus();
+        focusableElements[0].focus();
       }
       const handleKeydown = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
@@ -429,9 +444,8 @@ export default function CookieConsent() {
         }
         // Trap focus within the dialog while it is open.
         if (e.key === "Tab" && modalRef.current) {
-          const focusable = modalRef.current.querySelectorAll<HTMLElement>(
-            'button, [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])',
-          );
+          const focusable =
+            modalRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
           if (focusable.length === 0) return;
           const first = focusable[0];
           const last = focusable[focusable.length - 1];
