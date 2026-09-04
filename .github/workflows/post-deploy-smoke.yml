@@ -235,9 +235,11 @@ jobs:
           mkdir -p /tmp/pw
           cd /tmp/pw
           npm init -y >/dev/null
-          # Chromium is installed explicitly below. The postinstall still
-          # runs; this env var only stops it downloading every browser
-          # first, so the step fetches chromium once instead of twice.
+          # Chromium, with its OS deps, is installed explicitly below.
+          # Chromium itself is fetched once either way -- the explicit
+          # install finds an already-downloaded browser and returns
+          # without re-fetching it. What this env var saves is the
+          # firefox and webkit downloads the smoke run never uses.
           # This repo does not depend on Playwright, so there is no lockfile
           # version to track. 1.62.1 is the fleet default; bump it here.
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --no-audit --no-fund playwright@1.62.1 >/dev/null
