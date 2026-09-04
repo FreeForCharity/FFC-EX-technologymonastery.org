@@ -1,61 +1,60 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
-import { useEffect, useState } from 'react';
-import { analyticsConfig, isProvisioned } from '@/lib/analytics.config';
-import { readStoredConsentRaw } from '@/components/CookieConsent';
+import Script from "next/script";
+import { analyticsConfig, isProvisioned } from "@/lib/analytics.config";
 
-// Google Tag Manager integration, ported from FFC_Single_Page_Template
-// src/components/google-tag-manager. One deliberate difference from the
-// template: GTM here is CONSENT-GATED. The container only loads after the
-// visitor grants analytics consent in the cookie banner (CookieConsent
-// signals via the `ffc-consent-change` CustomEvent and persists the choice
-// in the `cookie-consent` localStorage entry).
+// Google Tag Manager integration. GTM loads on EVERY pageview; whether its
+// tags may use cookies is governed by Google Consent Mode v2 (see
+// lib/consent-mode.ts, whose bootstrap runs from the root layout <head>
+// BEFORE this component's script executes). There is one default and it
+// applies everywhere:
 //
-// The template's noscript iframe fallback is intentionally omitted: without
-// JavaScript the consent banner cannot collect a choice, so loading the
-// noscript tracking iframe would bypass consent.
+//   - Analytics and advertising storage is DENIED for every visitor,
+//     worldwide, until they accept via the cookie banner
+//     (components/CookieConsent.tsx pushes the `consent update`). Until
+//     then GA4 sends cookieless pings only.
+//
+// There is no second, permissive branch. This used to read "outside
+// EEA/UK/CH → storage granted by default", which was the shipped behaviour
+// and is now the opposite of it.
+//
+// Loading GTM unconditionally still matters, and is not the same thing as
+// measuring unconditionally: the previous consent-gated loader kept GTM
+// from loading at all until an explicit grant, which made every visitor who
+// ignored the banner invisible. Cookieless pings keep aggregate measurement
+// while storing nothing on the device.
+//
+// The template's noscript iframe fallback remains intentionally omitted:
+// the noscript iframe does not participate in Consent Mode, so it could
+// not honor the denial.
 const GTM_ID = analyticsConfig.gtmId;
 
-export type ConsentChangeDetail = {
-  analytics: boolean;
-  marketing: boolean;
-};
-
-function hasStoredAnalyticsConsent(): boolean {
-  try {
-    // Reads localStorage with a cookie fallback (consent persists to both).
-    const raw = readStoredConsentRaw();
-    if (!raw) return false;
-    const prefs = JSON.parse(raw) as { analytics?: boolean };
-    return prefs.analytics === true;
-  } catch {
-    return false;
-  }
+/**
+ * Serialises the container id for embedding in the inline script body.
+ *
+ * `JSON.stringify` supplies the quotes and escapes quotes and newlines, but
+ * NOT `<` — a value containing `</script>` would close the element early and
+ * let the rest parse as markup. U+2028/U+2029 are escaped too: legal in JSON,
+ * illegal in a JS string literal before ES2019.
+ *
+ * Defence in depth, not a live hole: the id is a build-time constant set by a
+ * maintainer, never by a visitor. It matters because `isConfigured()` only
+ * rejects placeholders — nothing validates the SHAPE of what lands here.
+ *
+ * Deliberately local rather than imported from the cookie-consent component,
+ * which exports the same helper: that module is `'use client'`, so importing
+ * from it makes this a client-boundary call and breaks the build wherever
+ * this component renders on the server.
+ */
+function scriptString(value: string): string {
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003c")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
 }
 
 export default function GoogleTagManager() {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    if (!isProvisioned(GTM_ID)) return;
-    if (hasStoredAnalyticsConsent()) {
-      setEnabled(true);
-    }
-    const onConsentChange = (event: Event) => {
-      const detail = (event as CustomEvent<ConsentChangeDetail>).detail;
-      // Track the LATEST consent value: if consent is withdrawn before the
-      // GTM script has actually executed, this prevents it from loading at
-      // all. An already-running container cannot be unloaded — for that case
-      // CookieConsent deletes analytics cookies and pushes a consent_update
-      // event so GTM tags stop firing.
-      setEnabled(detail?.analytics === true);
-    };
-    window.addEventListener('ffc-consent-change', onConsentChange);
-    return () => window.removeEventListener('ffc-consent-change', onConsentChange);
-  }, []);
-
-  if (!enabled || !isProvisioned(GTM_ID)) {
+  if (!isProvisioned(GTM_ID)) {
     return null;
   }
 
@@ -69,7 +68,7 @@ export default function GoogleTagManager() {
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','${GTM_ID}');
+          })(window,document,'script','dataLayer',${scriptString(GTM_ID)});
         `,
       }}
     />

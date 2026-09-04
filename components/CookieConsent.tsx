@@ -1,17 +1,37 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { analyticsConfig, isProvisioned } from '@/lib/analytics.config';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { analyticsConfig, isProvisioned } from "@/lib/analytics.config";
+import { updateGoogleConsent } from "@/lib/consent-mode";
+
+// Focusable elements inside the preferences modal, for both the initial
+// focus and the Tab trap. One constant because these were two literals that
+// drifted: the trap excluded `[disabled]` and the initial focus did not, and
+// the first control in the modal is the always-on "Necessary" checkbox,
+// which is disabled. A disabled element cannot take focus, so `.focus()` on
+// it silently did nothing and focus stayed on <body> — the dialog opened
+// with focus outside itself, which defeats the trap and leaves a screen
+// reader with no idea the dialog is there. Nothing threw and nothing looked
+// wrong on screen, which is why it survived review until Copilot flagged it.
+const FOCUSABLE =
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 // Cookie consent banner + preferences modal, aligned with the behavior of
-// FFC_Single_Page_Template src/components/cookie-consent and restyled for
-// this site's dark/purple aesthetic. Consent is stored as a JSON preferences
-// object in localStorage under `cookie-consent` (plus a matching cookie).
-// Analytics/marketing scripts load only after the corresponding consent is
-// granted; GTM (components/GoogleTagManager.tsx) listens for the
-// `ffc-consent-change` CustomEvent dispatched here.
+// the FFC-EX-canary reference (Google Consent Mode v2, denied by default
+// worldwide) and restyled for this site's dark/purple aesthetic. Consent is
+// stored as a JSON preferences object in localStorage under
+// `cookie-consent` (plus a matching cookie).
+//
+// Google tags (GTM in the layout, the direct GA4 loader here) load on
+// every pageview; the Consent Mode default set in the layout <head>
+// (lib/consent-mode.ts) denies them cookie storage for every visitor until
+// this component pushes the `consent update` reflecting an actual choice.
+// There is no region in which that default is permissive, so this banner is
+// the only thing that ever grants storage. Non-Google tags (Microsoft Clarity, Meta Pixel) do not
+// speak Consent Mode, so they stay strictly opt-in everywhere — both are
+// currently unprovisioned placeholders on this site.
 //
 // The banner itself is rendered into the static export (initial state is
 // visible) so a fresh browser sees it on first load; the mount effect hides
@@ -42,7 +62,7 @@ interface CookiePreferences {
   marketing: boolean;
 }
 
-const STORAGE_KEY = 'cookie-consent';
+const STORAGE_KEY = "cookie-consent";
 
 /**
  * Read the raw stored consent JSON, preferring localStorage and falling back
@@ -57,7 +77,7 @@ export function readStoredConsentRaw(): string | null {
     // localStorage unavailable — fall through to the cookie.
   }
   const match = document.cookie
-    .split(';')
+    .split(";")
     .map((c) => c.trim())
     .find((c) => c.startsWith(`${STORAGE_KEY}=`));
   if (!match) return null;
@@ -82,25 +102,29 @@ export default function CookieConsent() {
     useState<CookiePreferences>(preferences);
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
-  // Current applied analytics consent + the last path a page_view was sent
-  // for (the initial gtag config already reports the page it loaded on).
-  const analyticsConsentRef = useRef(false);
+  // Whether the direct GA4 tag has been loaded + the last path a page_view
+  // was sent for (the initial gtag config already reports the page it
+  // loaded on).
+  const gaLoadedRef = useRef(false);
   const lastTrackedPathRef = useRef<string | null>(null);
   const pathname = usePathname();
 
+  // Google tags speak Consent Mode, so loading is NOT gated on the
+  // analytics toggle: the direct GA4 tag loads on every pageview (like GTM
+  // in the layout) and the Consent Mode defaults/updates decide whether it
+  // may use cookies. With the shipped placeholder ID this loader is inert.
   const loadGoogleAnalytics = useCallback(() => {
-    if (
-      isProvisioned(GA_MEASUREMENT_ID) &&
-      typeof window !== 'undefined' &&
-      !document.querySelector('script[src*="googletagmanager.com/gtag"]')
-    ) {
-      const gaScript = document.createElement('script');
+    if (!isProvisioned(GA_MEASUREMENT_ID) || typeof window === "undefined")
+      return;
+    gaLoadedRef.current = true;
+    if (!document.querySelector('script[src*="googletagmanager.com/gtag"]')) {
+      const gaScript = document.createElement("script");
       gaScript.async = true;
       gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
       document.head.appendChild(gaScript);
 
-      const gaConfigScript = document.createElement('script');
-      const secureFlag = window.location.protocol === 'https:' ? ';Secure' : '';
+      const gaConfigScript = document.createElement("script");
+      const secureFlag = window.location.protocol === "https:" ? ";Secure" : "";
       gaConfigScript.textContent = `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -111,16 +135,20 @@ export default function CookieConsent() {
         });
       `;
       document.head.appendChild(gaConfigScript);
+      // The gtag config just sent covers the current page.
+      lastTrackedPathRef.current = window.location.pathname;
     }
   }, []);
 
+  // Meta Pixel does NOT speak Consent Mode, so it stays strictly opt-in:
+  // it loads only on an explicit marketing grant, everywhere in the world.
   const loadMetaPixel = useCallback(() => {
     if (
       isProvisioned(META_PIXEL_ID) &&
-      typeof window !== 'undefined' &&
+      typeof window !== "undefined" &&
       !document.querySelector('script[src*="fbevents.js"]')
     ) {
-      const fbScript = document.createElement('script');
+      const fbScript = document.createElement("script");
       fbScript.textContent = `
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -137,13 +165,15 @@ export default function CookieConsent() {
     }
   }, []);
 
+  // Microsoft Clarity does NOT speak Consent Mode, so it stays strictly
+  // opt-in: it loads only on an explicit analytics grant, everywhere.
   const loadMicrosoftClarity = useCallback(() => {
     if (
       isProvisioned(CLARITY_PROJECT_ID) &&
-      typeof window !== 'undefined' &&
+      typeof window !== "undefined" &&
       !document.querySelector('script[src*="clarity.ms"]')
     ) {
-      const clarityScript = document.createElement('script');
+      const clarityScript = document.createElement("script");
       clarityScript.textContent = `
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -155,104 +185,177 @@ export default function CookieConsent() {
     }
   }, []);
 
-  const deleteAnalyticsCookies = useCallback(() => {
-    const expire = 'expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    // Delete host-only, exact-domain, and leading-dot domain variants —
-    // GA/FB/Clarity typically set cookies on `.example.org`.
-    const domainVariants = ['', window.location.hostname, `.${window.location.hostname}`];
-    const deleteCookie = (name: string) => {
-      domainVariants.forEach((domain) => {
-        document.cookie = `${name}=; ${expire}${domain ? ` domain=${domain};` : ''}`;
+  const expireCookies = useCallback((names: string[]) => {
+    // A cookie can only be deleted by a request whose domain attribute
+    // MATCHES the one it was set with. GA4 scopes `_ga` to the registrable
+    // domain with a leading dot (e.g. `.example.org`) so it is readable
+    // across subdomains — expiring it with only the bare hostname silently
+    // does nothing and the visitor keeps the identifier they just asked us
+    // to drop.
+    //
+    // Best-effort candidate set, no public-suffix list needed: walk up the
+    // hostname's labels and try every suffix that keeps at least two
+    // labels, each with and without a leading dot, plus the host-only
+    // form. Candidates that happen to be public suffixes (e.g. `co.uk`)
+    // are harmless no-ops — browsers reject cookie writes (and therefore
+    // expirations) scoped to a public suffix.
+    const labels = window.location.hostname.split(".");
+    const domains = new Set<string>();
+    for (let i = 0; i < labels.length - 1; i++) {
+      const suffix = labels.slice(i).join(".");
+      domains.add(suffix);
+      domains.add(`.${suffix}`);
+    }
+
+    names.forEach((name) => {
+      const expiry = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      // Host-only (no domain attribute).
+      document.cookie = expiry;
+      domains.forEach((domain) => {
+        document.cookie = `${expiry} domain=${domain};`;
       });
-    };
-    ['_ga', '_gid', '_fbp', 'fr', '_clck', '_clsk'].forEach(deleteCookie);
-    document.cookie.split(';').forEach((cookie) => {
-      const cookieName = cookie.split('=')[0].trim();
-      if (cookieName.startsWith('_ga_')) {
-        deleteCookie(cookieName);
-      }
     });
   }, []);
 
+  // Expires the cookies of each category that is NOT granted in `prefs`.
+  // Called with no argument it drops both categories (the "withdraw
+  // everything" case), which is why the name says "tracking" rather than
+  // "analytics".
+  //
+  // Keyed on the RESULTING preference state rather than on what changed:
+  // withdrawing marketing alone must not wipe GA4/Clarity cookies while
+  // analytics consent still stands, and a first-time decline must still clear
+  // cookies that this site's earlier permissive bootstrap allowed to be set
+  // before any choice was stored.
+  const deleteTrackingCookies = useCallback(
+    (prefs?: CookiePreferences) => {
+      const deleteAnalytics = !prefs || !prefs.analytics;
+      const deleteMarketing = !prefs || !prefs.marketing;
+
+      if (deleteAnalytics) {
+        // GA4 + Microsoft Clarity
+        expireCookies(["_ga", "_gid", "_clck", "_clsk"]);
+
+        // Dynamically expire all cookies matching _ga_* (e.g. _ga_G-XXXXXXXXXX)
+        const dynamicNames = document.cookie
+          .split(";")
+          .map((cookie) => cookie.split("=")[0].trim())
+          .filter((cookieName) => cookieName.startsWith("_ga_"));
+        expireCookies(dynamicNames);
+      }
+
+      if (deleteMarketing) {
+        // Meta Pixel. `fr` is normally a third-party cookie on facebook.com,
+        // which document.cookie cannot touch — expiring it here is a no-op
+        // in that case and is kept only for a first-party copy.
+        expireCookies(["_fbp", "fr"]);
+      }
+    },
+    [expireCookies],
+  );
+
   const applyConsent = useCallback(
-    (prefs: CookiePreferences, previousPrefs?: CookiePreferences) => {
+    (prefs: CookiePreferences) => {
       const cookieValue = JSON.stringify(prefs);
-      const secureFlag = window.location.protocol === 'https:' ? '; Secure' : '';
+      const secureFlag =
+        window.location.protocol === "https:" ? "; Secure" : "";
       document.cookie = `${STORAGE_KEY}=${encodeURIComponent(cookieValue)}; path=/; max-age=31536000; SameSite=Lax${secureFlag}`;
 
-      if (previousPrefs) {
-        if (
-          (previousPrefs.analytics && !prefs.analytics) ||
-          (previousPrefs.marketing && !prefs.marketing)
-        ) {
-          deleteAnalyticsCookies();
-        }
+      // Expire each non-granted category's cookies on EVERY apply — not only
+      // when a stored grant is withdrawn. The original reason for this was
+      // that storage was granted outside the EEA/UK/CH before any choice, so
+      // cookies could already exist the first time a visitor declined. That
+      // is no longer true and the sweep is still right: a restore from
+      // storage carries no `previousPrefs` at all, and cookies set under an
+      // earlier grant (or by anything outside Consent Mode) outlive the
+      // choice that allowed them.
+      if (!prefs.analytics || !prefs.marketing) {
+        deleteTrackingCookies(prefs);
       }
 
       // Expose the coarse choice for styling/other scripts. "accepted" when
       // any tracking category (analytics or marketing) is granted.
       document.documentElement.dataset.cookieConsent =
-        prefs.analytics || prefs.marketing ? 'accepted' : 'declined';
+        prefs.analytics || prefs.marketing ? "accepted" : "declined";
 
-      // GA4 documented opt-out flag: prevents an already-loaded gtag.js from
-      // recreating cookies or sending further hits after withdrawal.
-      if (isProvisioned(GA_MEASUREMENT_ID)) {
-        (window as unknown as Record<string, boolean>)[`ga-disable-${GA_MEASUREMENT_ID}`] =
-          !prefs.analytics;
-      }
+      // NOTE: the previous `ga-disable-<ID>` window flag is intentionally
+      // gone — it would fully silence gtag.js on decline, defeating the
+      // Consent Mode model where a declined visitor is still measured via
+      // cookieless pings. The `consent update` below is what makes gtag.js
+      // stop using cookies after withdrawal (and deleteTrackingCookies
+      // removes the ones already set), matching the canary reference.
 
-      // Push consent update to the GTM dataLayer.
+      // Push the Google Consent Mode `update` mirroring this choice. This is
+      // what lifts the denied-by-default state to granted for any visitor who
+      // accepts; for one who declines it pins storage to denied and GA4 stays
+      // on cookieless pings. Pushed BEFORE the loaders below so a stored denial
+      // is on the queue ahead of the tag's first hit.
+      updateGoogleConsent(prefs);
+
+      // Also push the legacy consent_update dataLayer event so any GTM
+      // container triggers keyed on it keep working.
       window.dataLayer = window.dataLayer || [];
       const consentEvent: DataLayerEvent = {
-        event: 'consent_update',
-        functional_consent: prefs.functional ? 'granted' : 'denied',
-        analytics_consent: prefs.analytics ? 'granted' : 'denied',
-        marketing_consent: prefs.marketing ? 'granted' : 'denied',
+        event: "consent_update",
+        functional_consent: prefs.functional ? "granted" : "denied",
+        analytics_consent: prefs.analytics ? "granted" : "denied",
+        marketing_consent: prefs.marketing ? "granted" : "denied",
       };
       window.dataLayer.push(consentEvent);
 
-      // Signal the consent-gated GTM loader (components/GoogleTagManager.tsx).
-      window.dispatchEvent(
-        new CustomEvent('ffc-consent-change', {
-          detail: { analytics: prefs.analytics, marketing: prefs.marketing },
-        })
-      );
+      // Google tags load regardless of the toggle — Consent Mode (above)
+      // gates whether they may use cookies. Inert with a placeholder ID.
+      // The direct gtag.js load alongside the GTM container mirrors the FFC
+      // template architecture (cookie-consent loads gtag; GTM is the tag
+      // management umbrella). The FFC-provisioned GTM container does not
+      // duplicate the GA4 page_view tag, so this does not double-count.
+      loadGoogleAnalytics();
 
-      analyticsConsentRef.current = prefs.analytics;
+      // Non-Google tags don't speak Consent Mode, so they stay strictly
+      // opt-in everywhere: Clarity needs an explicit analytics grant, Meta
+      // Pixel an explicit marketing grant.
       if (prefs.analytics) {
-        // Direct gtag.js load alongside the GTM container mirrors the FFC
-        // template architecture (cookie-consent loads gtag; GTM is the tag
-        // management umbrella). The FFC-provisioned GTM container does not
-        // duplicate the GA4 page_view tag, so this does not double-count.
-        loadGoogleAnalytics();
         loadMicrosoftClarity();
-        // The gtag config just sent covers the current page.
-        lastTrackedPathRef.current = window.location.pathname;
       }
       if (prefs.marketing) {
         loadMetaPixel();
       }
     },
-    [deleteAnalyticsCookies, loadGoogleAnalytics, loadMetaPixel, loadMicrosoftClarity]
+    [
+      deleteTrackingCookies,
+      loadGoogleAnalytics,
+      loadMetaPixel,
+      loadMicrosoftClarity,
+    ],
   );
 
   const loadPreferencesFromLocalStorage = useCallback(
     (hideBannerIfPresent = true) => {
       try {
         const consent = readStoredConsentRaw();
-        if (!consent) return;
+        if (!consent) {
+          // No stored choice: the Consent Mode defaults set in the layout
+          // <head> govern, so the Google tag loads now (a first-time visitor
+          // anywhere is measured cookielessly until they accept) and we ask.
+          // Ordering matters — when a stored choice DOES exist, applyConsent
+          // below pushes the consent update BEFORE loading GA, so a stored
+          // denial is on the queue ahead of the tag's first hit.
+          loadGoogleAnalytics();
+          return;
+        }
         let savedPreferences: CookiePreferences;
         try {
           savedPreferences = JSON.parse(consent);
         } catch {
+          loadGoogleAnalytics();
           return;
         }
         if (
-          typeof savedPreferences === 'object' &&
+          typeof savedPreferences === "object" &&
           savedPreferences !== null &&
-          typeof savedPreferences.necessary === 'boolean' &&
-          typeof savedPreferences.analytics === 'boolean' &&
-          typeof savedPreferences.marketing === 'boolean'
+          typeof savedPreferences.necessary === "boolean" &&
+          typeof savedPreferences.analytics === "boolean" &&
+          typeof savedPreferences.marketing === "boolean"
         ) {
           const updatedPreferences: CookiePreferences = {
             ...savedPreferences,
@@ -265,12 +368,17 @@ export default function CookieConsent() {
           setSavedPreferencesBackup(updatedPreferences);
           applyConsent(updatedPreferences);
           if (hideBannerIfPresent) setShowBanner(false);
+        } else {
+          // Invalid stored data — the denied-by-default state governs.
+          loadGoogleAnalytics();
         }
       } catch {
-        // localStorage unavailable — keep the banner visible.
+        // localStorage unavailable — keep the banner visible; the
+        // denied-by-default state governs.
+        loadGoogleAnalytics();
       }
     },
-    [applyConsent]
+    [applyConsent, loadGoogleAnalytics],
   );
 
   const handleCancelPreferences = useCallback(() => {
@@ -298,17 +406,25 @@ export default function CookieConsent() {
 
   // Report client-side route transitions to GA (app-router navigations do a
   // full page_view only on first load; subsequent navigation is SPA-style).
+  // Gated on the tag being loaded, not on the analytics toggle: under
+  // Consent Mode the tag decides from the current consent state whether the
+  // hit is cookie-based or a cookieless ping. Before any choice it is always
+  // the latter.
   useEffect(() => {
     if (!pathname) return;
-    if (!analyticsConsentRef.current || !isProvisioned(GA_MEASUREMENT_ID)) return;
+    if (!gaLoadedRef.current || !isProvisioned(GA_MEASUREMENT_ID)) return;
     if (lastTrackedPathRef.current === pathname) return;
     lastTrackedPathRef.current = pathname;
-    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
-    if (typeof gtag === 'function') {
-      gtag('config', GA_MEASUREMENT_ID, { page_path: pathname });
+    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void })
+      .gtag;
+    if (typeof gtag === "function") {
+      gtag("config", GA_MEASUREMENT_ID, { page_path: pathname });
     }
     window.dataLayer = window.dataLayer || [];
-    const pageViewEvent: DataLayerEvent = { event: 'page_view', page_path: pathname };
+    const pageViewEvent: DataLayerEvent = {
+      event: "page_view",
+      page_path: pathname,
+    };
     window.dataLayer.push(pageViewEvent);
   }, [pathname]);
 
@@ -316,22 +432,20 @@ export default function CookieConsent() {
   useEffect(() => {
     if (showPreferences && modalRef.current) {
       previousFocusRef.current = document.activeElement as HTMLElement;
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
+      const focusableElements =
+        modalRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
       if (focusableElements.length > 0) {
-        (focusableElements[0] as HTMLElement).focus();
+        focusableElements[0].focus();
       }
       const handleKeydown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
           handleCancelPreferences();
           return;
         }
         // Trap focus within the dialog while it is open.
-        if (e.key === 'Tab' && modalRef.current) {
-          const focusable = modalRef.current.querySelectorAll<HTMLElement>(
-            'button, [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
+        if (e.key === "Tab" && modalRef.current) {
+          const focusable =
+            modalRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
           if (focusable.length === 0) return;
           const first = focusable[0];
           const last = focusable[focusable.length - 1];
@@ -347,9 +461,9 @@ export default function CookieConsent() {
           }
         }
       };
-      document.addEventListener('keydown', handleKeydown);
+      document.addEventListener("keydown", handleKeydown);
       return () => {
-        document.removeEventListener('keydown', handleKeydown);
+        document.removeEventListener("keydown", handleKeydown);
         if (previousFocusRef.current) {
           previousFocusRef.current.focus();
         }
@@ -361,7 +475,7 @@ export default function CookieConsent() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
     } catch (e) {
-      console.warn('Unable to save preferences to localStorage:', e);
+      console.warn("Unable to save preferences to localStorage:", e);
     }
   };
 
@@ -374,7 +488,7 @@ export default function CookieConsent() {
     };
     setPreferences(allAccepted);
     persist(allAccepted);
-    applyConsent(allAccepted, savedPreferencesBackup);
+    applyConsent(allAccepted);
     setSavedPreferencesBackup(allAccepted);
     setShowBanner(false);
   };
@@ -388,15 +502,17 @@ export default function CookieConsent() {
     };
     setPreferences(onlyNecessary);
     persist(onlyNecessary);
-    deleteAnalyticsCookies();
-    applyConsent(onlyNecessary, savedPreferencesBackup);
+    // No deleteTrackingCookies() here: applyConsent expires every
+    // non-granted category itself, so calling it first only repeated the
+    // same expiry writes.
+    applyConsent(onlyNecessary);
     setSavedPreferencesBackup(onlyNecessary);
     setShowBanner(false);
   };
 
   const handleSavePreferences = () => {
     persist(preferences);
-    applyConsent(preferences, savedPreferencesBackup);
+    applyConsent(preferences);
     setSavedPreferencesBackup(preferences);
     setShowBanner(false);
     setShowPreferences(false);
@@ -429,18 +545,26 @@ export default function CookieConsent() {
           className="bg-[#0f0a1e] border border-purple-500/30 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         >
           <div className="p-6">
-            <h2 id="cookie-preferences-title" className="text-2xl font-bold text-white mb-4">
+            <h2
+              id="cookie-preferences-title"
+              className="text-2xl font-bold text-white mb-4"
+            >
               Cookie Preferences
             </h2>
             <p className="text-gray-300 mb-6">
-              We use cookies to enhance your browsing experience and analyze our traffic. You can
-              choose which types of cookies you allow.
+              We use cookies to enhance your browsing experience and to analyze
+              our traffic. Analytics runs either way: until you allow analytics
+              cookies it counts your visit in an aggregate, cookie-free way that
+              cannot be tied back to you. What you choose here is what may be
+              stored on your device.
             </p>
 
             {/* Necessary Cookies */}
             <div className="mb-6 p-4 bg-purple-900/20 border border-purple-500/20 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold text-white">Necessary Cookies</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Necessary Cookies
+                </h3>
                 <div className="flex items-center">
                   <input
                     type="checkbox"
@@ -449,19 +573,24 @@ export default function CookieConsent() {
                     aria-label="Necessary cookies (always active)"
                     className="w-5 h-5 text-purple-600 bg-gray-500 rounded cursor-not-allowed"
                   />
-                  <span className="ml-2 text-sm text-gray-400">Always Active</span>
+                  <span className="ml-2 text-sm text-gray-400">
+                    Always Active
+                  </span>
                 </div>
               </div>
               <p className="text-sm text-gray-300">
-                These cookies are essential for the website to function properly. They enable basic
-                features like page navigation and storing your cookie consent preferences.
+                These cookies are essential for the website to function
+                properly. They enable basic features like page navigation and
+                storing your cookie consent preferences.
               </p>
             </div>
 
             {/* Functional Cookies */}
             <div className="mb-6 p-4 bg-purple-900/20 border border-purple-500/20 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold text-white">Functional Cookies</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Functional Cookies
+                </h3>
                 <div className="flex items-center">
                   <input
                     type="checkbox"
@@ -470,26 +599,35 @@ export default function CookieConsent() {
                     aria-label="Functional cookies (always active)"
                     className="w-5 h-5 text-purple-600 bg-gray-500 rounded cursor-not-allowed"
                   />
-                  <span className="ml-2 text-sm text-gray-400">Always Active</span>
+                  <span className="ml-2 text-sm text-gray-400">
+                    Always Active
+                  </span>
                 </div>
               </div>
               <p className="text-sm text-gray-300 mb-2">
-                These cookies enable enhanced functionality that is essential for our core
-                services, such as donation processing.
+                These cookies enable enhanced functionality that is essential
+                for our core services, such as donation processing.
               </p>
-              <p className="text-xs text-gray-400">Services: Zeffy (Donation Processing)</p>
+              <p className="text-xs text-gray-400">
+                Services: Zeffy (Donation Processing)
+              </p>
             </div>
 
             {/* Analytics Cookies */}
             <div className="mb-6 p-4 bg-purple-900/20 border border-purple-500/20 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold text-white">Analytics Cookies</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Analytics Cookies
+                </h3>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
                     type="checkbox"
                     checked={preferences.analytics}
                     onChange={(e) =>
-                      setPreferences({ ...preferences, analytics: e.target.checked })
+                      setPreferences({
+                        ...preferences,
+                        analytics: e.target.checked,
+                      })
                     }
                     className="sr-only peer"
                     aria-label="Enable analytics cookies"
@@ -498,8 +636,8 @@ export default function CookieConsent() {
                 </label>
               </div>
               <p className="text-sm text-gray-300 mb-2">
-                These cookies help us understand how visitors interact with our website by
-                collecting and reporting information anonymously.
+                These cookies help us understand how visitors interact with our
+                website by collecting and reporting information anonymously.
               </p>
               <p className="text-xs text-gray-400">
                 Services: Google Tag Manager, Google Analytics
@@ -509,13 +647,18 @@ export default function CookieConsent() {
             {/* Marketing Cookies */}
             <div className="mb-6 p-4 bg-purple-900/20 border border-purple-500/20 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold text-white">Marketing Cookies</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Marketing Cookies
+                </h3>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
                     type="checkbox"
                     checked={preferences.marketing}
                     onChange={(e) =>
-                      setPreferences({ ...preferences, marketing: e.target.checked })
+                      setPreferences({
+                        ...preferences,
+                        marketing: e.target.checked,
+                      })
                     }
                     className="sr-only peer"
                     aria-label="Enable marketing cookies"
@@ -524,8 +667,9 @@ export default function CookieConsent() {
                 </label>
               </div>
               <p className="text-sm text-gray-300 mb-2">
-                These cookies are used to track visitors across websites to display relevant and
-                engaging content. No marketing services are currently active on this site.
+                These cookies are used to track visitors across websites to
+                display relevant and engaging content. No marketing services are
+                currently active on this site.
               </p>
             </div>
 
@@ -558,12 +702,16 @@ export default function CookieConsent() {
       <div className="max-w-7xl mx-auto p-4 sm:p-6">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex-1">
-            <h3 className="text-lg font-bold text-white mb-2">We Value Your Privacy</h3>
+            <h3 className="text-lg font-bold text-white mb-2">
+              We Value Your Privacy
+            </h3>
             <p className="text-sm text-gray-300 mb-3">
-              We use cookies to improve your experience and analyze site usage. By clicking
-              &quot;Accept All&quot;, you consent to our use of cookies for analytics and
-              marketing purposes. You can manage your preferences or decline non-essential
-              cookies.
+              We use cookies to improve your experience and analyze site usage.
+              By clicking &quot;Accept All&quot;, you consent to our use of
+              cookies for analytics and marketing purposes. Decline and we still
+              count your visit in an aggregate, cookie-free way — nothing is
+              stored on your device and no identifier is read from it. You can
+              manage your preferences at any time.
             </p>
             <div className="flex items-center gap-4 text-xs">
               <Link

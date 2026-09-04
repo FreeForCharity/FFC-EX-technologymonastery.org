@@ -1,11 +1,12 @@
-/*
-  Security Headers
-  Applied to all pages
-*/
+# Security headers applied to all pages.
+# NOTE: this file uses the Netlify/Cloudflare Pages _headers format, where an
+# unindented line is a URL path pattern ("/*" matches every page) and the
+# indented lines beneath it are the headers to apply. Only "#" starts a
+# comment — "/* ... */" is NOT comment syntax here.
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.zeffy.com https://www.volunteermatch.org; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.github.com; frame-src https://www.zeffy.com https://www.volunteermatch.org;
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.zeffy.com https://www.volunteermatch.org https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; frame-src https://www.zeffy.com https://www.volunteermatch.org;
