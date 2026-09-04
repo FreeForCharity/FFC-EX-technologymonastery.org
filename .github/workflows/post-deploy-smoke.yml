@@ -229,8 +229,8 @@ jobs:
       - name: Install Playwright (chromium only)
         if: steps.url.outputs.skip != 'true'
         run: |
-          # Install the npm package in an isolated dir so we don'\''t touch
-          # the repo'\''s own package.json (these sites do not ship
+          # Install the npm package in an isolated dir so we don't touch
+          # the repo's own package.json (these sites do not ship
           # Playwright as a runtime dependency -- it is CI-only).
           mkdir -p /tmp/pw
           cd /tmp/pw
@@ -240,7 +240,7 @@ jobs:
           # first, so the step fetches chromium once instead of twice.
           # This repo does not depend on Playwright, so there is no lockfile
           # version to track. 1.62.1 is the fleet default; bump it here.
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.62.1 >/dev/null
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --no-audit --no-fund playwright@1.62.1 >/dev/null
           # Install the browser binaries + OS deps for chromium.
           npx --no-install playwright install --with-deps chromium
 
