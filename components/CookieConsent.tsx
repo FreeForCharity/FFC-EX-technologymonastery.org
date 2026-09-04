@@ -552,8 +552,11 @@ export default function CookieConsent() {
               Cookie Preferences
             </h2>
             <p className="text-gray-300 mb-6">
-              We use cookies to enhance your browsing experience and analyze our
-              traffic. You can choose which types of cookies you allow.
+              We use cookies to enhance your browsing experience and to analyze
+              our traffic. Analytics runs either way: until you allow analytics
+              cookies it counts your visit in an aggregate, cookie-free way that
+              cannot be tied back to you. What you choose here is what may be
+              stored on your device.
             </p>
 
             {/* Necessary Cookies */}
@@ -705,8 +708,10 @@ export default function CookieConsent() {
             <p className="text-sm text-gray-300 mb-3">
               We use cookies to improve your experience and analyze site usage.
               By clicking &quot;Accept All&quot;, you consent to our use of
-              cookies for analytics and marketing purposes. You can manage your
-              preferences or decline non-essential cookies.
+              cookies for analytics and marketing purposes. Decline and we still
+              count your visit in an aggregate, cookie-free way — nothing is
+              stored on your device and no identifier is read from it. You can
+              manage your preferences at any time.
             </p>
             <div className="flex items-center gap-4 text-xs">
               <Link

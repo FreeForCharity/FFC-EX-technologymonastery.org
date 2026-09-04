@@ -60,8 +60,11 @@ export default function CookiePolicy() {
               <ul className="list-disc list-inside space-y-2">
                 <li>Remember your cookie consent preferences</li>
                 <li>
-                  Understand how you use our website and analyze traffic (only
-                  after you consent, wherever you are &mdash; see Section 3.3)
+                  Understand how you use our website and analyze traffic. No
+                  analytics <em>cookie</em> is set until you consent, wherever
+                  you are; before that your visit is still counted in an
+                  aggregate, cookie-free way that cannot be tied back to you
+                  (see Section 3.3)
                 </li>
                 <li>Improve our website and user experience</li>
               </ul>
