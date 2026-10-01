@@ -26,7 +26,7 @@ Official website for The Technology Monastery - Empowering small nonprofits with
 - **Security Headers**: Configured for maximum security
 - **Integrations**:
     - Zeffy donation forms (100% free processing)
-    - VolunteerMatch widgets
+    - Idealist volunteer listings (VolunteerMatch merged into Idealist in 2025)
 
 ## 📁 Project Structure
 
@@ -152,17 +152,16 @@ Tailwind is configured in `tailwind.config.ts` with custom colors matching the n
 3. Get embed code
 4. Update the contact page with your form
 
-#### VolunteerMatch Widget
+#### Idealist listings
 
-1. Register at [volunteermatch.org](https://www.volunteermatch.org)
-2. Get your organization's widget code
-3. Add to the appropriate page
+1. Free For Charity's organization page on [idealist.org](https://www.idealist.org/en/nonprofit/356bfc8e2ae64f83beea4a4e677e99d7-free-for-charity-state-college) carries the volunteer listings (VolunteerMatch merged into Idealist in September 2025)
+2. Link to it from the Get Started and Hiring pages rather than embedding a widget
 
 ### Deployment
 
 The site automatically deploys to GitHub Pages via GitHub Actions when you push to the `main` branch.
 
-**Deployment URL:** `https://freeforcharity.github.io/Technologymonastery.org/`
+**Deployment URL:** `https://technologymonastery.org/` (custom domain; the GitHub Pages origin redirects)
 
 ## 📊 Performance
 
@@ -199,4 +198,4 @@ The Technology Monastery
 - Hosted on GitHub Pages
 - Content managed with Decap CMS
 - Donation processing by Zeffy
-- Volunteer matching by VolunteerMatch
+- Volunteer recruiting through Idealist and freeforcharity.org/volunteer
