@@ -160,7 +160,9 @@ export default function Funders() {
             <p className={pClass}>
               The Technology Monastery is a project of {siteConfig.supportedBy.name}, a US 501(c)(3)
               public charity, EIN {siteConfig.ein}. It is not a separate legal entity today; its
-              finances, policies and transparency profile are Free For Charity&apos;s.
+              finances, policies and transparency profile are Free For Charity&apos;s. Free For
+              Charity is a 100 percent volunteer organization, and this is a proposed project: if it
+              is funded, its two staff roles would be the only paid positions at Free For Charity.
             </p>
             <ul className="space-y-3 mb-6">
               {diligence.map((d) => (

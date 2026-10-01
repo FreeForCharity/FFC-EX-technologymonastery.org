@@ -76,7 +76,9 @@ export default function Transparency() {
               public charity, EIN {siteConfig.ein}, based in State College, Pennsylvania. It is not a
               separate legal entity today: it has no EIN of its own, and every gift, grant, contract
               and filing runs through Free For Charity under its board of directors, its policies and
-              its transparency profile.
+              its transparency profile. Free For Charity is a 100 percent volunteer organization, and
+              the Technology Monastery is a proposed project; if it is funded, its two staff roles
+              would be the only paid positions at Free For Charity.
             </p>
             <p className={pClass}>
               Our goal is for the Technology Monastery to become a stand-alone charity, with its own
