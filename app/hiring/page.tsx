@@ -30,7 +30,7 @@ const roles = [
       'Experience working respectfully with veterans, survivors of domestic violence, or people in recovery.',
       'Plain, warm communication; everyday technology fluency; a driver’s license; a clear background check.',
     ],
-    band: '$58,000 to $72,000',
+    band: '$54,000 to $64,000',
     subject: 'Volunteer Manager',
   },
   {
@@ -48,7 +48,7 @@ const roles = [
       'Microsoft 365 or Google Workspace basics and the willingness to learn the other; comfort with AI assistants.',
       'Clear writing for reports and training; a driver’s license; a clear background check.',
     ],
-    band: '$56,000 to $70,000',
+    band: '$50,000 to $60,000',
     subject: 'Program Coordinator',
   },
 ];
@@ -75,61 +75,66 @@ const steps = [
 const channels = [
   {
     name: 'Idealist',
-    note: 'Free For Charity already has an organization page there with live volunteer listings; the two paid roles will be posted as jobs.',
+    note: 'Free For Charity already has an organization page there; the two paid roles will be posted as 30-day job listings ($145 each for a US nonprofit). VolunteerMatch merged into Idealist in 2025.',
     href: 'https://www.idealist.org/en/nonprofit/356bfc8e2ae64f83beea4a4e677e99d7-free-for-charity-state-college',
   },
   {
-    name: 'PA CareerLink',
-    note: 'Pennsylvania’s workforce system; free employer postings and local candidates through the office serving Jefferson County.',
+    name: 'PA CareerLink and Workforce Solutions for North Central PA',
+    note: "Pennsylvania's workforce system: free employer postings, local candidates and employer services through the Jefferson County office and the regional Workforce Development Board.",
     href: 'https://www.pa.gov/agencies/dli/programs-services/workforce-development-home/pa-careerlink-',
   },
   {
-    name: 'LinkedIn',
-    note: 'Job posts and sharing through Free For Charity’s network and board.',
+    name: 'LinkedIn and Indeed',
+    note: "One free LinkedIn post at a time and up to three free Indeed posts a month, shared through Free For Charity's network and board.",
     href: 'https://nonprofit.linkedin.com/',
   },
   {
     name: 'Penn State and regional colleges',
-    note: 'Career services and alumni boards at Penn State, Penn State DuBois, PennWest Clarion, IUP and Pitt-Bradford.',
-    href: 'https://lf.psu.edu/',
+    note: 'Nittany Lion Careers for every Penn State campus including DuBois, and Handshake for PennWest Clarion and IUP; all free to employers.',
+    href: 'https://career.engr.psu.edu/employers/recruiting/nlc.aspx',
   },
   {
     name: 'PANO',
-    note: 'The Pennsylvania Association of Nonprofit Organizations job board.',
-    href: 'https://pano.org/',
+    note: 'The Pennsylvania Association of Nonprofit Organizations job board ($25 for members, $100 otherwise, 30 days).',
+    href: 'https://pano.org/benefits/job-board/',
   },
   {
-    name: 'AmeriCorps and PennSERVE',
-    note: 'A parallel route for service members who build capacity alongside the two staff.',
+    name: 'AmeriCorps VISTA and veteran programs',
+    note: 'Parallel routes that place people beside the two staff: a VISTA member for capacity building, VA Compensated Work Therapy, Hiring Our Heroes fellowships and SkillBridge.',
     href: 'https://americorps.gov/',
   },
   {
-    name: 'Taproot Foundation',
-    note: 'Pro bono professionals for the hiring process itself: compensation review and interview design.',
-    href: 'https://taprootfoundation.org/',
+    name: 'Taproot Plus',
+    note: 'Free pro bono projects for the hiring process itself: employee handbook, compensation review and interview design. It is not a job board.',
+    href: 'https://taprootplus.org/',
   },
   {
     name: 'freeforcharity.org/volunteer',
-    note: 'Free For Charity’s existing volunteer front door, which will link to these roles.',
+    note: "Free For Charity's existing volunteer front door, which will link to these roles.",
     href: 'https://freeforcharity.org/volunteer/',
   },
 ];
 
 const comparables = [
   {
-    label: 'Indeed: Volunteer Manager salaries in Pennsylvania',
-    href: 'https://www.indeed.com/career/volunteer-manager/salaries/PA',
-    note: 'Statewide average and range for the title.',
+    label: 'Pennsylvania Center for Workforce Information and Analysis: occupational wages, North Central Workforce Development Area',
+    href: 'https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/cwia/products/occupational-wages/wda/ncwda_ow.pdf',
+    note: 'May 2025 wages for Jefferson County and its neighbors. Social and community service managers: median $72,190, entry $51,230. Community and social service specialists: median $38,510, mean $55,390.',
   },
   {
-    label: 'U.S. Bureau of Labor Statistics: Social and Community Service Managers (11-9151)',
-    href: 'https://www.bls.gov/oes/current/oes119151.htm',
-    note: 'Federal wage data by state and area.',
+    label: 'U.S. Bureau of Labor Statistics: Social and Community Service Managers',
+    href: 'https://www.bls.gov/ooh/management/social-and-community-service-managers.htm',
+    note: 'National median $80,390 (May 2025); the lowest ten percent earned under $53,150.',
   },
   {
-    label: 'Idealist nonprofit jobs',
-    href: 'https://www.idealist.org/en/nonprofit-jobs',
-    note: 'Live postings for similar titles at other nonprofits.',
+    label: 'Salary.com: Volunteer Coordinator and Nonprofit Program Coordinator, Pennsylvania',
+    href: 'https://www.salary.com/research/salary/benchmark/volunteer-coordinator-salary/pa',
+    note: 'Statewide medians of $54,196 and $67,294 respectively (October 2026), with rural interior towns lower.',
+  },
+  {
+    label: 'Idealist: nonprofit jobs in Pennsylvania',
+    href: 'https://www.idealist.org/en/nonprofit-jobs-pennsylvania',
+    note: 'Live postings for similar titles; recent regional coordinator and manager roles posted between $38,000 and $65,000.',
   },
 ];
 
@@ -221,11 +226,13 @@ export default function Hiring() {
           <div className="max-w-3xl mx-auto">
             <h2 className={h2Class}>How we set the pay</h2>
             <p className={pClass}>
-              The bands are planning ranges for a rural Pennsylvania nonprofit employer. They sit at or
-              above the middle of the state market for these titles so that the roles attract people
-              who will stay, and they are reviewed against the sources below before each posting
-              goes live. The grant budget carries the fully loaded cost: salary, employer taxes,
-              benefits and the direct costs of the work.
+              The bands are planning ranges for a rural Pennsylvania nonprofit employer, set on
+              1 October 2026 from the public sources below. They sit above the regional median for
+              coordinator titles and below the median for community-service managers, so that the
+              roles attract people who will stay without pricing a small organization out of its own
+              plan. Both are reviewed against current data before each posting goes live, and the
+              grant budget carries the fully loaded cost: salary, employer taxes, benefits and the
+              direct costs of the work.
             </p>
             <ul className="space-y-3">
               {comparables.map((c) => (

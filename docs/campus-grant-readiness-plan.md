@@ -157,6 +157,13 @@ The pitch has five parts, and each needs a home on the site.
   recurring grant line at its sponsorship tier, a one-off Farrell Center matching gift, regional
   universities, colleges and two-year schools, and the summer capstone cohort aligned with the
   residency for the first three years; the volunteer-longevity metric.
+- **J. Hiring and staffing.** Position descriptions and internal hiring kits for the Volunteer
+  Manager and Program Coordinator, compensation bands with public sources, a channel-by-channel
+  publishing plan (Idealist, PA CareerLink and the regional Workforce Development Board, LinkedIn
+  and Indeed, Penn State and regional colleges, PANO, AmeriCorps and veteran programs, Taproot for
+  pro bono HR help), the Pennsylvania employer compliance checklist, and the public `/hiring/` page.
+  These would be Free For Charity's first paid staff, so the board must adopt an employment
+  carve-out and personnel policies before the first offer.
 
 ## 7. Content and decisions the board must supply
 
