@@ -7,7 +7,7 @@ acceptance criteria.
 ## 1. Why this exists
 
 Free For Charity (FFC) is competing for a large grant that would fund the purchase of a rural
-property near Sigel, Pennsylvania, including an operating seasonal campground, and its conversion
+property in the Clear Creek and Cook Forest area near Sigel, Pennsylvania, and its conversion
 into a charity campus under the Technology Monastery concept of operations: a non-secular,
 open-to-anyone place where people who want to give back to the charitable world can live simply,
 work, learn, and serve. The first residents the concept names are veterans, survivors coming out of
@@ -43,15 +43,16 @@ switch). Donations currently use an FFC interim Zeffy campaign (issue #57).
 Drawn from FFC's internal planning notes for the Pennsylvania pilot and from public sources. Figures
 are planning-stage and must be re-confirmed before they are published as commitments.
 
-- **Location.** Near Sigel, Jefferson County, Pennsylvania, in the Clarion River valley between
-  Clear Creek State Park (about ten minutes) and Cook Forest State Park (about twenty minutes), off
-  PA Route 949. Reached from I-80 exit 78 via PA 36. The area is a year-round outdoor-recreation
-  destination with existing lodging, campgrounds, and the Farmer's Inn attractions.
-- **Land.** Two adjacent rural parcels totalling roughly 70 acres. One holds a multi-generation
-  family farmhouse and pasture; the other is woodland with a natural spring, existing driveway
-  access, and nearby utilities. Part of the land is already operated as a small seasonal campground
-  (publicly listed as about four acres with 25 seasonal sites) under a lease, which is what makes
-  "buy a campground and convert it" the honest description of the acquisition.
+- **Location, as it may be described publicly.** "Near Clear Creek State Park, Cook Forest State
+  Park and Sigel, Pennsylvania", in a year-round outdoor-recreation region of northwestern
+  Pennsylvania within reach of the major population and technology centers of the northeastern
+  United States and Canada. **That sentence is the whole public description.** No acreage, parcel
+  count, road or route names, driving directions, maps or aerials that show the parcel, names of
+  existing businesses on or beside the land, or descriptions of structures that would identify
+  the property. Specifics live in the grant application and the private facts sheet (Epic H).
+- **Land, in general terms only.** Rural acreage with a mix of open ground and woodland, existing
+  access and nearby utilities, and some existing camping use, which is why the plan is to acquire
+  and convert rather than build from nothing.
 - **Planned first-phase infrastructure** (from the pilot notes): shared kitchen and gathering
   space, coworking area, community bathhouse and restrooms, roughly ten campsites, RV parking,
   site planning for accessible tiny homes, shared utility connections and outdoor spaces.
@@ -126,8 +127,8 @@ The pitch has five parts, and each needs a home on the site.
 These cannot be invented by a developer and block the corresponding issues.
 
 - Campus name as it will appear publicly, and the brand decision (Epic A).
-- Confirmed acreage, parcel description for public use, and permission to publish photos and an
-  aerial of the land (Epic C).
+- Approval of the exact public wording for the location (the one-sentence form above), and
+  permission to publish photographs that do not identify the property (Epic C).
 - Phase budget, timeline, and the grant ask broken into use-of-funds lines (Epic C).
 - Named referral and service partners willing to be listed, with letters of support (Epic B).
 - Safeguarding policies: screening, substance-free policy, incident response, insurance (Epic B).
@@ -143,6 +144,11 @@ These cannot be invented by a developer and block the corresponding issues.
 - **Do not publish private facts.** Estate, probate, lease terms, family names, parcel numbers,
   purchase price, and internal financial projections stay out of this public repository and the
   site. Use ranges and phases, not private documents.
+- **Keep the property general.** The site describes the location only as "near Clear Creek State
+  Park, Cook Forest State Park and Sigel, Pennsylvania". No acreage, parcel count, road or route
+  names, directions, parcel-level maps or aerials, names of existing businesses on or next to the
+  land, identifiable structures, or photo metadata (strip EXIF location data). This applies to
+  issues, PRs and commit messages in this public repository as much as to the site.
 - **Every number is a claim.** "100+ charities", "24/7 support", and "Silver Partner" must be
   verified or rewritten before the campaign page launches. A reviewer who catches one inflated
   figure discounts the rest.
