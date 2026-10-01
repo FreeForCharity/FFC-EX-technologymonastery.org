@@ -1,5 +1,7 @@
 import Button from '@/components/Button';
-import { siteConfig } from '@/lib/site.config';
+import { placeHref, siteConfig } from '@/lib/site.config';
+
+const place = siteConfig.place;
 
 const problems = [
   {
@@ -24,16 +26,42 @@ const solutions = [
     cta: 'Our services',
   },
   {
-    title: 'A campus where service is a season',
-    body: 'A planned residential campus near Clear Creek State Park, Cook Forest State Park and Sigel, Pennsylvania, where people who want to give back live simply, learn the stack, serve real charities and move on stronger. Open to anyone, with no religious test.',
-    href: '/campus/',
-    cta: 'The campus plan',
+    title: `A ${place.nounLower} where service is a season`,
+    body: `A planned residential ${place.nounLower} near Clear Creek State Park, Cook Forest State Park and Sigel, Pennsylvania, where people who want to give back live simply, learn the stack, serve real charities and move on stronger. Open to anyone, with no religious test.`,
+    href: placeHref(),
+    cta: `The ${place.noun} plan`,
   },
   {
     title: 'Two full-time roles that make it last',
     body: 'A Volunteer Manager and a Program Coordinator turn a volunteer-run program into a staffed one and open the pipelines that need a full-time host. Our five-year goal is to have both positions fully funded, with their endowment under way and on a published path.',
     href: '/about/',
     cta: 'Why staff matter',
+  },
+];
+
+const doors: {
+  eyebrow: string;
+  title: string;
+  body: string;
+  href: string;
+  cta: string;
+  variant: 'primary' | 'secondary';
+}[] = [
+  {
+    eyebrow: 'For charities',
+    title: 'Get free technology',
+    body: 'Domains, email, websites, AI enablement and training for registered 501(c)(3) organizations with limited budgets, at no cost. Tell us what is getting in the way and we will start there.',
+    href: '/get-started/',
+    cta: 'Apply for services',
+    variant: 'secondary',
+  },
+  {
+    eyebrow: 'For people',
+    title: 'Come and serve',
+    body: `Serve a charity remotely today, live and serve for a season at ${place.withArticle} as it opens, or bring a student capstone team. Open to anyone who wants to give back.`,
+    href: '/serve/',
+    cta: 'See the three ways in',
+    variant: 'primary',
   },
 ];
 
@@ -72,16 +100,16 @@ export default function Home() {
             </h1>
             <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-2xl">
               The Technology Monastery runs the systems small nonprofits need, at no cost, through
-              volunteers who want to give back. We are now planning a residential campus in
-              Pennsylvania so that service can be a season of someone&apos;s life rather than a
-              spare evening.
+              volunteers who want to give back. We are now planning a residential{' '}
+              {place.nounLower} in Pennsylvania so that service can be a season of someone&apos;s
+              life rather than a spare evening.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button href="/get-started/" variant="secondary">
-                Get started
+                Get free technology
               </Button>
-              <Button href="/campus/" variant="primary">
-                The campus plan
+              <Button href="/serve/" variant="primary">
+                Come and serve
               </Button>
             </div>
           </div>
@@ -118,10 +146,10 @@ export default function Home() {
             Our solution
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
-            A service program, a campus, and the staff to run both
+            A service program, a place to live and serve, and the staff to run both
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-center mb-10">
-            The campus is not a new charity. It is housing and community wrapped around a service
+            {place.noun} is not a new charity. It is housing and community wrapped around a service
             program that already works, with two funded roles so the mission no longer depends on
             unpaid time. It is funded by grants, public support and recurring giving, not by
             charging anyone: the charities we serve pay nothing, and neither do the people who come
@@ -140,6 +168,37 @@ export default function Home() {
                 </Button>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Two doors */}
+      <section className="py-16 bg-[#1a0b2e]">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-orange-400 text-sm font-semibold tracking-wide uppercase mb-3 text-center">
+              Where to start
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center">
+              Two doors
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {doors.map((d) => (
+                <article
+                  key={d.title}
+                  className="flex flex-col bg-gradient-to-br from-purple-900/40 to-blue-900/40 border border-purple-500/30 rounded-lg p-8"
+                >
+                  <p className="text-orange-400 text-xs font-semibold tracking-wide uppercase mb-2">
+                    {d.eyebrow}
+                  </p>
+                  <h3 className="text-2xl font-bold text-white mb-3">{d.title}</h3>
+                  <p className="text-gray-300 mb-6 flex-1">{d.body}</p>
+                  <Button href={d.href} variant={d.variant} className="self-start">
+                    {d.cta}
+                  </Button>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -179,11 +238,11 @@ export default function Home() {
                 Target partners and resources
               </h2>
               <p className="text-gray-300 mb-4">
-                The campus works because other institutions already do parts of this well. These
+                {place.noun} works because other institutions already do parts of this well. These
                 are the partners and programs we are building the plan around. None are commitments
                 until they are agreed in writing.
               </p>
-              <Button href="/campus/" variant="primary">
+              <Button href={placeHref()} variant="primary">
                 Partners and pipelines
               </Button>
             </div>
@@ -211,7 +270,7 @@ export default function Home() {
               </li>
               <li className="border-l-2 border-purple-500/60 pl-4">
                 <span className="text-white font-semibold">TechnoMonasteries.</span> A volunteer
-                project helping us build the campus, operating under Free For Charity&apos;s
+                project helping us build {place.withArticle}, operating under Free For Charity&apos;s
                 Technology Monastery brand.
               </li>
             </ul>
@@ -229,7 +288,10 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
             <Button href="/get-started/" variant="secondary">
-              Nonprofits and volunteers
+              Nonprofits
+            </Button>
+            <Button href="/serve/" variant="secondary">
+              Come and serve
             </Button>
             <Button href="/funders/" variant="primary">
               Partners and funders

@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
-import { siteConfig } from '@/lib/site.config';
+import { placeHref, siteConfig } from '@/lib/site.config';
+
+const place = siteConfig.place;
 
 export const metadata: Metadata = {
   title: 'For Funders - The Technology Monastery',
-  description:
-    'What a multi-year grant to the Technology Monastery buys, how the campus is funded by design, what year five looks like, and where to find the due-diligence documents.',
+  description: `What a multi-year grant to the Technology Monastery buys, how ${place.withArticle} is funded by design, what year five looks like, and where to find the due-diligence documents.`,
 };
 
 const sectionClass = 'py-16';
@@ -24,12 +25,12 @@ const buys = [
   {
     title: 'A place, in phases',
     body: 'Acquisition and first-phase improvements of a rural site near Clear Creek State Park, Cook Forest State Park and Sigel, Pennsylvania: a shared kitchen and gathering space, a coworking area, a bathhouse, and a small number of campsites and RV pads for the first cohort.',
-    href: '/campus/',
-    cta: 'Read the campus plan',
+    href: placeHref(),
+    cta: `Read the ${place.noun} plan`,
   },
   {
     title: 'Five years of runway that tapers',
-    body: 'Operating support for the two roles and the campus, structured so that the grant carries most of year one and a declining share each year as other foundations, recurring giving, sponsorships and vendor programs take over.',
+    body: `Operating support for the two roles and ${place.withArticle}, structured so that the grant carries most of year one and a declining share each year as other foundations, recurring giving, sponsorships and vendor programs take over.`,
     href: '/about/',
     cta: 'About the organization',
   },
@@ -83,8 +84,8 @@ export default function Funders() {
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             We are seeking a multi-year award structured as capital plus five years of operating
-            support. This page says what it buys, how the campus is funded by design, what year five
-            looks like, and where the due-diligence documents are.
+            support. This page says what it buys, how {place.withArticle} is funded by design, what
+            year five looks like, and where the due-diligence documents are.
           </p>
         </div>
       </section>
@@ -116,7 +117,7 @@ export default function Funders() {
           <div className="max-w-3xl mx-auto">
             <h2 className={h2Class}>Funded by design, not by fees</h2>
             <p className={pClass}>
-              The campus charges neither the charities it serves nor the people who come to do the
+              {place.noun} charges neither the charities it serves nor the people who come to do the
               work. There is no rent, no nightly rate, no program fee and no lodging income. Support
               comes from foundation grants, public support, sponsorships, vendor nonprofit programs
               and recurring giving.
@@ -143,8 +144,8 @@ export default function Funders() {
               ))}
             </ul>
             <p className={`${pClass} mt-6`}>
-              We will not claim an endowment we have not raised. Fully endowing both positions and the
-              campus from a standing start in five years would take a transformational gift; the
+              We will not claim an endowment we have not raised. Fully endowing both positions and{' '}
+              {place.withArticle} from a standing start in five years would take a transformational gift; the
               credible plan is to fund the roles every year, seed the endowment early, and keep
               multi-year renewals as the backstop. The numbers behind that plan are in the business
               plan we share with funders directly.
@@ -196,8 +197,8 @@ export default function Funders() {
             <Button href={mail('Funding conversation')} variant="secondary">
               Email {direct.name}
             </Button>
-            <Button href="/campus/" variant="primary">
-              Read the campus plan
+            <Button href={placeHref()} variant="primary">
+              Read the {place.noun} plan
             </Button>
           </div>
         </div>

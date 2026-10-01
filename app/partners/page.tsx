@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
-import { siteConfig } from '@/lib/site.config';
+import { placeHref, siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: 'Partners and Pipelines - The Technology Monastery',
@@ -141,8 +141,8 @@ export default function Partners() {
             >
               Email {direct.name}
             </Button>
-            <Button href="/campus/" variant="primary">
-              Read the campus plan
+            <Button href={placeHref()} variant="primary">
+              Read the {siteConfig.place.noun} plan
             </Button>
           </div>
         </div>

@@ -119,6 +119,11 @@ The pitch has five parts, and each needs a home on the site.
 
 ## 5. What a grant reviewer will check, mapped to site work
 
+> Route note (2026-10-01): the place page moved from `/campus/` to `/village/` (the noun is a
+> constant, `siteConfig.place` in `lib/site.config.ts`); `/campus/` is kept as a redirect. The
+> `/campus/...` paths in the table below are the planned sub-pages as written at the time and
+> should be read under the new slug.
+
 | Reviewer question                              | Where the answer must live                                                    | Epic |
 | ---------------------------------------------- | ----------------------------------------------------------------------------- | ---- |
 | What exactly are you building, where, and why? | `/campus/` overview, `/campus/the-site/`, `/campus/plan/`                     | B, C |

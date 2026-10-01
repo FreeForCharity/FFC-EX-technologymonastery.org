@@ -2,7 +2,18 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { siteConfig } from '@/lib/site.config';
+import { placeHref, siteConfig } from '@/lib/site.config';
+
+// Primary navigation. The order separates "what the programs do" (What We Do,
+// The Village) from "come and do the work" (Come and Serve); Home is the logo.
+const navItems = [
+  { name: 'What We Do', href: '/services/' },
+  { name: siteConfig.place.navLabel, href: placeHref() },
+  { name: 'Come and Serve', href: '/serve/' },
+  { name: 'Hiring', href: '/hiring/' },
+  { name: 'About', href: '/about/' },
+  { name: 'Contact', href: '/contact/' },
+];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,54 +61,16 @@ export default function Header() {
 
           {/* Desktop menu */}
           <ul className="hidden md:flex space-x-6 items-center">
-            <li>
-              <Link
-                href="/about/"
-                className="text-white/90 hover:text-white transition font-medium"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/campus/"
-                className="text-white/90 hover:text-white transition font-medium"
-              >
-                Campus
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services/"
-                className="text-white/90 hover:text-white transition font-medium"
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/get-started/"
-                className="text-white/90 hover:text-white transition font-medium"
-              >
-                Get Started
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/hiring/"
-                className="text-white/90 hover:text-white transition font-medium"
-              >
-                Hiring
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact/"
-                className="text-white/90 hover:text-white transition font-medium"
-              >
-                Contact
-              </Link>
-            </li>
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="text-white/90 hover:text-white transition font-medium"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
             <li>
               {/* Interim FFC campaign; a project-specific campaign will replace it later. */}
               <a
@@ -116,60 +89,17 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 bg-black/50 backdrop-blur-md rounded-lg p-4">
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/about/"
-                  className="block text-white hover:text-purple-300 transition font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/campus/"
-                  className="block text-white hover:text-purple-300 transition font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Campus
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/"
-                  className="block text-white hover:text-purple-300 transition font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/get-started/"
-                  className="block text-white hover:text-purple-300 transition font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Get Started
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/hiring/"
-                  className="block text-white hover:text-purple-300 transition font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Hiring
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact/"
-                  className="block text-white hover:text-purple-300 transition font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="block text-white hover:text-purple-300 transition font-medium py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
               <li>
                 {/* Interim FFC campaign; a project-specific campaign will replace it later. */}
                 <a

@@ -16,6 +16,19 @@ export type SiteSocialLink = {
   href: string;
 };
 
+export type SitePlace = {
+  /** Capitalized common noun, used mid-sentence as a proper name: "the Village opens". */
+  noun: string;
+  /** Lower-case form for generic uses: "a village where service is a season". */
+  nounLower: string;
+  /** The noun with its article, as it reads in a sentence: "the Village". */
+  withArticle: string;
+  /** Route segment, without slashes. Must match the folder name under app/. */
+  slug: string;
+  /** Label shown in the header and footer navigation. */
+  navLabel: string;
+};
+
 export type SiteConfig = {
   /** Display name of the charity site. */
   name: string;
@@ -56,6 +69,16 @@ export type SiteConfig = {
    * Parent / umbrella organization: this site is "a project of" FFC.
    */
   parentOrg?: { name: string; url: string; hubUrl: string };
+  /**
+   * What we call the residential place in Pennsylvania (the owner picks the word;
+   * "Village" is the current choice; "campus" was retired because it reads as
+   * educational). Every user-visible mention of the place flows from here.
+   *
+   * To rename it: change the five strings below and rename the route folder
+   * `app/<slug>/` to match. That is the whole job. Leave `app/campus/` in place:
+   * it is a redirect kept for links already shared with funders.
+   */
+  place: SitePlace;
   /** Third-party integration endpoints. */
   integrations: {
     /**
@@ -71,7 +94,7 @@ export const siteConfig: SiteConfig = {
   name: 'The Technology Monastery',
   tagline: 'Free technology for small charities, and a place for the people who build it',
   description:
-    'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
+    'Free technology for small nonprofits, and a planned village in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
   url: 'https://technologymonastery.org',
   contactEmail: 'info@technologymonastery.org',
   directContact: {
@@ -104,7 +127,19 @@ export const siteConfig: SiteConfig = {
     url: 'https://freeforcharity.org',
     hubUrl: 'https://freeforcharity.org/hub/',
   },
+  place: {
+    noun: 'Village',
+    nounLower: 'village',
+    withArticle: 'the Village',
+    slug: 'village',
+    navLabel: 'The Village',
+  },
   integrations: {
     zeffyDonationUrl: 'https://www.zeffy.com/donation-form/free-for-charity-endowment-fund',
   },
 };
+
+/** Root-relative href of the place page, with the trailing slash the static export uses. */
+export function placeHref(): string {
+  return `/${siteConfig.place.slug}/`;
+}

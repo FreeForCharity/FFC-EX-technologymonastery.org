@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import ServiceCard from '@/components/ServiceCard';
 import Button from '@/components/Button';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
-  title: 'Services - The Technology Monastery',
+  title: 'What We Do - The Technology Monastery',
   description:
     'Free technology services for small nonprofits: domains and email on Microsoft or Google, static websites, AI enablement, training and ongoing support.',
 };
@@ -46,7 +47,7 @@ export default function Services() {
     {
       title: 'Longer engagements',
       description:
-        'As the campus opens, charities will be able to request a resident or a student capstone team for a season of focused work on a single project.',
+        `As ${siteConfig.place.withArticle} opens, charities will be able to request a resident or a student capstone team for a season of focused work on a single project.`,
     },
   ];
 
@@ -54,7 +55,7 @@ export default function Services() {
     <>
       <section className="relative pt-36 pb-16 bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Our services</h1>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">What we do</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             The systems a small nonprofit needs, set up and supported at no cost, on whichever
             platform fits you best.

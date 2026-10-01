@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { siteConfig } from '@/lib/site.config';
+import { placeHref, siteConfig } from '@/lib/site.config';
 import CookiePreferencesLink from '@/components/CookiePreferencesLink';
 
 // FFC standard footer, following the structure of FFC_Single_Page_Template
@@ -7,18 +7,20 @@ import CookiePreferencesLink from '@/components/CookiePreferencesLink';
 // Contact Us columns, plus the permanent "Supported by" attribution bar),
 // restyled for this site's dark/purple aesthetic.
 
+// Same order as the header (Home, then programs, then the people who come to do
+// the work), followed by the funder-facing pages.
 const quickLinks = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about/' },
-  { name: 'Campus', href: '/campus/' },
-  { name: 'Services', href: '/services/' },
-  { name: 'Get Started', href: '/get-started/' },
+  { name: 'What We Do', href: '/services/' },
+  { name: siteConfig.place.navLabel, href: placeHref() },
+  { name: 'Come and Serve', href: '/serve/' },
   { name: 'Hiring', href: '/hiring/' },
+  { name: 'About', href: '/about/' },
+  { name: 'Contact', href: '/contact/' },
   { name: 'For Funders', href: '/funders/' },
   { name: 'Partners', href: '/partners/' },
   { name: 'Impact', href: '/impact/' },
   { name: 'Transparency', href: '/transparency/' },
-  { name: 'Contact', href: '/contact/' },
   // Interim FFC campaign; a project-specific campaign will replace it later.
   { name: 'Donate', href: siteConfig.integrations.zeffyDonationUrl },
   // FFC footer standard: every supported charity site links back to the

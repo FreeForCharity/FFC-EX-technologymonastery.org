@@ -37,10 +37,11 @@ Official website for The Technology Monastery - Empowering small nonprofits with
 │   ├── page.tsx           # Home page
 │   ├── about/page.tsx     # About page
 │   ├── services/page.tsx  # Services page
-│   ├── campus/page.tsx    # Campus plan page
+│   ├── village/page.tsx   # The Village (the place) page; app/campus/ is a redirect to it
+│   ├── serve/page.tsx     # Come and Serve: volunteers, residents, capstones, referrers
 │   ├── hiring/page.tsx    # Hiring plan: the two grant-funded roles
 │   ├── funders/page.tsx   # For funders: ask structure and due diligence
-│   ├── get-started/page.tsx # Get Started page
+│   ├── get-started/page.tsx # Get technology for your nonprofit (charities)
 │   ├── contact/page.tsx   # Contact page
 │   ├── privacy-policy/page.tsx   # Privacy policy page
 │   ├── terms-of-service/page.tsx # Terms of service page

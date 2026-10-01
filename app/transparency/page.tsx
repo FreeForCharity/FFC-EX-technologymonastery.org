@@ -85,7 +85,8 @@ export default function Transparency() {
             </p>
             <p className={pClass}>
               TechnoMonasteries is a volunteer project that helps us create the Technology Monastery.
-              It operates under Free For Charity&apos;s brand for the United States campus. It is not
+              It operates under Free For Charity&apos;s brand for the United States{' '}
+              {siteConfig.place.nounLower}. It is not
               a separate charity, and gifts are never made to it.
             </p>
           </div>

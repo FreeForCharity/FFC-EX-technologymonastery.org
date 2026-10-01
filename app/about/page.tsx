@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
-import { siteConfig } from '@/lib/site.config';
+import { placeHref, siteConfig } from '@/lib/site.config';
+
+const place = siteConfig.place;
 
 export const metadata: Metadata = {
   title: 'About - The Technology Monastery',
-  description:
-    'What the Technology Monastery is, how it serves small nonprofits today, the campus we are planning in Pennsylvania, and why two funded staff roles are the point.',
+  description: `What the Technology Monastery is, how it serves small nonprofits today, ${place.withArticle} we are planning in Pennsylvania, and why two funded staff roles are the point.`,
 };
 
 const sectionClass = 'py-16';
@@ -19,8 +20,8 @@ export default function About() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">About the Technology Monastery</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A project of Free For Charity: free technology for small nonprofits today, and a campus
-            where the people who deliver it can live, learn and serve.
+            A project of Free For Charity: free technology for small nonprofits today, and a{' '}
+            {place.nounLower} where the people who deliver it can live, learn and serve.
           </p>
         </div>
       </section>
@@ -91,10 +92,10 @@ export default function About() {
           <div className="max-w-3xl mx-auto">
             <h2 className={h2Class}>Where we have been</h2>
             <p className={pClass}>
-              Free For Charity has run a campus-style program before, in Arizona, and learned what
+              Free For Charity has run a residential program before, in Arizona, and learned what
               it takes to host people and work in one place. The Technology Monastery began as the
               digital successor to that effort: a service program that could run anywhere, without
-              a building. The Pennsylvania campus revives the campus capability on land we intend to
+              a building. {place.noun} in Pennsylvania revives that capability on land we intend to
               own, in a setting suited to focused work and to recovery.
             </p>
           </div>
@@ -113,12 +114,13 @@ export default function About() {
             </p>
             <p className={pClass}>
               Our five-year goal is to have both positions fully funded at reasonable compensation,
-              with their endowment under way and on a published path for the work, based at the campus. That is the point of the project:
+              with their endowment under way and on a published path for the work, based at{' '}
+              {place.withArticle}. That is the point of the project:
               stability for the whole Free For Charity mission, so that it no longer depends on
               unpaid leadership.
             </p>
-            <Button href="/campus/" variant="primary">
-              Read the campus plan
+            <Button href={placeHref()} variant="primary">
+              Read the {place.noun} plan
             </Button>
           </div>
         </div>
@@ -138,9 +140,9 @@ export default function About() {
                 TechnoMonasteries
               </a>{' '}
               is a volunteer project helping us create the Technology Monastery. It operates under
-              Free For Charity&apos;s Technology Monastery brand for the United States campus and
+              Free For Charity&apos;s Technology Monastery brand for the United States {place.nounLower} and
               hopes, over the next decade or more, to develop a similar place abroad focused on the
-              open-source community. It is not a separate charity, and gifts to the campus are made
+              open-source community. It is not a separate charity, and gifts to {place.withArticle} are made
               through Free For Charity.
             </p>
             <p className={pClass}>
@@ -176,8 +178,8 @@ export default function About() {
             or funder, we would like to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/get-started/" variant="secondary">
-              Get started
+            <Button href="/serve/" variant="secondary">
+              Come and serve
             </Button>
             <Button href="/contact/" variant="primary">
               Contact us
