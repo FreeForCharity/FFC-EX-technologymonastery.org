@@ -77,7 +77,7 @@ The pitch has five parts, and each needs a home on the site.
    technologists on sabbatical. State eligibility and the referral partners each cohort comes
    through, and the safeguards that make co-residence safe (substance-free campus, background
    screening, trauma-informed practice, clear community agreements).
-3. **Pathway.** Arrive, stabilise, learn, serve, launch. Residents give back by doing real work for
+3. **Pathway.** Arrive, stabilize, learn, serve, launch. Residents give back by doing real work for
    real charities through the existing Technology Monastery service program (the 100+ supported
    charities are the service placements), and by stewarding the campus itself. That link between
    the existing program and the campus is the core of the case: the campus is not a new charity, it
@@ -160,7 +160,7 @@ These cannot be invented by a developer and block the corresponding issues.
 
 ## 9. Sources consulted
 
-Internal (FFC Google Drive and mail, summarised above without private detail): Pennsylvania pilot
+Internal (FFC Google Drive and mail, summarized above without private detail): Pennsylvania pilot
 project notes for the TechnoMonasteries website; land project aerial; stewardship correspondence
 with the Family Forest Carbon Program outreach forester; the current campground operator's public
 site. The internal "Technology Monastery Biz Plan Draft" is rights-managed and could not be opened
