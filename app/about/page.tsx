@@ -107,10 +107,11 @@ export default function About() {
           <div className="max-w-3xl mx-auto">
             <h2 className={h2Class}>Why staff matter</h2>
             <p className={pClass}>
-              The grant we are seeking funds two full-time positions from the start: a Volunteer
-              Manager, who recruits, places and supports residents and remote volunteers and opens
-              the pipelines that need a full-time host, and a Program Coordinator, who runs intake,
-              service delivery to charities, partner relationships and reporting.
+              The grant we are seeking funds two full-time staff, hired in sequence over the first
+              two years: a Volunteer Manager, who recruits, places and supports residents and
+              remote volunteers and opens the pipelines that need a full-time host, and a Program
+              Coordinator, who runs intake, service delivery to charities, partner relationships
+              and reporting.
             </p>
             <p className={pClass}>
               Our five-year goal is to have both positions fully funded at reasonable compensation,

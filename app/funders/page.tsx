@@ -17,8 +17,8 @@ const mail = (subject: string) => `mailto:${direct.email}?subject=${encodeURICom
 
 const buys = [
   {
-    title: 'Two people, from year one',
-    body: 'A Volunteer Manager who owns the people and opens standing volunteer pipelines, and a Program Coordinator who owns the work, the partners, the compliance calendar and the reporting. Their position descriptions, pay bands and hiring plan are already written.',
+    title: 'Two people, in sequence',
+    body: 'A Volunteer Manager in year one, who owns the people and opens standing volunteer pipelines, and a Program Coordinator in year two, who owns the work, the partners, the compliance calendar and the reporting. Their position descriptions, pay bands and hiring plan are already written.',
     href: '/hiring/',
     cta: 'See the hiring plan',
   },

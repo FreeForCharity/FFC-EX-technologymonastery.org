@@ -33,7 +33,7 @@ const solutions = [
   },
   {
     title: 'Two full-time roles that make it last',
-    body: 'A Volunteer Manager and a Program Coordinator turn a volunteer-run program into a staffed one and open the pipelines that need a full-time host. Our five-year goal is to have both positions fully funded, with their endowment under way and on a published path.',
+    body: 'A Volunteer Manager and a Program Coordinator, hired in sequence over the first two years, turn a volunteer-run program into a staffed one and open the pipelines that need a full-time host. Our five-year goal is to have both positions fully funded, with their endowment under way and on a published path.',
     href: '/about/',
     cta: 'Why staff matter',
   },
