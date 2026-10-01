@@ -63,9 +63,9 @@ export type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   name: 'The Technology Monastery',
-  tagline: 'Empowering nonprofits through technology',
+  tagline: 'Free technology for small charities, and a place for the people who build it',
   description:
-    'Empowering small nonprofits with free, customized technology solutions through our dedicated community of skilled professionals.',
+    'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
   url: 'https://technologymonastery.org',
   contactEmail: 'info@technologymonastery.org',
   vulnerabilityDisclosurePath: '/vulnerability-disclosure-policy/',

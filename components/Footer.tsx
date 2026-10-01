@@ -11,6 +11,7 @@ import CookiePreferencesLink from '@/components/CookiePreferencesLink';
 const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about/' },
+  { name: 'Campus', href: '/campus/' },
   { name: 'Services', href: '/services/' },
   { name: 'Get Started', href: '/get-started/' },
   { name: 'Contact', href: '/contact/' },

@@ -1,171 +1,179 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
-  title: 'About Us - The Technology Monastery',
-  description: 'Learn about The Technology Monastery, our mission, and our programs for empowering nonprofits.',
+  title: 'About - The Technology Monastery',
+  description:
+    'What the Technology Monastery is, how it serves small nonprofits today, the campus we are planning in Pennsylvania, and why two funded staff roles are the point.',
 };
+
+const sectionClass = 'py-16';
+const h2Class = 'text-3xl md:text-4xl font-bold text-white mb-6';
+const pClass = 'text-lg text-gray-300 mb-4 leading-relaxed';
 
 export default function About() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(138,43,226,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(138,43,226,0.1)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
-        <div className="absolute top-20 right-20 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">About The Technology Monastery</h1>
-            <p className="text-xl text-gray-300">
-              A unique, innovative solution for small nonprofits
-            </p>
-          </div>
+      <section className="relative pt-36 pb-16 bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">About the Technology Monastery</h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            A project of Free For Charity: free technology for small nonprofits today, and a campus
+            where the people who deliver it can live, learn and serve.
+          </p>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-16 bg-[#0f0a1e]">
+      <section className={`${sectionClass} bg-[#0f0a1e]`}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              Our Mission
-            </h2>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-gray-300 mb-4 leading-relaxed">
-                The Technology Monastery is designed to address the challenges faced by small nonprofits 
-                in acquiring and retaining technical talent. We understand that many nonprofits struggle 
-                to afford competitive salaries for skilled technology professionals, which can hinder 
-                their ability to leverage technology for social impact.
-              </p>
-              <p className="text-lg text-gray-300 mb-4 leading-relaxed">
-                Our solution brings together technology professionals who are passionate about making 
-                a difference with nonprofits that need their expertise. By providing tailored technology 
-                solutions and support through a dedicated community of skilled professionals, we empower 
-                small nonprofits to harness the potential of technology.
-              </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                We believe that every nonprofit, regardless of size or budget, deserves access to 
-                high-quality technology support. Through The Technology Monastery, we make this vision 
-                a reality.
-              </p>
-            </div>
+          <div className="max-w-3xl mx-auto">
+            <h2 className={h2Class}>Our mission</h2>
+            <p className={pClass}>
+              Small nonprofits should not have to choose between their mission and their technology.
+              The Technology Monastery removes that choice by running the systems a charity needs,
+              email, domains, websites, AI tools and training, at no cost, through people who have
+              chosen to give their skills away.
+            </p>
+            <p className={pClass}>
+              We are part of {siteConfig.supportedBy.name}, a US 501(c)(3) nonprofit (EIN {siteConfig.ein})
+              whose purpose is to reduce costs and increase revenues for other nonprofits so that more
+              money reaches their charitable work.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Our Team Program */}
-      <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]">
+      <section className={`${sectionClass} bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]`}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              Our Team & Approach
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 text-center">
-              We are skilled professionals who have chosen to dedicate our talents 
-              to serving the nonprofit sector.
+          <div className="max-w-3xl mx-auto">
+            <h2 className={h2Class}>How it works today</h2>
+            <p className={pClass}>
+              A charity applies, we talk through what they have and what they need, and then we do
+              the work: a free .org domain, nonprofit email and collaboration on Microsoft 365 or
+              Google Workspace, a fast static website with the legal and privacy pages a
+              professional site requires, help deciding where AI fits, and training for the people
+              who will use it all. Everything is documented so it keeps working after we step back.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
-                <h3 className="text-xl font-bold text-white mb-4">For Technology Professionals</h3>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2 font-bold">✓</span>
-                    <span>A supportive community of like-minded professionals</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2 font-bold">✓</span>
-                    <span>Ongoing training and professional development</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2 font-bold">✓</span>
-                    <span>Opportunities for personal and professional growth</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2 font-bold">✓</span>
-                    <span>The satisfaction of contributing expertise to meaningful causes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2 font-bold">✓</span>
-                    <span>Collaborative environment for sharing ideas and innovation</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-cyan-900/30 to-purple-900/30 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-6">
-                <h3 className="text-xl font-bold text-white mb-4">For Nonprofits</h3>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start">
-                    <span className="text-cyan-400 mr-2 font-bold">✓</span>
-                    <span>Access to skilled technology professionals at no cost</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-cyan-400 mr-2 font-bold">✓</span>
-                    <span>Customized solutions tailored to specific needs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-cyan-400 mr-2 font-bold">✓</span>
-                    <span>Ongoing support and maintenance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-cyan-400 mr-2 font-bold">✓</span>
-                    <span>Training and knowledge transfer</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-cyan-400 mr-2 font-bold">✓</span>
-                    <span>Partnership with technology experts committed to social impact</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <p className={pClass}>
+              The program is delivered by volunteers today. That is the strength of the model and
+              its limit: volunteers are generous, and their time is short.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Free for Charity Connection */}
-      <section className="py-16 bg-[#0f0a1e]">
+      <section className={`${sectionClass} bg-[#0f0a1e]`}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Free for Charity Connection
-            </h2>
-            <p className="text-lg text-gray-300 mb-4">
-              The Technology Monastery is a program of Free for Charity, a nonprofit organization 
-              dedicated to supporting other nonprofits through free services and resources.
+          <div className="max-w-3xl mx-auto">
+            <h2 className={h2Class}>The monastery idea</h2>
+            <p className={pClass}>
+              A monastery is a place where people live simply, keep a rhythm of work, study and
+              rest, and give their effort to something larger than themselves. We borrow that
+              shape, not a creed. The Technology Monastery is non-secular and open to anyone: no
+              religious test, every faith and none welcome, and a short set of community agreements
+              in place of a rule.
             </p>
-            <p className="text-lg text-gray-300 mb-8">
-              This connection ensures that we operate with the same values of transparency, 
-              accountability, and service that we help other nonprofits achieve.
+            <p className={pClass}>
+              The people we expect to welcome first are those who already know what it means to
+              start again and want to give back: veterans, survivors leaving women&apos;s shelters,
+              people in recovery who have stabilized, technologists who build open-source and other
+              public-good software, and university students on capstone projects. Each arrives,
+              finds their footing, learns the stack, serves real charities, and leaves stronger, or
+              stays on as a mentor or staff member.
             </p>
-            <a
-              href="https://freeforcharity.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold transition transform hover:scale-105 shadow-lg shadow-purple-500/50"
-            >
-              Learn More About Free for Charity
-            </a>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-br from-purple-600 to-blue-600 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Join Our Community
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Whether you're a nonprofit in need of technology support or a professional looking to 
-            make a difference, we invite you to be part of our community.
+      <section className={`${sectionClass} bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]`}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className={h2Class}>Where we have been</h2>
+            <p className={pClass}>
+              Free For Charity has run a campus-style program before, in Arizona, and learned what
+              it takes to host people and work in one place. The Technology Monastery began as the
+              digital successor to that effort: a service program that could run anywhere, without
+              a building. The Pennsylvania campus revives the campus capability on land we intend to
+              own, in a setting suited to focused work and to recovery.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className={`${sectionClass} bg-[#0f0a1e]`}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className={h2Class}>Why staff matter</h2>
+            <p className={pClass}>
+              The grant we are seeking funds two full-time positions from the start: a Volunteer
+              Manager, who recruits, places and supports residents and remote volunteers and opens
+              the pipelines that need a full-time host, and a Program Coordinator, who runs intake,
+              service delivery to charities, partner relationships and reporting.
+            </p>
+            <p className={pClass}>
+              Our five-year goal is to have both positions fully funded and endowed at reasonable
+              compensation for the work, based at the campus. That is the point of the project:
+              stability for the whole Free For Charity mission, so that it no longer depends on
+              unpaid leadership.
+            </p>
+            <Button href="/campus/" variant="primary">
+              Read the campus plan
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className={`${sectionClass} bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]`}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className={h2Class}>Partners and governance</h2>
+            <p className={pClass}>
+              <a
+                href="https://technomonasteries.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-300 underline hover:text-white"
+              >
+                TechnoMonasteries
+              </a>{' '}
+              is a volunteer project helping us create the Technology Monastery. It operates under
+              Free For Charity&apos;s Technology Monastery brand for the United States campus and
+              hopes, over the next decade or more, to develop a similar place abroad focused on the
+              open-source community. It is not a separate charity, and gifts to the campus are made
+              through Free For Charity.
+            </p>
+            <p className={pClass}>
+              The Technology Monastery is governed by Free For Charity&apos;s board of directors, and
+              its finances, policies and transparency profile are Free For Charity&apos;s. The board,
+              the latest filings and the GuideStar profile are published on{' '}
+              <a
+                href={siteConfig.supportedBy.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-300 underline hover:text-white"
+              >
+                freeforcharity.org
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-br from-purple-700 to-blue-700">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Join us</h2>
+          <p className="text-lg text-purple-100 mb-8 max-w-2xl mx-auto">
+            Whether you run a nonprofit that needs technology, want to serve, or represent a partner
+            or funder, we would like to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button href="/get-started/" variant="secondary">
-              Get Started
+              Get started
             </Button>
             <Button href="/contact/" variant="primary">
-              Contact Us
+              Contact us
             </Button>
           </div>
         </div>

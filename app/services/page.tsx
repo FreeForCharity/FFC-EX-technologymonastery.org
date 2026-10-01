@@ -3,153 +3,110 @@ import ServiceCard from '@/components/ServiceCard';
 import Button from '@/components/Button';
 
 export const metadata: Metadata = {
-  title: 'Our Services - The Technology Monastery',
-  description: 'Free technology services for small nonprofits including Microsoft 365, domain registration, technical support, and more.',
+  title: 'Services - The Technology Monastery',
+  description:
+    'Free technology services for small nonprofits: domains and email on Microsoft or Google, static websites, AI enablement, training and ongoing support.',
 };
 
 export default function Services() {
   const coreServices = [
     {
-      icon: '🏛️',
-      title: 'Charity State Registered Agent Status',
-      description: 'Professional registered agent services to help your nonprofit maintain compliance with state requirements.',
+      title: 'Domain name and email',
+      description:
+        'A free .org domain registered and managed for you, with nonprofit email and collaboration on Microsoft 365 or Google Workspace. We handle eligibility, setup, security basics and keeping the licences right-sized as the programs change.',
     },
     {
-      icon: '🌐',
-      title: 'Charity Domain Name Registration',
-      description: 'Secure your nonprofit\'s online presence with professional domain registration and management.',
+      title: 'Website hosting and build',
+      description:
+        'A fast, secure static website hosted at no cost, with the privacy, cookie, terms and donation policy pages a professional site needs, analytics wired in, and a path for your own volunteers to keep it current.',
     },
     {
-      icon: '☁️',
-      title: 'Microsoft 365 Grant Establishment',
-      description: 'Access to Microsoft 365 nonprofit grants and comprehensive setup assistance.',
+      title: 'AI enablement',
+      description:
+        'Help deciding where AI genuinely helps your work, an acceptable-use policy your board can adopt, assistants for the questions supporters ask most, and the data hygiene that makes any of it safe.',
     },
     {
-      icon: '⚙️',
-      title: 'Microsoft Cloud for Nonprofits',
-      description: 'Full setup and configuration of Microsoft Cloud services tailored to nonprofit needs.',
+      title: 'Training and ongoing support',
+      description:
+        'Plain-language training for staff and volunteers on the tools we set up, written hand-over notes, and a support route when something stops working.',
     },
   ];
 
-  const additionalServices = [
+  const consulting = [
     {
-      icon: '🌐',
-      title: 'Static Website Development',
-      description: 'Professional, fast, and secure static websites built with modern technologies.',
+      title: 'It starts with a conversation',
+      description:
+        'Before any setup, we talk through what you have today, what you need to succeed, and what you can realistically maintain. The outcome is a short, written plan you own.',
     },
     {
-      icon: '🤖',
-      title: 'AI Tools & Automation',
-      description: 'Leverage artificial intelligence to streamline operations and improve efficiency.',
+      title: 'Introductions to trusted partners',
+      description:
+        'For needs we do not cover, Free For Charity introduces charities to partners it has worked with and to discounted nonprofit programs.',
     },
     {
-      icon: '📱',
-      title: 'Social Media Management',
-      description: 'Strategic social media support to amplify your nonprofit\'s message and reach.',
-    },
-    {
-      icon: '📊',
-      title: 'Business Planning & Strategy',
-      description: 'Technology-focused business planning and strategic consulting for nonprofits.',
-    },
-    {
-      icon: '📚',
-      title: 'Staff & Volunteer Training',
-      description: 'Comprehensive training programs to help your team maximize technology effectiveness.',
-    },
-    {
-      icon: '🤝',
-      title: 'Ongoing Technical Support',
-      description: 'Continuous support from our technical team to ensure your systems run smoothly.',
+      title: 'Longer engagements',
+      description:
+        'As the campus opens, charities will be able to request a resident or a student capstone team for a season of focused work on a single project.',
     },
   ];
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(138,43,226,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(138,43,226,0.1)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
-        <div className="absolute top-20 right-20 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Our Services</h1>
-            <p className="text-xl text-gray-300">
-              Comprehensive technology solutions tailored for small nonprofits
-            </p>
-          </div>
+      <section className="relative pt-36 pb-16 bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Our services</h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            The systems a small nonprofit needs, set up and supported at no cost, on whichever
+            platform fits you best.
+          </p>
         </div>
       </section>
 
-      {/* Core Services */}
       <section className="py-16 bg-[#0f0a1e]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Core Technology Services
-            </h2>
-            <p className="text-lg text-gray-400">
-              Essential technology infrastructure and support
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Core services</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              We are deliberately neutral between Microsoft and Google. Both run nonprofit programs
+              with donated and discounted licences, and the right one depends on your people, not on
+              us.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {coreServices.map((service, index) => (
-              <ServiceCard key={index} {...service} />
+            {coreServices.map((service) => (
+              <ServiceCard key={service.title} {...service} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Additional Services */}
       <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Additional Services
-            </h2>
-            <p className="text-lg text-gray-400">
-              Extended support to help your organization thrive
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How we work with you</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {additionalServices.map((service, index) => (
-              <ServiceCard key={index} {...service} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {consulting.map((service) => (
+              <ServiceCard key={service.title} {...service} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Free Services Notice */}
-      <section className="py-16 bg-gradient-to-br from-purple-600 to-blue-600 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4 text-white">100% Free for Qualifying Nonprofits</h2>
-            <p className="text-xl text-blue-100 mb-8">
-              All services are provided at no cost to qualifying small nonprofits. Our mission is 
-              to remove technology barriers so you can focus on your important work.
-            </p>
-            <Button href="/get-started/" variant="secondary">
-              Apply for Services
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Microsoft Partnership */}
       <section className="py-16 bg-[#0f0a1e]">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Microsoft Partnership
+          <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-purple-500/20 rounded-lg p-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Free for qualifying nonprofits
             </h2>
-            <p className="text-lg text-gray-300 mb-4">
-              We're working towards Silver Partner status with Microsoft, which will enable us to 
-              provide even more comprehensive services to the nonprofits we serve.
+            <p className="text-gray-300 mb-6">
+              Services are provided at no cost to registered 501(c)(3) organizations with limited
+              technology budgets. Where a charity chooses a paid add-on, such as a premium licence
+              or hosting tier, the cost is disclosed first and paid by the charity directly.
             </p>
-            <p className="text-lg text-gray-300">
-              This partnership allows us to offer Microsoft 365, Azure, and other cloud services 
-              with expert setup, configuration, and ongoing support.
-            </p>
+            <Button href="/get-started/" variant="secondary">
+              Apply for services
+            </Button>
           </div>
         </div>
       </section>

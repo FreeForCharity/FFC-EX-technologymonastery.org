@@ -1,23 +1,17 @@
 {
   "name": "The Technology Monastery",
   "short_name": "Tech Monastery",
-  "description": "Empowering nonprofits through technology",
+  "description": "Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2c5aa0",
+  "background_color": "#0f0a1e",
+  "theme_color": "#1a0b2e",
   "icons": [
     {
-      "src": "/images/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/images/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "/images/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
