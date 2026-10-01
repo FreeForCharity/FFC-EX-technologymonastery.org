@@ -46,7 +46,7 @@ export default function Services() {
     {
       title: 'Longer engagements',
       description:
-        'As the campus opens, charities will be able to request a resident or a student capstone team for a season of focused work on a single project.',
+        'As the campus opens, charities will be able to request a resident or a student capstone team for a season of focused work on a single project. The Monastery is built for up to 20 of the 100 charities Free For Charity seeks to support at a time: those further along in maturity, or with rarer needs, that call for longer-term volunteers.',
     },
   ];
 
