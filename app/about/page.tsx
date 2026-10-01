@@ -70,7 +70,7 @@ export default function About() {
             <p className={pClass}>
               A monastery is a place where people live simply, keep a rhythm of work, study and
               rest, and give their effort to something larger than themselves. We borrow that
-              shape, not a creed. The Technology Monastery is non-secular and open to anyone: no
+              shape, not a creed. The Technology Monastery is non-sectarian and open to anyone: no
               religious test, every faith and none welcome, and a short set of community agreements
               in place of a rule.
             </p>
@@ -112,8 +112,8 @@ export default function About() {
               service delivery to charities, partner relationships and reporting.
             </p>
             <p className={pClass}>
-              Our five-year goal is to have both positions fully funded and endowed at reasonable
-              compensation for the work, based at the campus. That is the point of the project:
+              Our five-year goal is to have both positions fully funded at reasonable compensation,
+              with their endowment under way and on a published path for the work, based at the campus. That is the point of the project:
               stability for the whole Free For Charity mission, so that it no longer depends on
               unpaid leadership.
             </p>

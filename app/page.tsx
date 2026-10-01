@@ -18,7 +18,7 @@ const problems = [
 
 const solutions = [
   {
-    title: 'A free, staffed service program',
+    title: 'A free service program, staffed once the grant lands',
     body: 'Email and productivity on Microsoft or Google nonprofit programs, free .org domains, fast static websites, AI enablement and training, delivered at no cost to qualifying charities.',
     href: '/services/',
     cta: 'Our services',
@@ -31,7 +31,7 @@ const solutions = [
   },
   {
     title: 'Two full-time roles that make it last',
-    body: 'A Volunteer Manager and a Program Coordinator turn a volunteer-run program into a staffed one and open the pipelines that need a full-time host. Our five-year goal is to have both positions fully funded and endowed.',
+    body: 'A Volunteer Manager and a Program Coordinator turn a volunteer-run program into a staffed one and open the pipelines that need a full-time host. Our five-year goal is to have both positions fully funded, with their endowment under way and on a published path.',
     href: '/about/',
     cta: 'Why staff matter',
   },
@@ -231,7 +231,7 @@ export default function Home() {
             <Button href="/get-started/" variant="secondary">
               Nonprofits and volunteers
             </Button>
-            <Button href="/contact/" variant="primary">
+            <Button href="/funders/" variant="primary">
               Partners and funders
             </Button>
             <a

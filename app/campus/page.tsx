@@ -67,11 +67,11 @@ const phases = [
 const pipelines = [
   {
     title: 'University capstones',
-    body: 'We plan to sponsor Penn State Learning Factory capstone projects every year, request a one-time matching gift from the Smeal College of Business Farrell Center for Corporate Innovation and Entrepreneurship, and extend the model to universities, colleges and two-year schools around the campus. Capstone teams join the summer residency for at least the first three years.',
+    body: 'We plan to sponsor Penn State Learning Factory capstone projects every year, request a one-time matching gift from the Smeal College of Business Farrell Center for Corporate Innovation and Entrepreneurship, and extend the model to universities, colleges and two-year schools around the campus. We will propose to each school that capstone teams join the summer residency for at least the first three years.',
   },
   {
     title: 'National service and fellowships',
-    body: 'AmeriCorps members hosted by the Volunteer Manager, and AI-practitioner fellowships that embed people in charities, with the campus as both host and placement broker.',
+    body: 'AmeriCorps members hosted by the Volunteer Manager, and AI-practitioner fellowships that embed people in charities, with the campus as a host site.',
   },
   {
     title: 'Workforce programs',
@@ -113,12 +113,12 @@ export default function Campus() {
           <div className="max-w-3xl mx-auto">
             <h2 className={h2Class}>Where</h2>
             <p className={pClass}>
-              The campus will sit in the forested hills of northwestern Pennsylvania between two
-              state parks, in a year-round outdoor-recreation region within reach of the population
-              and technology centers of the northeastern United States and Canada. It is rural
-              acreage with a mix of open ground and woodland, existing access and nearby utilities,
-              and some existing camping use, which is why the plan is to acquire and convert rather
-              than build from nothing.
+              The campus will sit in the forested hills of northwestern Pennsylvania near Clear Creek
+              State Park, Cook Forest State Park and Sigel, in a year-round outdoor-recreation region
+              within reach of the population and technology centers of the northeastern United
+              States and Canada. It is rural land with woodland and open ground, existing access and
+              nearby utilities, which is why the plan is to acquire and convert rather than build
+              from nothing.
             </p>
             <p className={pClass}>
               The setting is the point: quiet enough for focused work and for recovery, close enough
@@ -179,10 +179,10 @@ export default function Campus() {
             <p className={pClass}>
               The campus will be substance-free. Residents are screened, referrals are verified, and
               the people who come from shelters and recovery programs are supported by partners who
-              know them. Staff are trained in trauma-informed practice, there is a crisis plan with
+              know them. Staff will be trained in trauma-informed practice, there will be a crisis plan with
               local partners, and the community agreements cover respect and consent, quiet hours,
               shared work, how conflicts are resolved, and how someone can leave without stigma.
-              The full policies are approved by Free For Charity&apos;s board before the first
+              The full policies will be approved by Free For Charity&apos;s board before the first
               resident arrives.
             </p>
           </div>
@@ -200,8 +200,8 @@ export default function Campus() {
               charities, partner relationships and outcomes reporting.
             </p>
             <p className={pClass}>
-              Our five-year goal is to have both roles fully funded and endowed, with the
-              campus&apos;s permanent costs covered entirely by foundation grants, public support,
+              Our five-year goal is to have both roles fully funded, with their endowment under way and on a
+              published path, and the campus&apos;s permanent costs covered entirely by foundation grants, public support,
               sponsorships and recurring giving. The campus exists to give the whole Free For
               Charity mission that stability.
             </p>
@@ -263,7 +263,7 @@ export default function Campus() {
           <div className="max-w-3xl mx-auto">
             <h2 className={h2Class}>Permits and stewardship</h2>
             <p className={pClass}>
-              A campground in Pennsylvania with five or more sites needs an annual permit from the
+              As we read the rules, a campground in Pennsylvania with five or more sites needs an annual permit from the
               Department of Environmental Protection covering water, sewage, waste and sanitation,
               alongside on-lot sewage permits, township land-development and building approvals,
               and accessibility requirements for the bathhouse and tiny homes. Those permits are

@@ -84,6 +84,14 @@ export default function Header() {
             </li>
             <li>
               <Link
+                href="/hiring/"
+                className="text-white/90 hover:text-white transition font-medium"
+              >
+                Hiring
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/contact/"
                 className="text-white/90 hover:text-white transition font-medium"
               >
@@ -142,6 +150,15 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Get Started
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/hiring/"
+                  className="block text-white hover:text-purple-300 transition font-medium py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Hiring
                 </Link>
               </li>
               <li>
