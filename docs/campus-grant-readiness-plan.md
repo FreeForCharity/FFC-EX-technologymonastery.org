@@ -85,7 +85,7 @@ are planning-stage and must be re-confirmed before they are published as commitm
 The pitch has five parts, and each needs a home on the site.
 
 1. **Place.** A quiet, rural campus that already works as a campground, in a recreation corridor,
-   with room to grow. Show it: map, aerial, photos, phases.
+   with room to grow. Show it with a regional map, non-identifying photographs and the phased plan; never a parcel map or aerial (section 8).
 2. **People served.** Open to anyone, non-secular, with named first cohorts: veterans; survivors
    leaving women's shelters; people in recovery who have stabilized; public-good and open-source
    technologists on sabbatical. State eligibility and the referral partners each cohort comes
