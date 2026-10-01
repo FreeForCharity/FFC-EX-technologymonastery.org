@@ -28,7 +28,7 @@ const roles = [
     brings: [
       'Three or more years recruiting or managing volunteers, residents, students or service members, including in-person supervision.',
       'Experience working respectfully with veterans, survivors of domestic violence, or people in recovery.',
-      'Plain, warm communication; everyday technology fluency; a driver’s license; a clear background check.',
+      "Plain, warm communication; everyday technology fluency; a driver's license; a clear background check.",
     ],
     band: '$54,000 to $64,000',
     subject: 'Volunteer Manager',
@@ -46,7 +46,7 @@ const roles = [
     brings: [
       'Three or more years coordinating programs, projects or services, with strong tracker-and-hand-off habits.',
       'Microsoft 365 or Google Workspace basics and the willingness to learn the other; comfort with AI assistants.',
-      'Clear writing for reports and training; a driver’s license; a clear background check.',
+      "Clear writing for reports and training; a driver's license; a clear background check.",
     ],
     band: '$50,000 to $60,000',
     subject: 'Program Coordinator',
