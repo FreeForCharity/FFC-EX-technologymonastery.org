@@ -15,6 +15,9 @@ const quickLinks = [
   { name: 'Get Started', href: '/get-started/' },
   { name: 'Hiring', href: '/hiring/' },
   { name: 'For Funders', href: '/funders/' },
+  { name: 'Partners', href: '/partners/' },
+  { name: 'Impact', href: '/impact/' },
+  { name: 'Transparency', href: '/transparency/' },
   { name: 'Contact', href: '/contact/' },
   // Interim FFC campaign; a project-specific campaign will replace it later.
   { name: 'Donate', href: siteConfig.integrations.zeffyDonationUrl },

@@ -60,6 +60,14 @@ const diligence = [
     label: 'Free For Charity donation policy',
     href: '/free-for-charity-donation-policy/',
   },
+  {
+    label: 'Transparency page: legal status, records, policies and commitments',
+    href: '/transparency/',
+  },
+  {
+    label: 'Impact and measurement: what we will count and publish',
+    href: '/impact/',
+  },
 ];
 
 export default function Funders() {
