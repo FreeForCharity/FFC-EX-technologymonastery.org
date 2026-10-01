@@ -13,7 +13,7 @@ export default function Services() {
     {
       title: 'Domain name and email',
       description:
-        'A free .org domain registered and managed for you, with nonprofit email and collaboration on Microsoft 365 or Google Workspace. We handle eligibility, setup, security basics and keeping the licences right-sized as the programs change.',
+        'A free .org domain registered and managed for you, with nonprofit email and collaboration on Microsoft 365 or Google Workspace. We handle eligibility, setup, security basics and keeping the licenses right-sized as the programs change.',
     },
     {
       title: 'Website hosting and build',
@@ -68,7 +68,7 @@ export default function Services() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Core services</h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
               We are deliberately neutral between Microsoft and Google. Both run nonprofit programs
-              with donated and discounted licences, and the right one depends on your people, not on
+              with donated and discounted licenses, and the right one depends on your people, not on
               us.
             </p>
           </div>
@@ -101,7 +101,7 @@ export default function Services() {
             </h2>
             <p className="text-gray-300 mb-6">
               Services are provided at no cost to registered 501(c)(3) organizations with limited
-              technology budgets. Where a charity chooses a paid add-on, such as a premium licence
+              technology budgets. Where a charity chooses a paid add-on, such as a premium license
               or hosting tier, the cost is disclosed first and paid by the charity directly.
             </p>
             <Button href="/get-started/" variant="secondary">

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site.config';
-import { basePath } from '@/lib/site-config';
 import CookiePreferencesLink from '@/components/CookiePreferencesLink';
 
 // FFC standard footer, following the structure of FFC_Single_Page_Template
@@ -62,13 +61,13 @@ export default function Footer() {
                 href={siteConfig.guidestar.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`View ${siteConfig.supportedBy.name} GuideStar Profile`}
+                aria-label={`${siteConfig.supportedBy.name} Candid Seal of Transparency`}
                 className="inline-block"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element -- static SVG seal, no optimization needed */}
+                {/* eslint-disable-next-line @next/next/no-img-element -- Candid's live seal widget (current-year level), as on freeforcharity.org */}
                 <img
-                  src={`${basePath}/Svgs/footerImage.svg`}
-                  alt="GuideStar Platinum Seal of Transparency"
+                  src={siteConfig.guidestar.sealUrl}
+                  alt="Candid Seal of Transparency"
                   width={108}
                   height={108}
                 />
@@ -80,7 +79,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center border-2 border-purple-500/60 px-5 py-2.5 text-purple-300 hover:text-white hover:border-purple-400 transition font-medium"
                 >
-                  Direct GuideStar Profile Link
+                  Direct Candid Profile Link
                 </a>
               </p>
               <p className="font-semibold text-gray-300">
@@ -203,7 +202,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-purple-900/30 pt-8 text-center text-gray-400">
           <p>
-            &copy; {currentYear} {siteConfig.name}, a program of {siteConfig.supportedBy.name}, a
+            &copy; {currentYear} {siteConfig.name}, a project of {siteConfig.supportedBy.name}, a
             US 501(c)(3) nonprofit. Licensed under GNU AGPL v3.0.
             {/* FFC footer standard: the permanent "Supported by" attribution.
                 Always rendered — do NOT remove or hide it when customizing. */}

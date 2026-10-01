@@ -123,7 +123,9 @@ export default function Home() {
           <p className="text-gray-300 max-w-2xl mx-auto text-center mb-10">
             The campus is not a new charity. It is housing and community wrapped around a service
             program that already works, with two funded roles so the mission no longer depends on
-            unpaid time.
+            unpaid time. It is funded by grants, public support and recurring giving, not by
+            charging anyone: the charities we serve pay nothing, and neither do the people who come
+            to do the work.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {solutions.map((s) => (
@@ -205,7 +207,7 @@ export default function Home() {
               <li className="border-l-2 border-purple-500/60 pl-4">
                 <span className="text-white font-semibold">Land and stewardship.</span> The
                 Pennsylvania DCNR service forester, the county conservation district and USDA
-                conservation programs, with the two neighbouring state parks as natural partners.
+                conservation programs, with the two neighboring state parks as natural partners.
               </li>
               <li className="border-l-2 border-purple-500/60 pl-4">
                 <span className="text-white font-semibold">TechnoMonasteries.</span> A volunteer
@@ -241,6 +243,12 @@ export default function Home() {
               Donate through Free For Charity
             </a>
           </div>
+          <p className="mt-8 text-sm text-gray-400 max-w-2xl mx-auto">
+            The Technology Monastery is a project of Free For Charity, a US 501(c)(3) public
+            charity, EIN {siteConfig.ein}. It is not yet a separate legal entity, so gifts and
+            grants are made to Free For Charity. Our goal is to become a stand-alone, IRS- and
+            state-approved charity as the program matures.
+          </p>
         </div>
       </section>
     </>

@@ -146,7 +146,7 @@ export default function About() {
             <p className={pClass}>
               The Technology Monastery is governed by Free For Charity&apos;s board of directors, and
               its finances, policies and transparency profile are Free For Charity&apos;s. The board,
-              the latest filings and the GuideStar profile are published on{' '}
+              the latest filings and the Candid (GuideStar) profile are published on{' '}
               <a
                 href={siteConfig.supportedBy.url}
                 target="_blank"
@@ -156,6 +156,13 @@ export default function About() {
                 freeforcharity.org
               </a>
               .
+            </p>
+            <p className={pClass}>
+              To be clear about where we stand today: the Technology Monastery is not a separate
+              legal entity. It has no EIN of its own, and every gift, grant, contract and filing runs
+              through Free For Charity, EIN {siteConfig.ein}. Our goal is to become a stand-alone
+              charity, with its own IRS 501(c)(3) determination and state registrations, as the
+              program matures. We will say so here when that changes.
             </p>
           </div>
         </div>
