@@ -74,9 +74,12 @@ export type SiteConfig = {
    * "Village" is the current choice; "campus" was retired because it reads as
    * educational). Every user-visible mention of the place flows from here.
    *
-   * To rename it: change the five strings below and rename the route folder
-   * `app/<slug>/` to match. That is the whole job. Leave `app/campus/` in place:
-   * it is a redirect kept for links already shared with funders.
+   * To rename it: change the five strings in PLACE, rename the route folder
+   * `app/<slug>/` to match, and update the two static JSON files that cannot
+   * read this constant: `public/manifest.json` ("description") and
+   * `_data/settings.json` ("site_description"). `siteConfig.description`, the
+   * page metadata, Open Graph and JSON-LD all derive from PLACE. Leave
+   * `app/campus/` in place: it is a redirect kept for links already shared.
    */
   place: SitePlace;
   /** Third-party integration endpoints. */
@@ -90,11 +93,18 @@ export type SiteConfig = {
   };
 };
 
+const PLACE: SitePlace = {
+    noun: 'Village',
+    nounLower: 'village',
+    withArticle: 'the Village',
+    slug: 'village',
+    navLabel: 'The Village',
+};
+
 export const siteConfig: SiteConfig = {
   name: 'The Technology Monastery',
   tagline: 'Free technology for small charities, and a place for the people who build it',
-  description:
-    'Free technology for small nonprofits, and a planned village in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
+  description: `Free technology for small nonprofits, and a planned ${PLACE.nounLower} in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.`,
   url: 'https://technologymonastery.org',
   contactEmail: 'info@technologymonastery.org',
   directContact: {
@@ -127,19 +137,22 @@ export const siteConfig: SiteConfig = {
     url: 'https://freeforcharity.org',
     hubUrl: 'https://freeforcharity.org/hub/',
   },
-  place: {
-    noun: 'Village',
-    nounLower: 'village',
-    withArticle: 'the Village',
-    slug: 'village',
-    navLabel: 'The Village',
-  },
+  place: PLACE,
   integrations: {
     zeffyDonationUrl: 'https://www.zeffy.com/donation-form/free-for-charity-endowment-fund',
   },
 };
 
 /** Root-relative href of the place page, with the trailing slash the static export uses. */
+/** The five-step resident pathway, shared by the place page and the Come and Serve page. */
+export const residentPathway = [
+  { step: 'Arrive', body: 'Orientation, a place to stay, and the community agreements everyone keeps.' },
+  { step: 'Stabilize', body: 'Routine, peer support, and no cost of living while you find your footing.' },
+  { step: 'Learn', body: 'The Technology Monastery stack: nonprofit email and collaboration, websites, AI tools, and how to teach them.' },
+  { step: 'Serve', body: `Real work for the charities we support, and stewardship of ${PLACE.withArticle} itself.` },
+  { step: 'Launch', body: 'Employment, further study, home, or a longer role here as a mentor or staff member.' },
+];
+
 export function placeHref(): string {
   return `/${siteConfig.place.slug}/`;
 }

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
-import { siteConfig } from '@/lib/site.config';
+import { residentPathway, siteConfig } from '@/lib/site.config';
 
 const place = siteConfig.place;
 
@@ -33,14 +33,6 @@ const cohorts = [
     title: 'University capstone teams',
     body: `Students who spend a summer at ${place.withArticle} working a real project for a real charity before returning to finish their degree.`,
   },
-];
-
-const pathway = [
-  { step: 'Arrive', body: 'Orientation, a place to stay, and the community agreements everyone keeps.' },
-  { step: 'Stabilize', body: 'Routine, peer support, and no cost of living while you find your footing.' },
-  { step: 'Learn', body: 'The Technology Monastery stack: nonprofit email and collaboration, websites, AI tools, and how to teach them.' },
-  { step: 'Serve', body: `Real work for the charities we support, and stewardship of ${place.withArticle} itself.` },
-  { step: 'Launch', body: 'Employment, further study, home, or a longer role here as a mentor or staff member.' },
 ];
 
 const phases = [
@@ -155,7 +147,7 @@ export default function Village() {
           <div className="max-w-5xl mx-auto">
             <h2 className={`${h2Class} text-center`}>How a stay works</h2>
             <ol className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-8">
-              {pathway.map((p, i) => (
+              {residentPathway.map((p, i) => (
                 <li key={p.step} className="border border-purple-500/20 rounded-lg p-5">
                   <p className="text-orange-400 text-xs font-semibold tracking-wide uppercase mb-1">
                     Step {i + 1}

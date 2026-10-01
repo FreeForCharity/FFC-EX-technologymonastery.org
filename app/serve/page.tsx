@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Button from '@/components/Button';
-import { placeHref, siteConfig } from '@/lib/site.config';
+import { placeHref, residentPathway, siteConfig } from '@/lib/site.config';
 
 const place = siteConfig.place;
 
@@ -40,14 +40,6 @@ const doors = [
     subject: 'Student capstone inquiry',
     cta: 'Email us about capstones',
   },
-];
-
-const pathway = [
-  { step: 'Arrive', body: 'Orientation, a place to stay, and the community agreements everyone keeps.' },
-  { step: 'Stabilize', body: 'Routine, peer support, and no cost of living while you find your footing.' },
-  { step: 'Learn', body: 'The Technology Monastery stack: nonprofit email and collaboration, websites, AI tools, and how to teach them.' },
-  { step: 'Serve', body: `Real work for the charities we support, and stewardship of ${place.withArticle} itself.` },
-  { step: 'Launch', body: 'Employment, further study, home, or a longer role here as a mentor or staff member.' },
 ];
 
 const safeguards = [
@@ -151,7 +143,7 @@ export default function Serve() {
               lasts a summer or a year.
             </p>
             <ol className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              {pathway.map((p, i) => (
+              {residentPathway.map((p, i) => (
                 <li key={p.step} className="border border-purple-500/20 rounded-lg p-5">
                   <p className="text-orange-400 text-xs font-semibold tracking-wide uppercase mb-1">
                     Step {i + 1}
