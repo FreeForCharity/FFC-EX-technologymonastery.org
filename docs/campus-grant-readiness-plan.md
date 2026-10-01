@@ -100,6 +100,15 @@ The pitch has five parts, and each needs a home on the site.
    supports residents and remote volunteers and opens the AmeriCorps, AI-fellow, and WIOA
    pipelines; the Program Coordinator runs intake, service delivery to charities, and reporting.
    Say on the site that the grant funds these two roles and that the five-year plan endows them.
+   **University capstones are the first pipeline that turns short-lived volunteers into long-term
+   ones.** FFC intends to sponsor Penn State Learning Factory capstone projects every year in
+   perpetuity, seek matching support from the Smeal College of Business innovation center, and
+   extend the model to universities, colleges and two-year schools around the campus. Capstone
+   teams join the summer residency for at least the first three years, while the two staff and
+   enablers are on site, and every project is either an internal improvement to FFC and the
+   Technology Monastery or a supported-charity project with far deeper engagement than
+   short-duration volunteering allows. The outcome to measure is volunteer longevity: engagement
+   measured in seasons and years rather than hours.
 4. **Evidence.** Service as a route to recovery and reintegration has precedent: The Mission
    Continues fellowship model for veterans, peer recovery support in substance-use recovery,
    Domestic Violence Housing First plus social support for survivors, and work-sabbatical retreats
@@ -143,6 +152,10 @@ The pitch has five parts, and each needs a home on the site.
 - **H. Business plan refresh.** Rewrite the 2023 plan as a capital-plus-five-years plan around
   the two funded roles, the volunteer pipelines, the sustainability sources and the endowment;
   see section 10.
+- **I. University capstone and student pipeline.** Penn State Learning Factory sponsorship as a
+  recurring grant line, Smeal innovation-center matching, regional universities, colleges and
+  two-year schools, and the summer capstone cohort aligned with the residency for the first
+  three years; the volunteer-longevity metric.
 
 ## 7. Content and decisions the board must supply
 
