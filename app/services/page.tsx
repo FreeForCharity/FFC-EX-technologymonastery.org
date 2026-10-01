@@ -50,6 +50,39 @@ export default function Services() {
     },
   ];
 
+  const stack = [
+    {
+      title: 'Identity',
+      description:
+        'Their own domain and DNS, professional email on Google Workspace or Microsoft 365, and shared calendars and files.',
+    },
+    {
+      title: 'Presence',
+      description:
+        'An accessible website with privacy, cookie, terms and donation policies, search, and the analytics chain wired end to end.',
+    },
+    {
+      title: 'Money',
+      description:
+        'Zero-fee donation processing, donor records, a Candid profile and transparency seal, and grant-ready documents.',
+    },
+    {
+      title: 'People',
+      description:
+        'Their own volunteer management system: intake, screening, scheduling, hours and recognition.',
+    },
+    {
+      title: 'Governance',
+      description:
+        'Registered agent service, a compliance calendar, board and policy templates, and records that survive a leadership change.',
+    },
+    {
+      title: 'Capability',
+      description:
+        'AI tools from vendor nonprofit programs, training on both stacks, security defaults, and a named Free For Charity volunteer to call.',
+    },
+  ];
+
   return (
     <>
       <section className="relative pt-36 pb-16 bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
@@ -94,6 +127,24 @@ export default function Services() {
       </section>
 
       <section className="py-16 bg-[#0f0a1e]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What a charity leaves with</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Most charities arrive after one or two years on a single personal Gmail address and
+              cannot pass the first page of a funder's due diligence. Free For Charity stands up the
+              whole stack at no cost and, once a charity is established, maintenance is light.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {stack.map((service) => (
+              <ServiceCard key={service.title} {...service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-purple-500/20 rounded-lg p-8">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
