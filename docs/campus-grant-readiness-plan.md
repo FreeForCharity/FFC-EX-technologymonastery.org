@@ -14,6 +14,16 @@ work, learn, and serve. The first residents the concept names are veterans, surv
 women's shelters, and people who have stabilized after drug and alcohol rehabilitation, alongside
 builders of open-source and other public-good technology.
 
+The purpose behind the campus is **stability for the whole Free For Charity mission**. The
+Technology Monastery is a project of FFC and a revitalization of the campus capability FFC
+previously operated in Arizona. Its first job is to fund two full-time staff, a **Volunteer
+Manager** and a **Program Coordinator**, who turn FFC's volunteer-run service program into a
+staffed one and open the volunteer pipelines that need a full-time host: AmeriCorps members,
+AI-practitioner fellows embedded in charities (such as Anthropic's Claude Corps), and Workforce
+Innovation and Opportunity Act (WIOA) participants once staffing allows an employer of record. The
+five-year goal is that both positions are fully funded and endowed at reasonable compensation for
+the work, based at the campus, so the mission no longer depends on unpaid leadership.
+
 The website at technologymonastery.org currently describes only the existing service program (free
 Microsoft 365, hosting, AI tools, and social media support for small nonprofits). It says nothing
 about a campus, land, residents, Pennsylvania, or a capital project. A grant reviewer who visits the
@@ -60,11 +70,15 @@ are planning-stage and must be re-confirmed before they are published as commitm
   utility and septic evaluation, volunteer coordination, nonprofit structuring, and a long-term
   stewardship plan. A county service forester has already been consulted; forest stewardship and
   NRCS cost-share programs are candidate complements to the grant.
-- **Sister concept.** technomonasteries.org (also an FFC repository) presents the broader
-  "network of places where builders, researchers, and creators can travel, exchange ideas, and
-  refine their craft" idea and links to a Discord. The Pennsylvania site is described there as the
-  first pilot. The two brands must be reconciled so a funder does not read them as two
-  organizations.
+- **TechnoMonasteries (partner, not a second organization).** technomonasteries.org is run by an
+  external volunteer group with no 501(c)(3) status that is helping FFC create the Technology
+  Monastery. Its site presents the broader "network of places where builders, researchers, and
+  creators can travel, exchange ideas, and refine their craft" idea and links to a Discord. The
+  agreed direction: the group folds under FFC's Technology Monastery branding for the United
+  States campus, and may in 10 to 15 years develop a similar offering at an international
+  location focused on the open-source community rather than direct service to charities. Both
+  sites must say this plainly so a funder reads one organization with a volunteer partner, not two
+  competing projects.
 
 ## 4. Concept of operations the site must communicate
 
@@ -82,6 +96,10 @@ The pitch has five parts, and each needs a home on the site.
    charities are the service placements), and by stewarding the campus itself. That link between
    the existing program and the campus is the core of the case: the campus is not a new charity, it
    is housing and community wrapped around a working service engine.
+   **Staffing is what makes the pathway real.** The Volunteer Manager recruits, places, and
+   supports residents and remote volunteers and opens the AmeriCorps, AI-fellow, and WIOA
+   pipelines; the Program Coordinator runs intake, service delivery to charities, and reporting.
+   Say on the site that the grant funds these two roles and that the five-year plan endows them.
 4. **Evidence.** Service as a route to recovery and reintegration has precedent: The Mission
    Continues fellowship model for veterans, peer recovery support in substance-use recovery,
    Domestic Violence Housing First plus social support for survivors, and work-sabbatical retreats
@@ -107,8 +125,9 @@ The pitch has five parts, and each needs a home on the site.
 ## 6. Epic map
 
 - **A. Narrative, brand, and information architecture.** Rewrite the home and about pages so one
-  story covers the service program and the campus; decide how Technology Monastery and
-  TechnoMonasteries relate; add the non-secular, open-to-anyone statement; new navigation.
+  story covers the service program and the campus; record and implement the TechnoMonasteries
+  relationship (volunteer partner folding under FFC's brand); add the non-secular, open-to-anyone
+  statement; new navigation.
 - **B. People served and the pathway.** Residents page, cohorts, eligibility, referral partners,
   safeguards and community agreements.
 - **C. The site and the plan.** Property page with map and photos, phased development plan with
@@ -126,7 +145,10 @@ The pitch has five parts, and each needs a home on the site.
 
 These cannot be invented by a developer and block the corresponding issues.
 
-- Campus name as it will appear publicly, and the brand decision (Epic A).
+- Campus name as it will appear publicly, and the wording of the TechnoMonasteries relationship
+  statement for both sites (Epic A).
+- Target compensation ranges and start dates for the Volunteer Manager and Program Coordinator,
+  and which volunteer pipelines (AmeriCorps, AI fellows, WIOA) launch in which year (Epic H).
 - Approval of the exact public wording for the location (the one-sentence form above), and
   permission to publish photographs that do not identify the property (Epic C).
 - Phase budget, timeline, and the grant ask broken into use-of-funds lines (Epic C).
@@ -189,6 +211,10 @@ resident cohorts, Google support, and AI-assisted delivery existed. Its problem 
 holds; its service model, location, resident model, and financials do not, and several of its
 claims (notably a "Silver Partner" goal for a Microsoft tier retired in 2022, and the free M365
 grants that ended in July 2025) are still repeated on the live site. Epic H tracks the rewrite as
-a capital-plus-five-years plan in which grant-funded staff build multiple sustainability sources
-and an endowment that covers the campus's permanent floor costs. The plan itself is confidential
-and lives in Drive; only its public-safe outputs land here and on the site.
+a capital-plus-five-years plan: the grant funds the property and two full-time positions, a
+Volunteer Manager and a Program Coordinator, and those two people build the volunteer pipelines
+(AmeriCorps, AI fellows embedded in charities, WIOA) and the sustainability sources (earned
+revenue from the land, sponsored services, program funding, vendor programs, recurring and planned
+giving) so that by year five both positions are fully funded and endowed at reasonable
+compensation and the campus's permanent costs are covered. The plan itself is confidential and
+lives in Drive; only its public-safe outputs land here and on the site.
