@@ -18,6 +18,7 @@ const roles = [
   {
     title: 'Volunteer Manager',
     owns: 'People',
+    timing: 'The first hire, made in year one.',
     purpose:
       'Finds the people who come here, brings them in safely, and turns a season of service into years of it.',
     outcomes: [
@@ -28,14 +29,18 @@ const roles = [
     brings: [
       'Three or more years recruiting or managing volunteers, residents, students or service members, including in-person supervision.',
       'Experience working respectfully with veterans, survivors of domestic violence, or people in recovery.',
-      "Plain, warm communication; everyday technology fluency; a driver's license; a clear background check.",
+      'Leads an experienced technical volunteer team using agile practice: a Scrum Master certification, SAFe or PMI-ACP, held at hire or completed in the first year, with the work planned in GitHub.',
+      'Fluent in Google Workspace or Microsoft 365 at hire, and in both at full performance.',
+      "Plain, warm communication; a driver's license; a clear background check.",
     ],
-    band: '$54,000 to $64,000',
+    band: '$46,000 to $60,000',
+    bandNote: ', with scheduled increases contingent on funding and results',
     subject: 'Volunteer Manager',
   },
   {
     title: 'Program Coordinator',
     owns: 'Work',
+    timing: 'Planned for the second year.',
     purpose:
       'Turns requests from small charities into delivered services and honest numbers, and keeps the place compliant.',
     outcomes: [
@@ -48,7 +53,8 @@ const roles = [
       'Microsoft 365 or Google Workspace basics and the willingness to learn the other; comfort with AI assistants.',
       "Clear writing for reports and training; a driver's license; a clear background check.",
     ],
-    band: '$50,000 to $60,000',
+    band: '$46,000 to $56,000',
+    bandNote: '',
     subject: 'Program Coordinator',
   },
 ];
@@ -60,7 +66,7 @@ const steps = [
   },
   {
     when: 'Award month',
-    what: 'The board adopts personnel policies and both postings go live on the job boards below. Applications open for about four weeks.',
+    what: 'The board adopts personnel policies and the Volunteer Manager posting goes live on the job boards below. Applications open for about four weeks.',
   },
   {
     when: 'Weeks 4 to 10',
@@ -68,7 +74,11 @@ const steps = [
   },
   {
     when: 'Within 120 days',
-    what: 'Offers made, background checks cleared, both people start. Their first 90 days are planned before they arrive.',
+    what: 'Offer made, background check cleared, the Volunteer Manager starts. Their first 90 days are planned before they arrive.',
+  },
+  {
+    when: 'Year two',
+    what: 'The Program Coordinator posting opens on the same process, timed to the second program year and contingent on funding and results.',
   },
 ];
 
@@ -150,9 +160,9 @@ export default function Hiring() {
             Two roles that turn volunteer time into a program
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            The grant we are seeking funds a Volunteer Manager and a Program Coordinator from year
-            one. Here is what they will do, what we plan to pay, where we will post, and how to tell
-            us you are interested before the postings open.
+            The grant we are seeking funds two roles in sequence: a Volunteer Manager in year one
+            and a Program Coordinator in year two. Here is what they will do, what we plan to pay,
+            where we will post, and how to tell us you are interested before the postings open.
           </p>
         </div>
       </section>
@@ -177,8 +187,9 @@ export default function Hiring() {
           <div className="max-w-5xl mx-auto">
             <h2 className={`${h2Class} text-center`}>The roles</h2>
             <p className="text-gray-300 max-w-2xl mx-auto text-center mb-10">
-              One owns people, one owns work. Both are full-time, based near Clear Creek State Park,
-              Cook Forest State Park and Sigel, Pennsylvania, with regular remote work.
+              One owns people, one owns work. The Volunteer Manager is the first hire; the Program
+              Coordinator is planned for the second year. Both are full-time, based near Clear Creek
+              State Park, Cook Forest State Park and Sigel, Pennsylvania, with regular remote work.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {roles.map((r) => (
@@ -189,7 +200,8 @@ export default function Hiring() {
                   <p className="text-orange-400 text-xs font-semibold tracking-wide uppercase mb-2">
                     Owns {r.owns}
                   </p>
-                  <h3 className="text-2xl font-bold text-white mb-3">{r.title}</h3>
+                  <h3 className="text-2xl font-bold text-white mb-1">{r.title}</h3>
+                  <p className="text-gray-400 text-sm mb-3">{r.timing}</p>
                   <p className="text-gray-300 mb-5">{r.purpose}</p>
                   <h4 className="text-white font-semibold mb-2">What they will achieve</h4>
                   <ul className="space-y-2 text-gray-300 text-sm mb-5 list-disc pl-5">
@@ -206,9 +218,9 @@ export default function Hiring() {
                   <div className="mt-auto border-t border-purple-500/20 pt-4">
                     <p className="text-gray-300 text-sm">
                       <span className="text-white font-semibold">Planned salary band:</span> {r.band}{' '}
-                      per year, plus competitive benefits; we will work with each person to make sure
-                      they have the benefits they need. Full-time, grant-funded for five years with the
-                      goal of a permanently endowed position.
+                      per year{r.bandNote}, plus competitive benefits; we will work with each person to
+                      make sure they have the benefits they need. Full-time, grant-funded for the life
+                      of the five-year plan with the goal of a permanently endowed position.
                     </p>
                     <a
                       href={mail(r.subject)}
@@ -230,12 +242,15 @@ export default function Hiring() {
             <h2 className={h2Class}>How we set the pay</h2>
             <p className={pClass}>
               The bands are planning ranges for a rural Pennsylvania nonprofit employer, set on
-              1 October 2026 from the public sources below. They sit above the Pennsylvania volunteer-coordinator median and the regional
-              community-service-specialist median, and below the medians for nonprofit program
+              1 October 2026 from the public sources below. They start above the regional
+              community-service-specialist median, reach the Pennsylvania volunteer-coordinator
+              median at the top of the band, and sit below the medians for nonprofit program
               coordinators and community-service managers, so that the roles attract people who
-              will stay without pricing a small organization out of its own plan. Both are reviewed against current data before each posting goes live, and the
-              grant budget carries the fully loaded cost: salary, employer taxes, benefits and the
-              direct costs of the work.
+              will stay without pricing a small organization out of its own plan. The bands were
+              checked against the state's May 2025 wage tables for Jefferson County and the
+              surrounding counties, and housing and meals on site are provided. Both are reviewed
+              against current data before each posting goes live, and the grant budget carries the
+              fully loaded cost: salary, employer taxes, benefits and the direct costs of the work.
             </p>
             <ul className="space-y-3">
               {comparables.map((c) => (
@@ -260,7 +275,7 @@ export default function Hiring() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className={`${h2Class} text-center`}>The timeline</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
               {steps.map((s) => (
                 <div key={s.when} className="bg-[#15102a] border border-purple-500/20 rounded-lg p-5">
                   <p className="text-orange-400 text-sm font-semibold mb-2">{s.when}</p>
