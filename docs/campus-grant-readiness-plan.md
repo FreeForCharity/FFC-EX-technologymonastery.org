@@ -33,16 +33,16 @@ nothing. That gap is the problem this plan addresses.
 
 ## 2. What the site said before the rewrite (inventory as of 2026-10-01, before PR #118)
 
-| Route                            | Current content                                                                    | Grant-readiness gap                                                                     |
-| -------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `/` (`app/page.tsx`)             | Hero "Technology Monastery", four service cards, "100+ charities", testimonials    | Lorem-ipsum testimonials, dead "Free Demo" / "Join" buttons, no campus, unverified stats |
-| `/about/`                        | Mission (talent gap for small nonprofits), "Our Team & Approach" bullet lists      | No named people, no board, no history, no campus or place                               |
-| `/services/`                     | Core + additional service cards, "Microsoft Partnership" (Silver status aspiration) | Aspirational claim presented as fact; no outcomes                                       |
-| `/get-started/`                  | Eligibility + 5-step intake for nonprofits                                         | Only one audience (nonprofits); no resident / volunteer / partner / funder pathways     |
-| `/contact/`                      | Email, hours, Formspree form with `YOUR_FORM_ID`                                   | Form is non-functional; no funder or press routing                                      |
-| Policy pages (7)                 | FFC footer standard pages                                                          | Fine; keep                                                                              |
-| Footer (`components/Footer.tsx`) | Quick links, endorsements, EIN, GuideStar seal, "Supported by FFC"                 | Fine; add Transparency and Campus links                                                 |
-| `admin/config.yml` (Decap CMS)   | Collections reference `_data/hero.json`, `_data/about.json`, `_data/services.json` | Those files do not exist; copy is hard-coded in TSX, so non-developers cannot update it |
+| Route                            | Current content                                                                     | Grant-readiness gap                                                                      |
+| -------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `/` (`app/page.tsx`)             | Hero "Technology Monastery", four service cards, "100+ charities", testimonials     | Lorem-ipsum testimonials, dead "Free Demo" / "Join" buttons, no campus, unverified stats |
+| `/about/`                        | Mission (talent gap for small nonprofits), "Our Team & Approach" bullet lists       | No named people, no board, no history, no campus or place                                |
+| `/services/`                     | Core + additional service cards, "Microsoft Partnership" (Silver status aspiration) | Aspirational claim presented as fact; no outcomes                                        |
+| `/get-started/`                  | Eligibility + 5-step intake for nonprofits                                          | Only one audience (nonprofits); no resident / volunteer / partner / funder pathways      |
+| `/contact/`                      | Email, hours, Formspree form with `YOUR_FORM_ID`                                    | Form is non-functional; no funder or press routing                                       |
+| Policy pages (7)                 | FFC footer standard pages                                                           | Fine; keep                                                                               |
+| Footer (`components/Footer.tsx`) | Quick links, endorsements, EIN, GuideStar seal, "Supported by FFC"                  | Fine; add Transparency and Campus links                                                  |
+| `admin/config.yml` (Decap CMS)   | Collections reference `_data/hero.json`, `_data/about.json`, `_data/services.json`  | Those files do not exist; copy is hard-coded in TSX, so non-developers cannot update it  |
 
 Site facts: Next.js 14 App Router, TypeScript, Tailwind, static export, pnpm, deployed by
 `.github/workflows/deploy.yml` to GitHub Pages (project URL by default; apex cutover is a gated
@@ -119,18 +119,20 @@ The pitch has five parts, and each needs a home on the site.
 
 ## 5. What a grant reviewer will check, mapped to site work
 
-| Reviewer question                              | Where the answer must live                                   | Epic |
-| ---------------------------------------------- | ------------------------------------------------------------ | ---- |
-| What exactly are you building, where, and why? | `/campus/` overview, `/campus/the-site/`, `/campus/plan/`    | B, C |
-| Who benefits and how do they get in?           | `/campus/residents/` with cohorts, eligibility, referral     | B    |
-| Is it safe and well run?                       | Safeguards and community agreements page                     | B    |
-| What will the money buy, by phase?             | Phased plan with budget table and timeline, use of funds     | C    |
-| Is it legal and permitted?                     | Compliance section: PA DEP campground permit, septic, zoning | C    |
-| Will it work? What is the evidence?            | Theory of change, outcomes, precedents                       | D    |
-| Who are you? Who governs?                      | Leadership and board page, transparency page                 | E    |
-| Can you sustain it after the grant?            | Operating model and sustainability page                      | E    |
-| Can we trust the numbers?                      | Verified metrics, 990s, Candid link, annual report           | D, E |
-| How do we give or partner?                     | Campaign page, funder packet, contact routing                | F    |
+| Reviewer question                              | Where the answer must live                                                    | Epic |
+| ---------------------------------------------- | ----------------------------------------------------------------------------- | ---- |
+| What exactly are you building, where, and why? | `/campus/` overview, `/campus/the-site/`, `/campus/plan/`                     | B, C |
+| Who benefits and how do they get in?           | `/campus/residents/` with cohorts, eligibility, referral                      | B    |
+| Is it safe and well run?                       | Safeguards and community agreements page                                      | B    |
+| What will the money buy, by phase?             | Phased plan with budget table and timeline, use of funds                      | C    |
+| Is it legal and permitted?                     | Compliance section: PA DEP campground permit, septic, zoning                  | C    |
+| Will it work? What is the evidence?            | Theory of change, outcomes, precedents                                        | D    |
+| Who are you? Who governs?                      | Leadership and board page, transparency page                                  | E    |
+| Can you sustain it after the grant?            | Operating model and sustainability page                                       | E    |
+| Can we trust the numbers?                      | Verified metrics, 990s, Candid link, annual report                            | D, E |
+| How do we give or partner?                     | Campaign page, funder packet, contact routing                                 | F    |
+| Are the staff real and ready to hire?          | `/hiring/` (live): roles, pay bands with sources, timeline, channels          | J    |
+| What does the grant buy and how is it funded?  | `/funders/` (live): ask structure, no-fee principle, year five, due diligence | F    |
 
 ## 6. Epic map
 

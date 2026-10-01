@@ -24,9 +24,9 @@ Official website for The Technology Monastery - Empowering small nonprofits with
 - **SEO Optimized**: Structured data, meta tags, and sitemap
 - **Performance Optimized**: Built-in Next.js optimizations for fast page loads
 - **Security Headers**: Configured for maximum security
-- **Integrations**: 
-  - Zeffy donation forms (100% free processing)
-  - VolunteerMatch widgets
+- **Integrations**:
+    - Zeffy donation forms (100% free processing)
+    - VolunteerMatch widgets
 
 ## 📁 Project Structure
 
@@ -38,6 +38,8 @@ Official website for The Technology Monastery - Empowering small nonprofits with
 │   ├── about/page.tsx     # About page
 │   ├── services/page.tsx  # Services page
 │   ├── campus/page.tsx    # Campus plan page
+│   ├── hiring/page.tsx    # Hiring plan: the two grant-funded roles
+│   ├── funders/page.tsx   # For funders: ask structure and due diligence
 │   ├── get-started/page.tsx # Get Started page
 │   ├── contact/page.tsx   # Contact page
 │   ├── privacy-policy/page.tsx   # Privacy policy page
@@ -79,17 +81,20 @@ Official website for The Technology Monastery - Empowering small nonprofits with
 ### Local Development
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/FreeForCharity/Technologymonastery.org.git
 cd Technologymonastery.org
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 3. Run the development server:
+
 ```bash
 pnpm run dev
 ```
@@ -109,6 +114,7 @@ The static site will be generated in the `out/` directory.
 Access the CMS at `/admin/` (e.g., `http://localhost:3000/admin/`)
 
 **Note**: For local CMS development, you'll need to:
+
 1. Enable local backend in `admin/config.yml`
 2. Run `npx decap-server` in a separate terminal
 
@@ -117,6 +123,7 @@ Access the CMS at `/admin/` (e.g., `http://localhost:3000/admin/`)
 ### Next.js Configuration
 
 The `next.config.js` is configured for static export to GitHub Pages:
+
 - `output: 'export'` - Enables static HTML export
 - `basePath: '/Technologymonastery.org'` - Sets the base path for GitHub Pages
 - `images.unoptimized: true` - Required for static export
@@ -128,23 +135,25 @@ Tailwind is configured in `tailwind.config.ts` with custom colors matching the n
 ### Decap CMS Setup
 
 1. **Enable GitHub OAuth**:
-   - Go to GitHub Settings > Developer Settings > OAuth Apps
-   - Create a new OAuth app
-   - Set Homepage URL to your site
-   - Set Authorization callback URL to `https://api.netlify.com/auth/done`
+    - Go to GitHub Settings > Developer Settings > OAuth Apps
+    - Create a new OAuth app
+    - Set Homepage URL to your site
+    - Set Authorization callback URL to `https://api.netlify.com/auth/done`
 
 2. **Configure Git Gateway** (if using Netlify Identity):
-   - Alternative: Use GitHub backend directly
+    - Alternative: Use GitHub backend directly
 
 ### Third-Party Integrations
 
 #### Zeffy Donation Form
+
 1. Sign up at [zeffy.com](https://www.zeffy.com)
 2. Create a donation form
 3. Get embed code
 4. Update the contact page with your form
 
 #### VolunteerMatch Widget
+
 1. Register at [volunteermatch.org](https://www.volunteermatch.org)
 2. Get your organization's widget code
 3. Add to the appropriate page
@@ -179,6 +188,7 @@ This project is licensed under the GNU Affero General Public License v3.0 - see 
 ## 📧 Contact
 
 The Technology Monastery
+
 - Website: [technologymonastery.org](https://technologymonastery.org)
 - Email: info@technologymonastery.org
 
