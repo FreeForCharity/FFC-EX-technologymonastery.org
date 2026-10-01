@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const email = siteConfig.contactEmail;
+const direct = siteConfig.directContact;
 const mail = (subject: string) => `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 
 const routes = [
@@ -82,25 +83,52 @@ export default function Contact() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 text-gray-300">
             <div>
+              <h2 className="text-lg font-bold text-white mb-2">Direct contact</h2>
+              <p className="mb-2">
+                {direct.name}, {direct.role}
+              </p>
+              <p className="mb-2">
+                <a
+                  href={`mailto:${direct.email}`}
+                  className="text-purple-300 underline hover:text-white break-all"
+                >
+                  {direct.email}
+                </a>
+              </p>
+              <p>
+                Text preferred:{' '}
+                <a href={`sms:${direct.phoneE164}`} className="text-purple-300 underline hover:text-white">
+                  {direct.phoneDisplay}
+                </a>
+              </p>
+            </div>
+            <div>
               <h2 className="text-lg font-bold text-white mb-2">Response time</h2>
               <p>We are volunteer-run today and usually reply within two business days.</p>
             </div>
-            <div>
-              <h2 className="text-lg font-bold text-white mb-2">Organization</h2>
-              <p>
-                The Technology Monastery is a project of {siteConfig.supportedBy.name}, a US
-                501(c)(3) nonprofit, EIN {siteConfig.ein}. Gifts are made through{' '}
-                <a
-                  href={siteConfig.supportedBy.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-300 underline hover:text-white"
-                >
-                  freeforcharity.org
-                </a>
-                .
-              </p>
-            </div>
+          </div>
+          <div className="max-w-3xl mx-auto mt-10 text-gray-300">
+            <h2 className="text-lg font-bold text-white mb-2">Organization and legal status</h2>
+            <p className="mb-3">
+              The Technology Monastery is a project of {siteConfig.supportedBy.name}{' '}
+              (
+              <a
+                href={siteConfig.supportedBy.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-300 underline hover:text-white"
+              >
+                FreeForCharity.org
+              </a>
+              ), a US 501(c)(3) public charity, EIN {siteConfig.ein}. It is not a separate legal
+              entity today: it has no EIN of its own, and every gift, grant, contract and filing runs
+              through Free For Charity under its board, policies and transparency profile.
+            </p>
+            <p>
+              Our goal is for the Technology Monastery to become a stand-alone charity, with its own
+              IRS 501(c)(3) determination and state registrations, as the program matures. Until that
+              happens, any reference to tax-exempt status on this site is Free For Charity&apos;s.
+            </p>
           </div>
         </div>
       </section>

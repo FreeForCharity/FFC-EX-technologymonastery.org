@@ -205,7 +205,7 @@ export default function Home() {
               <li className="border-l-2 border-purple-500/60 pl-4">
                 <span className="text-white font-semibold">Land and stewardship.</span> The
                 Pennsylvania DCNR service forester, the county conservation district and USDA
-                conservation programs, with the two neighbouring state parks as natural partners.
+                conservation programs, with the two neighboring state parks as natural partners.
               </li>
               <li className="border-l-2 border-purple-500/60 pl-4">
                 <span className="text-white font-semibold">TechnoMonasteries.</span> A volunteer
@@ -241,6 +241,12 @@ export default function Home() {
               Donate through Free For Charity
             </a>
           </div>
+          <p className="mt-8 text-sm text-gray-400 max-w-2xl mx-auto">
+            The Technology Monastery is a project of Free For Charity, a US 501(c)(3) public
+            charity, EIN {siteConfig.ein}. It is not yet a separate legal entity, so gifts and
+            grants are made to Free For Charity. Our goal is to become a stand-alone, IRS- and
+            state-approved charity as the program matures.
+          </p>
         </div>
       </section>
     </>

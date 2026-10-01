@@ -83,7 +83,7 @@ const pipelines = [
   },
   {
     title: 'Land and stewardship',
-    body: 'The Pennsylvania DCNR service forester, the county conservation district and USDA conservation programs for a forest stewardship plan residents help carry out, with the two neighbouring state parks as natural partners.',
+    body: 'The Pennsylvania DCNR service forester, the county conservation district and USDA conservation programs for a forest stewardship plan residents help carry out, with the two neighboring state parks as natural partners.',
   },
   {
     title: 'TechnoMonasteries',
@@ -122,7 +122,7 @@ export default function Campus() {
             </p>
             <p className={pClass}>
               The setting is the point: quiet enough for focused work and for recovery, close enough
-              to parks and neighbours to be part of a community, and large enough to grow in phases.
+              to parks and neighbors to be part of a community, and large enough to grow in phases.
             </p>
           </div>
         </div>
@@ -275,7 +275,7 @@ export default function Campus() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Help build it</h2>
           <p className="text-lg text-purple-100 mb-8 max-w-2xl mx-auto">
-            Funders, referral partners, schools, neighbours and future residents:
+            Funders, referral partners, schools, neighbors and future residents:
             we would like to talk.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

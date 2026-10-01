@@ -27,6 +27,8 @@ export type SiteConfig = {
   url: string;
   /** Primary contact email. */
   contactEmail: string;
+  /** A named person funders and partners can reach directly. */
+  directContact: { name: string; role: string; email: string; phoneDisplay: string; phoneE164: string };
   /** Where the vulnerability disclosure policy lives on this site. */
   vulnerabilityDisclosurePath: string;
   /** Social links displayed in the footer. */
@@ -36,8 +38,12 @@ export type SiteConfig = {
    * program of Free For Charity, so this is FFC's EIN.
    */
   ein: string;
-  /** GuideStar / Candid transparency profile links shown in the footer. */
-  guidestar: { profileUrl: string; directProfileUrl: string };
+  /**
+   * Candid (GuideStar) transparency seal and profile links shown in the footer.
+   * `sealUrl` is Candid's live seal widget for the EIN above, so the seal always
+   * shows the current year's level (same source freeforcharity.org renders).
+   */
+  guidestar: { sealUrl: string; profileUrl: string; directProfileUrl: string };
   /**
    * Permanent attribution to the supporting organization (FFC). Drives the
    * always-rendered "Supported by" clause in the footer bottom bar and the
@@ -68,6 +74,13 @@ export const siteConfig: SiteConfig = {
     'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
   url: 'https://technologymonastery.org',
   contactEmail: 'info@technologymonastery.org',
+  directContact: {
+    name: 'Clarke Moyer',
+    role: 'Free For Charity',
+    email: 'clarkemoyer@freeforcharity.org',
+    phoneDisplay: '520-222-8104',
+    phoneE164: '+15202228104',
+  },
   vulnerabilityDisclosurePath: '/vulnerability-disclosure-policy/',
   social: [
     {
@@ -77,9 +90,9 @@ export const siteConfig: SiteConfig = {
   ],
   ein: '46-2471893',
   guidestar: {
-    profileUrl: 'https://www.guidestar.org/profile/46-2471893',
-    directProfileUrl:
-      'https://www.guidestar.org/profile/shared/bbbe173a-87b9-4af9-a8a2-cae255a95742',
+    sealUrl: 'https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9326392/svg',
+    profileUrl: 'https://app.candid.org/profile/9326392/free-for-charity-46-2471893/?pkId=7232730a-03b5-467f-a82c-443dcd2122ed',
+    directProfileUrl: 'https://app.candid.org/profile/9326392/free-for-charity/?pkId=7232730a-03b5-467f-a82c-443dcd2122ed&isActive=true',
   },
   supportedBy: {
     name: 'Free For Charity',
