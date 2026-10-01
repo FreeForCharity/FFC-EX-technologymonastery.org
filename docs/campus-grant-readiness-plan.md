@@ -230,8 +230,10 @@ claims (notably a "Silver Partner" goal for a Microsoft tier retired in 2022, an
 grants that ended in July 2025) are still repeated on the live site. Epic H tracks the rewrite as
 a capital-plus-five-years plan: the grant funds the property and two full-time positions, a
 Volunteer Manager and a Program Coordinator, and those two people build the volunteer pipelines
-(AmeriCorps, AI fellows embedded in charities, WIOA) and the sustainability sources (earned
-revenue from the land, sponsored services, program funding, vendor programs, recurring and planned
-giving) so that by year five both positions are fully funded and endowed at reasonable
-compensation and the campus's permanent costs are covered. The plan itself is confidential and
-lives in Drive; only its public-safe outputs land here and on the site.
+(AmeriCorps, AI fellows embedded in charities, WIOA) and the sustainability sources (foundation
+grants, public support, sponsorships, vendor programs, recurring and planned giving) so that by
+year five both positions are fully funded and endowed at reasonable compensation and the campus's
+permanent costs are covered. The model is donation-funded by design: the campus charges neither the
+charities it serves nor the people who come to do the work, and it earns no rental, campsite or
+lodging income. The plan itself is confidential and lives in Drive; only its public-safe outputs
+land here and on the site.

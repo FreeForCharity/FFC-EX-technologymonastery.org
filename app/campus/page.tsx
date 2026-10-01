@@ -201,9 +201,17 @@ export default function Campus() {
             </p>
             <p className={pClass}>
               Our five-year goal is to have both roles fully funded and endowed, with the
-              campus&apos;s permanent costs covered by campsite and lodging income, sponsored
-              services, program funding and recurring giving. The campus exists to give the whole
-              Free For Charity mission that stability.
+              campus&apos;s permanent costs covered entirely by foundation grants, public support,
+              sponsorships and recurring giving. The campus exists to give the whole Free For
+              Charity mission that stability.
+            </p>
+            <p className={pClass}>
+              We do not charge the charities we serve, and we do not charge the people who come to
+              do that work. There is no rent, no nightly rate and no fee to stay. That is a
+              deliberate difference from a campground or a retreat center: every dollar a funder
+              gives here is multiplied across the small charities that then receive their
+              technology, AI and web services at no cost, which stretches the grants and gifts
+              those same funders already make to them.
             </p>
           </div>
         </div>

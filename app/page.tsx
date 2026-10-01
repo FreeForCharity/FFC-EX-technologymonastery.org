@@ -123,7 +123,9 @@ export default function Home() {
           <p className="text-gray-300 max-w-2xl mx-auto text-center mb-10">
             The campus is not a new charity. It is housing and community wrapped around a service
             program that already works, with two funded roles so the mission no longer depends on
-            unpaid time.
+            unpaid time. It is funded by grants, public support and recurring giving, not by
+            charging anyone: the charities we serve pay nothing, and neither do the people who come
+            to do the work.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {solutions.map((s) => (
