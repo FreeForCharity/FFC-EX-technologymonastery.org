@@ -101,8 +101,8 @@ export default function Services() {
             </h2>
             <p className="text-gray-300 mb-6">
               Services are provided at no cost to registered 501(c)(3) organizations with limited
-              technology budgets. Costs that cannot be avoided, such as a premium licence a charity
-              chooses to add, are always disclosed first and paid by the charity directly.
+              technology budgets. Where a charity chooses a paid add-on, such as a premium licence
+              or hosting tier, the cost is disclosed first and paid by the charity directly.
             </p>
             <Button href="/get-started/" variant="secondary">
               Apply for services
