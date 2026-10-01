@@ -1,310 +1,245 @@
-import { basePath } from '@/lib/site-config';
+import Button from '@/components/Button';
+import { siteConfig } from '@/lib/site.config';
+
+const problems = [
+  {
+    title: 'Small nonprofits cannot hire or keep technical talent',
+    body: 'A charity with a small budget cannot compete for engineers, administrators or AI expertise. Email, websites, licensing and data end up neglected, and the mission pays for it.',
+  },
+  {
+    title: 'Volunteer energy is short-lived',
+    body: 'Passionate volunteers arrive, help for a few weeks, and leave before the work is finished. Charities receive hand-offs instead of outcomes, and the same problems come back.',
+  },
+  {
+    title: 'The mission runs on unpaid leadership',
+    body: 'Free For Charity serves its charities with volunteer time alone. That caps how many organizations we can support, and how reliably, no matter how much demand there is.',
+  },
+];
+
+const solutions = [
+  {
+    title: 'A free, staffed service program',
+    body: 'Email and productivity on Microsoft or Google nonprofit programs, free .org domains, fast static websites, AI enablement and training, delivered at no cost to qualifying charities.',
+    href: '/services/',
+    cta: 'Our services',
+  },
+  {
+    title: 'A campus where service is a season',
+    body: 'A planned residential campus near Clear Creek State Park, Cook Forest State Park and Sigel, Pennsylvania, where people who want to give back live simply, learn the stack, serve real charities and move on stronger. Open to anyone, with no religious test.',
+    href: '/campus/',
+    cta: 'The campus plan',
+  },
+  {
+    title: 'Two full-time roles that make it last',
+    body: 'A Volunteer Manager and a Program Coordinator turn a volunteer-run program into a staffed one and open the pipelines that need a full-time host. Our five-year goal is to have both positions fully funded and endowed.',
+    href: '/about/',
+    cta: 'Why staff matter',
+  },
+];
+
+const todayServices = [
+  {
+    title: 'Domains and email',
+    body: 'A free .org domain and nonprofit email and collaboration on Microsoft 365 or Google Workspace, set up and kept in order.',
+  },
+  {
+    title: 'Websites',
+    body: 'Fast, secure static websites hosted at no cost, with the legal, privacy and analytics pieces a professional site needs.',
+  },
+  {
+    title: 'AI enablement',
+    body: 'Help deciding where AI fits, a sensible acceptable-use policy, and assistants for the questions your supporters ask most.',
+  },
+  {
+    title: 'Training and support',
+    body: 'Plain-language training for staff and volunteers, and ongoing support so the systems keep working after setup.',
+  },
+];
 
 export default function Home() {
   return (
     <>
-      {/* Full Page Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
-        {/* Animated Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(138,43,226,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(138,43,226,0.1)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
-        
-        {/* Decorative Elements */}
-        <div className="absolute top-20 right-20 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
-        
-        {/* Content */}
+      {/* Hero */}
+      <section className="relative pt-36 pb-20 overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(138,43,226,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(138,43,226,0.1)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" aria-hidden="true"></div>
         <div className="relative z-10 container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="max-w-4xl">
-              <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-orange-500/20 border border-orange-500/50 rounded-full text-orange-400 text-sm font-semibold tracking-wide uppercase backdrop-blur-sm">
-                  Free For Charity
-                </span>
-              </div>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white leading-tight">
-                Technology<br />
-                Monastery
-              </h1>
-              <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-2xl">
-                A project of freeforcharity.org: we run the systems your charity needs so you don't have to. All for the price of FREE!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="group relative px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-full transition-all transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 uppercase text-sm tracking-wide">
-                  <span className="relative z-10">Join The Technology Monastery For Free Today</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity blur"></div>
-                </button>
-                <button className="px-8 py-4 border-2 border-white/30 hover:border-white/60 text-white font-semibold rounded-full transition-all backdrop-blur-sm hover:bg-white/10 uppercase text-sm tracking-wide">
-                  Free Demo
-                </button>
-              </div>
-            </div>
-
-            {/* Right - Brain Image */}
-            <div className="hidden lg:flex justify-center items-center relative">
-              <div className="relative">
-                {/* Glow effect behind brain */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/40 to-cyan-500/40 rounded-full blur-3xl"></div>
-                
-                {/* Brain image */}
-                <img 
-                  src={`${basePath}/images/brain-1-980x982.png`}
-                  alt="Technology Monastery Brain" 
-                  className="relative z-10 w-full max-w-lg h-auto animate-float"
-                />
-                
-                {/* Additional decorative glowing orbs */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-cyan-400 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-400 rounded-full blur-2xl opacity-40 animate-pulse delay-500"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      </section>
-
-      {/* Impact Stats */}
-      <section className="py-12 bg-[#0f0a1e]">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">100+</div>
-              <div className="text-gray-400">Supported Charities</div>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">Free</div>
-              <div className="text-gray-400">All Services</div>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 mb-2">24/7</div>
-              <div className="text-gray-400">Technical Support</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(138,43,226,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(138,43,226,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
-        
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-orange-400 text-sm font-semibold tracking-wide uppercase mb-4">Features</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What amazing charity missions<br />will you support with new technology?
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              We provide the needed software to support your mission.
+          <div className="max-w-3xl">
+            <p className="inline-block px-4 py-2 mb-6 bg-orange-500/20 border border-orange-500/50 rounded-full text-orange-300 text-sm font-semibold tracking-wide uppercase">
+              A project of Free For Charity
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
-            {/* Microsoft 365 */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8 hover:border-purple-400/40 transition-all">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-3xl">📧</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Microsoft 365 (with email setup)</h3>
-              <p className="text-gray-300 mb-4">
-                We directly apply for the Microsoft Grant and establish your charity email addresses, MS teams for meetings, and all the other features of the Microsoft 365 Suite for nonprofits.
-              </p>
-              <button className="text-purple-400 hover:text-purple-300 font-semibold text-sm uppercase tracking-wide transition">
-                Learn More →
-              </button>
-            </div>
-
-            {/* WordPress Hosting */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8 hover:border-purple-400/40 transition-all">
-              <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-3xl">🌐</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">WordPress Website Hosting</h3>
-              <p className="text-gray-300 mb-4">
-                We provide, Managed Wordpress Hosting with DWI drag-and-Drop' Design tools and Whitelabel Plugins all for free!
-              </p>
-              <button className="text-purple-400 hover:text-purple-300 font-semibold text-sm uppercase tracking-wide transition">
-                Learn More →
-              </button>
-            </div>
-
-            {/* AI Tools */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8 hover:border-purple-400/40 transition-all">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-3xl">🤖</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">AI FAQ Chatbot and Other Modern AI Tools</h3>
-              <p className="text-gray-300 mb-4">
-                We help you decide if FAQ chatbots are right for your charity and help you setup one of our AI tools using your modern charity management stack today.
-              </p>
-              <button className="text-purple-400 hover:text-purple-300 font-semibold text-sm uppercase tracking-wide transition">
-                Learn More →
-              </button>
-            </div>
-
-            {/* Social Media */}
-            <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8 hover:border-purple-400/40 transition-all">
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-3xl">📱</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Social Media Management</h3>
-              <p className="text-gray-300 mb-4">
-                We provide the tools in MY SOCRATES. Multi-channel manager for your social media posts! Scheduling posts to all social includes the powerful AI image generation and Post creation features.
-              </p>
-              <button className="text-purple-400 hover:text-purple-300 font-semibold text-sm uppercase tracking-wide transition">
-                Learn More →
-              </button>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight">
+              Free technology for small charities, and a place for the people who build it.
+            </h1>
+            <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-2xl">
+              The Technology Monastery runs the systems small nonprofits need, at no cost, through
+              volunteers who want to give back. We are now planning a residential campus in
+              Pennsylvania so that service can be a season of someone&apos;s life rather than a
+              spare evening.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button href="/get-started/" variant="secondary">
+                Get started
+              </Button>
+              <Button href="/campus/" variant="primary">
+                The campus plan
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 100+ Charities Section */}
-      <section className="py-20 bg-[#0f0a1e] relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                It All Starts With A Free Business Plan
-              </h2>
-              <p className="text-gray-300 mb-8">
-                Join us for a 1 hour consulting session where you and our team talk through what you have today, what you need to be successful going forward. We use Livvplan.com to build this plan or push work supported by us at course.
-              </p>
-              <div className="mb-8">
-                <div className="text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 mb-4">
-                  100+
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-4">
-                  Supported<br />Charities
-                </h3>
-                <p className="text-gray-400 mb-6">
-                  Since Free for Charity was started we have had over 100 charities supported by our systems. We say small and focused to ensure we can support the charities we have in the systems and can support them all for free.
-                </p>
-                <button className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-8 py-3 rounded-full font-semibold transition transform hover:scale-105 shadow-lg shadow-orange-500/50">
-                  FREE DEMO
-                </button>
-              </div>
-            </div>
-            
-            {/* Eye Image */}
-            <div className="relative h-96 lg:h-[500px] flex items-center justify-center">
-              <div className="relative">
-                {/* Glow effect behind image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-cyan-500/30 rounded-full blur-3xl"></div>
-                
-                {/* The eye image */}
-                <img 
-                  src={`${basePath}/images/eye-480x464.png`} 
-                  alt="Technology Monastery Eye" 
-                  className="relative z-10 w-full max-w-2xl lg:max-w-4xl h-auto animate-float"
-                />
-                
-                {/* Additional decorative elements */}
-                <div className="absolute top-10 right-10 w-20 h-20 bg-cyan-400 rounded-full blur-2xl opacity-50 animate-pulse delay-300"></div>
-                <div className="absolute bottom-10 left-10 w-24 h-24 bg-purple-400 rounded-full blur-2xl opacity-40 animate-pulse delay-500"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Unlock Services Section */}
-      <section className="py-20 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e] relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Tech Visualization Left */}
-            <div className="relative h-96 order-2 lg:order-1">
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Large glowing orb */}
-                <div className="relative">
-                  <div className="absolute w-48 h-48 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-                  <div className="relative w-32 h-32 bg-gradient-to-br from-purple-400 via-pink-500 to-cyan-400 rounded-full animate-float shadow-2xl shadow-purple-500/50"></div>
-                </div>
-                
-                {/* Vertical bars */}
-                <div className="absolute bottom-10 left-10 flex gap-2 items-end opacity-40">
-                  <div className="w-4 h-16 bg-gradient-to-t from-purple-500 to-transparent"></div>
-                  <div className="w-4 h-24 bg-gradient-to-t from-purple-500 to-transparent"></div>
-                  <div className="w-4 h-12 bg-gradient-to-t from-cyan-500 to-transparent"></div>
-                  <div className="w-4 h-20 bg-gradient-to-t from-purple-500 to-transparent"></div>
-                </div>
-                
-                {/* Glow effects */}
-                <div className="absolute top-10 right-10 w-20 h-20 bg-cyan-400 rounded-full blur-2xl opacity-50 animate-pulse delay-300"></div>
-              </div>
-            </div>
-
-            <div className="order-1 lg:order-2">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Unlock The Rest Of<br />Our Services
-              </h2>
-              <p className="text-gray-300 mb-8">
-                We run a tight tech-bridge track focused on the main features listed above. Once we are set up and running with us at the basic service level, we expand into even more charity support systems.
-              </p>
-              <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full font-semibold transition transform hover:scale-105 shadow-lg shadow-purple-500/50 uppercase text-sm tracking-wide">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
+      {/* Problems */}
       <section className="py-16 bg-[#0f0a1e]">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
-            Check out how people are using Technology
-          </h2>
-          <p className="text-gray-400 text-center mb-12 max-w-3xl mx-auto">
-            Quis blandit erit. Donec blandit libero non metus lobortis consequat in vel metus. Sed non augue id felis placerat. Fermentum nulla non quasi mauris, amet rutrum ut ipsum commodo eget elit. Velit vehicula ipsum consequat et ac sollicitudin.
+          <p className="text-orange-400 text-sm font-semibold tracking-wide uppercase mb-3 text-center">
+            The problems we are solving
           </p>
-          
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center">
+            Three gaps, one cause
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[
-              '"In non pulvinar purus. Curabitur odio blandit et elit at, suscipit pharetra efficitur elit."',
-              '"Quisque aliquet velit sit amet sem interdum faucibus. In feugiat aliquet mollis etiam tincidunt ligula."',
-              '"Quisque aliquet velit sit amet sem interdum faucibus. In feugiat aliquet mollis etiam tincidunt ligula."',
-              '"Technology Monastery transformed our nonprofit\'s operations. The free Microsoft 365 setup was seamless and professional."',
-              '"Outstanding support and expertise. They helped us modernize our systems without breaking our budget."',
-              '"The team\'s dedication to nonprofits is remarkable. Our volunteers can now collaborate effectively with the tools provided."'
-            ].map((quote, index) => (
-              <div key={index} className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm border border-purple-500/10 rounded-lg p-6">
-                <p className="text-gray-300 italic mb-4">{quote}</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full"></div>
-                  <div>
-                    <p className="text-white font-semibold text-sm">Charity Name</p>
-                    <p className="text-gray-400 text-xs">Executive Director</p>
-                  </div>
-                </div>
-              </div>
+            {problems.map((p) => (
+              <article
+                key={p.title}
+                className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-purple-500/20 rounded-lg p-6"
+              >
+                <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
+                <p className="text-gray-300">{p.body}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Solution */}
+      <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]">
+        <div className="container mx-auto px-4">
+          <p className="text-orange-400 text-sm font-semibold tracking-wide uppercase mb-3 text-center">
+            Our solution
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
+            A service program, a campus, and the staff to run both
+          </h2>
+          <p className="text-gray-300 max-w-2xl mx-auto text-center mb-10">
+            The campus is not a new charity. It is housing and community wrapped around a service
+            program that already works, with two funded roles so the mission no longer depends on
+            unpaid time.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {solutions.map((s) => (
+              <article
+                key={s.title}
+                className="flex flex-col bg-[#15102a] border border-purple-500/20 rounded-lg p-6"
+              >
+                <h3 className="text-xl font-bold text-white mb-3">{s.title}</h3>
+                <p className="text-gray-300 mb-6 flex-1">{s.body}</p>
+                <Button href={s.href} variant="primary" className="self-start text-sm">
+                  {s.cta}
+                </Button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Today */}
+      <section className="py-16 bg-[#0f0a1e]">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What we do today</h2>
+            <p className="text-gray-300 max-w-2xl mb-10">
+              Every service is free for qualifying 501(c)(3) organizations. It starts with a
+              conversation about what you have, what you need, and what we can take off your plate.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {todayServices.map((s) => (
+                <article key={s.title} className="border border-purple-500/20 rounded-lg p-6">
+                  <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
+                  <p className="text-gray-300 text-sm">{s.body}</p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-8">
+              <Button href="/services/" variant="primary">
+                All services
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners and resources */}
+      <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Target partners and resources
+              </h2>
+              <p className="text-gray-300 mb-4">
+                The campus works because other institutions already do parts of this well. These
+                are the partners and programs we are building the plan around. None are commitments
+                until they are agreed in writing.
+              </p>
+              <Button href="/campus/" variant="primary">
+                Partners and pipelines
+              </Button>
+            </div>
+            <ul className="space-y-3 text-gray-300">
+              <li className="border-l-2 border-purple-500/60 pl-4">
+                <span className="text-white font-semibold">University capstones.</span> Annual
+                sponsorship of Penn State Learning Factory capstone projects, a one-time matching
+                request to the Smeal College of Business Farrell Center, and regional universities,
+                colleges and two-year schools.
+              </li>
+              <li className="border-l-2 border-purple-500/60 pl-4">
+                <span className="text-white font-semibold">National service and fellowships.</span>{' '}
+                AmeriCorps members, AI-practitioner fellowships that embed people in charities, and
+                workforce programs once we can host them.
+              </li>
+              <li className="border-l-2 border-purple-500/60 pl-4">
+                <span className="text-white font-semibold">Referral partners.</span> Veteran service
+                organizations, women&apos;s shelters and recovery programs that refer people who are
+                ready to give back.
+              </li>
+              <li className="border-l-2 border-purple-500/60 pl-4">
+                <span className="text-white font-semibold">Land and stewardship.</span> The
+                Pennsylvania DCNR service forester, the county conservation district and USDA
+                conservation programs, with the two neighbouring state parks as natural partners.
+              </li>
+              <li className="border-l-2 border-purple-500/60 pl-4">
+                <span className="text-white font-semibold">TechnoMonasteries.</span> A volunteer
+                project helping us build the campus, operating under Free For Charity&apos;s
+                Technology Monastery brand.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Get involved */}
       <section className="py-16 bg-[#0f0a1e]">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Get Started?
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Get involved</h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Whether you're a nonprofit looking for technology support or a professional wanting to 
-            make a difference, we'd love to hear from you.
+            Whether you run a small nonprofit, want to serve, represent a partner or a funder, or
+            can give, there is a place to start.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold rounded-full transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50">
-              Get Started
-            </button>
-            <button className="px-8 py-4 border-2 border-purple-500/50 hover:border-purple-400 text-white font-semibold rounded-full transition-all backdrop-blur-sm hover:bg-purple-900/20">
-              Contact Us
-            </button>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+            <Button href="/get-started/" variant="secondary">
+              Nonprofits and volunteers
+            </Button>
+            <Button href="/contact/" variant="primary">
+              Partners and funders
+            </Button>
+            <a
+              href={siteConfig.integrations.zeffyDonationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 rounded-lg font-semibold border-2 border-purple-500/60 text-white hover:border-purple-400 hover:bg-purple-900/20 transition-all"
+            >
+              Donate through Free For Charity
+            </a>
           </div>
         </div>
       </section>

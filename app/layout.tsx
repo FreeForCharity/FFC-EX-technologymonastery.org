@@ -8,15 +8,15 @@ import { basePath, siteOrigin } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'The Technology Monastery - Free Technology for Nonprofits',
-  description: 'Empowering small nonprofits with free, customized technology solutions through our dedicated community of skilled professionals.',
-  keywords: ['nonprofit technology', 'free technology services', 'Microsoft 365 for nonprofits', 'charity technology'],
+  description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
+  keywords: ['nonprofit technology', 'free technology services', 'Microsoft 365 for nonprofits', 'Google Workspace for nonprofits', 'charity technology', 'volunteer campus Pennsylvania'],
   authors: [{ name: 'The Technology Monastery' }],
   creator: 'The Technology Monastery',
   publisher: 'Free for Charity',
   metadataBase: new URL(`${siteOrigin}/`),
   openGraph: {
     title: 'The Technology Monastery - Free Technology for Nonprofits',
-    description: 'Empowering small nonprofits with free, customized technology solutions through our dedicated community of skilled professionals.',
+    description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
     url: `${siteOrigin}/`,
     siteName: 'The Technology Monastery',
     locale: 'en_US',
@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="manifest" href={`${basePath}/manifest.json`} />
-        <meta name="theme-color" content="#2c5aa0" />
+        <meta name="theme-color" content="#1a0b2e" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -41,10 +41,15 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'The Technology Monastery',
-              description: 'Empowering small nonprofits with free technology solutions',
+              description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve.',
               url: 'https://technologymonastery.org',
-              logo: 'https://technologymonastery.org/images/logo.png',
-              sameAs: [],
+              logo: 'https://technologymonastery.org/images/icon.svg',
+              parentOrganization: {
+                '@type': 'Organization',
+                name: 'Free For Charity',
+                url: 'https://freeforcharity.org',
+              },
+              sameAs: ['https://github.com/FreeForCharity/FFC-EX-technologymonastery.org'],
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'General Inquiries',

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="The Technology Monastery">
+  <rect width="512" height="512" rx="96" fill="#1a0b2e"/>
+  <path d="M136 400V248c0-66 54-120 120-120s120 54 120 120v152H336V256a80 80 0 0 0-160 0v144z" fill="#9f7aea"/>
+  <rect x="232" y="304" width="48" height="96" rx="8" fill="#f6ad55"/>
+</svg>

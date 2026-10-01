@@ -60,6 +60,14 @@ export default function Header() {
             </li>
             <li>
               <Link
+                href="/campus/"
+                className="text-white/90 hover:text-white transition font-medium"
+              >
+                Campus
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/services/"
                 className="text-white/90 hover:text-white transition font-medium"
               >
@@ -107,6 +115,15 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/campus/"
+                  className="block text-white hover:text-purple-300 transition font-medium py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Campus
                 </Link>
               </li>
               <li>

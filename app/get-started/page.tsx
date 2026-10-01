@@ -1,218 +1,151 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: 'Get Started - The Technology Monastery',
-  description: 'Start your journey with The Technology Monastery. Learn about our intake process and how to apply for free technology services.',
+  description:
+    'How nonprofits apply for free technology services, how volunteers and future residents get involved, and how partners refer people to the campus.',
 };
+
+const email = siteConfig.contactEmail;
+const mail = (subject: string) => `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+
+const linkClass =
+  'inline-block px-6 py-3 rounded-lg font-semibold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 shadow-md hover:shadow-lg';
 
 export default function GetStarted() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(138,43,226,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(138,43,226,0.1)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
-        <div className="absolute top-20 right-20 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Get Started</h1>
-            <p className="text-xl text-gray-300">
-              Begin your journey with free technology support
-            </p>
-          </div>
+      <section className="relative pt-36 pb-16 bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Get started</h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Choose the path that fits you. Every one of them starts with an email to{' '}
+            <a href={`mailto:${email}`} className="text-purple-300 underline hover:text-white break-all">
+              {email}
+            </a>
+            .
+          </p>
         </div>
       </section>
 
-      {/* Eligibility Section */}
+      {/* Nonprofits */}
       <section className="py-16 bg-[#0f0a1e]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              Are You Eligible?
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 text-center">
-              Our services are designed for small nonprofits. You may be eligible if:
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Nonprofits</h2>
+            <p className="text-lg text-gray-300 mb-6">
+              You may be eligible if you are a registered 501(c)(3), your technology budget is
+              limited, and you have someone willing to work with us through setup. If you are not
+              sure, write anyway.
             </p>
-            
-            <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6 md:p-8 mb-8">
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex items-start">
-                  <span className="text-purple-400 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-lg">You are a registered 501(c)(3) nonprofit organization</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-400 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-lg">Your organization has a limited technology budget</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-400 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-lg">You need technology support to further your mission</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-400 mr-3 font-bold text-xl">✓</span>
-                  <span className="text-lg">You're committed to working with our dedicated team</span>
-                </li>
-              </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="border border-purple-500/20 rounded-lg p-6">
+                <h3 className="text-xl font-bold text-white mb-3">How it goes</h3>
+                <ol className="list-decimal list-inside text-gray-300 space-y-2">
+                  <li>Tell us about your organization and what is getting in the way.</li>
+                  <li>A conversation about what you have, what you need, and what you can maintain.</li>
+                  <li>A short written plan you own.</li>
+                  <li>Setup, hand-over notes and training.</li>
+                  <li>Ongoing support when something stops working.</li>
+                </ol>
+              </div>
+              <div className="border border-purple-500/20 rounded-lg p-6">
+                <h3 className="text-xl font-bold text-white mb-3">What to have ready</h3>
+                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                  <li>Legal name and EIN</li>
+                  <li>Mission statement</li>
+                  <li>Roughly how many staff and volunteers you have</li>
+                  <li>What you use today for email, website and files</li>
+                  <li>The one problem you most want solved</li>
+                </ul>
+              </div>
             </div>
-
-            <p className="text-center text-gray-400">
-              Don't meet all criteria? Contact us anyway - we may still be able to help!
-            </p>
+            <a href={mail('Nonprofit services inquiry')} className={linkClass}>
+              Email us about services
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Process Steps */}
+      {/* Volunteers */}
       <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
-              Our Intake Process
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Volunteers and technology professionals
             </h2>
-            
-            <div className="space-y-8">
-              {/* Step 1 */}
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg shadow-purple-500/50">
-                    1
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Initial Contact</h3>
-                  <p className="text-lg text-gray-300">
-                    Reach out to us via our contact form or email at{' '}
-                    <a href="mailto:info@technologymonastery.org" className="text-purple-400 hover:underline">
-                      info@technologymonastery.org
-                    </a>
-                    . Tell us about your organization and what technology challenges you're facing.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg shadow-purple-500/50">
-                    2
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Discovery Call</h3>
-                  <p className="text-lg text-gray-300">
-                    We'll schedule a call to learn more about your organization, your current technology 
-                    setup, and your goals. This helps us understand how we can best support you.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg shadow-purple-500/50">
-                    3
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Needs Assessment</h3>
-                  <p className="text-lg text-gray-300">
-                    Our technical team will conduct a comprehensive needs assessment to identify 
-                    the best solutions for your organization. This includes reviewing your current 
-                    systems and future requirements.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg shadow-purple-500/50">
-                    4
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Service Proposal</h3>
-                  <p className="text-lg text-gray-300">
-                    We'll create a customized service proposal outlining the technology solutions 
-                    we recommend, the implementation timeline, and ongoing support plan.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg shadow-purple-500/50">
-                    5
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Implementation & Support</h3>
-                  <p className="text-lg text-gray-300">
-                    Once approved, our technical team will begin implementing your solutions. 
-                    We'll provide training for your team and ongoing support to ensure success.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <p className="text-lg text-gray-300 mb-6">
+              You can serve from where you are today, remotely, on a defined project for a charity
+              we support. As the campus opens, service stints on site, mentoring residents, and
+              structured programs such as AmeriCorps terms and AI-practitioner fellowships will be
+              listed here as they become available.
+            </p>
+            <a href={mail('Volunteering with the Technology Monastery')} className={linkClass}>
+              Email us about volunteering
+            </a>
           </div>
         </div>
       </section>
 
-      {/* What to Prepare */}
+      {/* Residents */}
       <section className="py-16 bg-[#0f0a1e]">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
-              What to Prepare
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 text-center">
-              To help us serve you better, please have the following information ready:
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Organization Details</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>• Legal nonprofit name and EIN</li>
-                  <li>• Mission statement</li>
-                  <li>• Number of staff and volunteers</li>
-                  <li>• Current annual budget</li>
-                </ul>
-              </div>
-              
-              <div className="bg-gradient-to-br from-cyan-900/30 to-purple-900/30 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Technology Information</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>• Current technology systems in use</li>
-                  <li>• Specific challenges you're facing</li>
-                  <li>• Technology goals and priorities</li>
-                  <li>• Any existing technical documentation</li>
-                </ul>
-              </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Future residents</h2>
+            <div className="border border-orange-500/50 bg-orange-500/10 rounded-lg p-5 mb-6 text-gray-200">
+              <p className="font-semibold text-white mb-2">If you are in crisis right now</p>
+              <p className="text-sm">
+                Call or text 988 (Suicide and Crisis Lifeline, United States). Veterans: call 988 and
+                press 1. Domestic violence: the National Domestic Violence Hotline is 1-800-799-7233.
+                The campus is not an emergency service.
+              </p>
             </div>
+            <p className="text-lg text-gray-300 mb-6">
+              The campus is in planning and is not yet accepting residents. If you think a season of
+              living simply, learning and serving could be right for you, or for someone you support,
+              tell us a little about your situation and we will keep you informed as the program
+              opens. Residents will come through referral partners for the first cohorts; see{' '}
+              <a href="/campus/" className="text-purple-300 underline hover:text-white">
+                the campus plan
+              </a>{' '}
+              for who it is for and how a stay works.
+            </p>
+            <a href={mail('Future resident interest')} className={linkClass}>
+              Register interest
+            </a>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-purple-600 to-blue-600 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Ready to Transform Your Technology?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Take the first step toward free, professional technology support for your nonprofit.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contact/" variant="secondary">
-              Contact Us Today
-            </Button>
-            <Button href="/services/" variant="primary">
-              View Our Services
-            </Button>
+      {/* Partners */}
+      <section className="py-16 bg-gradient-to-b from-[#0f0a1e] to-[#1a0b2e]">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Partners and referrers</h2>
+            <p className="text-lg text-gray-300 mb-6">
+              Veteran service organizations, shelters, recovery programs, universities and colleges,
+              service programs and funders: tell us who you serve or support and what a partnership
+              would need to look like for you. We will share the program design, the safeguards, and
+              what we need from a referral.
+            </p>
+            <a href={mail('Partnership inquiry')} className={linkClass}>
+              Email us about partnering
+            </a>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-br from-purple-700 to-blue-700">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Not sure which path?</h2>
+          <p className="text-lg text-purple-100 mb-8 max-w-2xl mx-auto">
+            Write to us and we will point you the right way.
+          </p>
+          <Button href="/contact/" variant="primary">
+            Contact us
+          </Button>
         </div>
       </section>
     </>

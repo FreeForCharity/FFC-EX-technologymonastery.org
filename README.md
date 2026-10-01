@@ -37,6 +37,7 @@ Official website for The Technology Monastery - Empowering small nonprofits with
 │   ├── page.tsx           # Home page
 │   ├── about/page.tsx     # About page
 │   ├── services/page.tsx  # Services page
+│   ├── campus/page.tsx    # Campus plan page
 │   ├── get-started/page.tsx # Get Started page
 │   ├── contact/page.tsx   # Contact page
 │   ├── privacy-policy/page.tsx   # Privacy policy page
