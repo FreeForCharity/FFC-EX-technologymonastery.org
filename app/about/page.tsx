@@ -158,9 +158,11 @@ export default function About() {
               .
             </p>
             <p className={pClass}>
-              To be clear about where we stand today: the Technology Monastery is not a separate
-              legal entity. It has no EIN of its own, and every gift, grant, contract and filing runs
-              through Free For Charity, EIN {siteConfig.ein}. Our goal is to become a stand-alone
+              To be clear about where we stand today: Free For Charity is a 100 percent volunteer
+              organization, and the Technology Monastery is a proposed project; if it is funded, its
+              two staff roles would be the only paid positions at Free For Charity. The Technology
+              Monastery is not a separate legal entity. It has no EIN of its own, and every gift,
+              grant, contract and filing runs through Free For Charity, EIN {siteConfig.ein}. Our goal is to become a stand-alone
               charity, with its own IRS 501(c)(3) determination and state registrations, as the
               program matures. We will say so here when that changes.
             </p>

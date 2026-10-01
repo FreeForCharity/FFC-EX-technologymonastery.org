@@ -65,7 +65,7 @@ export default function Home() {
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-3xl">
             <p className="inline-block px-4 py-2 mb-6 bg-orange-500/20 border border-orange-500/50 rounded-full text-orange-300 text-sm font-semibold tracking-wide uppercase">
-              A project of Free For Charity
+              A proposed project of Free For Charity
             </p>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight">
               Free technology for small charities, and a place for the people who build it.

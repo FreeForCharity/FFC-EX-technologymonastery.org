@@ -162,9 +162,11 @@ export default function Hiring() {
           <div className="max-w-3xl mx-auto border border-orange-500/40 bg-orange-500/10 rounded-lg p-6 text-gray-200">
             <p className="font-semibold text-white mb-2">Plain statement of status</p>
             <p>
-              Neither role is open today. Both are contingent on funding. They would be Free For
-              Charity&apos;s first full-time paid staff positions, which is why the plan, the pay and the
-              process are published here before an award rather than after.
+              Neither role is open today. Both are contingent on funding. Free For Charity is a 100
+              percent volunteer organization today, and the Technology Monastery is a proposed
+              project; if it is funded, these two roles would be the only paid staff at Free For
+              Charity. That is why the plan, the pay and the process are published here before an
+              award rather than after.
             </p>
           </div>
         </div>
@@ -204,8 +206,9 @@ export default function Hiring() {
                   <div className="mt-auto border-t border-purple-500/20 pt-4">
                     <p className="text-gray-300 text-sm">
                       <span className="text-white font-semibold">Planned salary band:</span> {r.band}{' '}
-                      per year, plus benefits as adopted by the board. Full-time, exempt, grant-funded
-                      for five years with the goal of a permanently endowed position.
+                      per year, plus competitive benefits; we will work with each person to make sure
+                      they have the benefits they need. Full-time, grant-funded for five years with the
+                      goal of a permanently endowed position.
                     </p>
                     <a
                       href={mail(r.subject)}
