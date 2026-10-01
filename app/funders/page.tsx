@@ -37,7 +37,7 @@ const buys = [
 
 const yearFive = [
   'Both positions funded every year, with an endowment seeded by year three and growing toward covering them permanently.',
-  'Cohorts arriving on a calendar, pipelines that run without heroics, and a published count of charities served per staff member.',
+  'Cohorts arriving on a calendar, pipelines that run without heroics, a standing cohort of up to 20 of the charities with the deepest needs, published graduation counts, and charities served per staff member across the 100 charities Free For Charity seeks to support at a time.',
   'A compliance record with no missed permit, inspection or report.',
   'No single source of support above forty percent of operating costs.',
   'A board decision, on evidence, about when the Technology Monastery becomes a stand-alone charity.',

@@ -16,8 +16,8 @@ const direct = siteConfig.directContact;
 const measures = [
   {
     area: 'Charities served',
-    what: 'Charities served and services delivered per year; charities served per staff member, published each year as AI-assisted delivery matures.',
-    how: 'The intake tracker, from application to written hand-over.',
+    what: 'The Monastery cohort: not more than 20 of the 100 charities Free For Charity seeks to support at a time; services delivered per cohort charity; charities graduated back to conventional support each year; and charities served per staff member across the whole 100, published each year as AI-assisted delivery matures.',
+    how: 'The intake tracker, from application to written hand-over, and the graduation log.',
   },
   {
     area: 'People',
@@ -37,7 +37,7 @@ const measures = [
   {
     area: 'Money',
     what: 'Support by source, the share from the largest single source, the endowment balance against its target, and funder reports delivered on time.',
-    how: 'Free For Charity’s books and the annual filing.',
+    how: "Free For Charity's books and the annual filing.",
   },
   {
     area: 'Value to charities',
@@ -53,9 +53,9 @@ const models = [
     what: 'A self-directed retreat for programmers: the reference for how technologists learn and build together in a season.',
   },
   {
-    name: 'Veterans’ villages and Community First! Village',
+    name: "Veterans' villages and Community First! Village",
     href: 'https://mlf.org/community-first/',
-    what: 'Supportive residential communities that funders know, and the source of the “village” model of long-term belonging.',
+    what: 'Supportive residential communities that funders know, and the source of the "village" model of long-term belonging.',
   },
   {
     name: 'VA Compensated Work Therapy',
@@ -99,11 +99,20 @@ export default function Impact() {
               be reported and how.
             </p>
             <p className={pClass}>
+              Free For Charity as a whole seeks to support 100 charities at a time through their
+              digital infrastructure establishment and management journeys. The Technology
+              Monastery is specialized for the charities among those 100 that are further along in
+              maturity, or that have rarer needs, and that call for higher-level, longer-term
+              volunteers. It will start with a group of not more than 20, while Free For
+              Charity&apos;s conventional volunteers serve the remaining 80. When a rare need is
+              met, that charity graduates back to conventional support, which opens a slot.
+            </p>
+            <p className={pClass}>
               The theory of change is short. A full-time Volunteer Manager and Program Coordinator turn
               a volunteer-run program into a staffed one. Staff open standing pipelines of people and
               work. A place to live for a season turns short volunteers into long ones. More long
-              volunteers, served by AI-assisted methods, means more charities get technology at no
-              cost, which stretches every grant those charities already receive.
+              volunteers, served by AI-assisted methods, means more of the rare, long work gets
+              done, which stretches every grant those charities already receive.
             </p>
           </div>
         </div>

@@ -165,7 +165,10 @@ export default function Campus() {
             </ol>
             <p className={`${pClass} mt-8`}>
               Every resident gives back by serving the charities the Technology Monastery already
-              supports and by helping run the campus. That is what turns a short burst of volunteer
+              supports and by helping run the campus. Those charities are a cohort of not more than
+              20 of the 100 that Free For Charity seeks to support at a time: the ones further
+              along in maturity, or with rarer needs, that call for longer-term volunteers. That is
+              what turns a short burst of volunteer
               energy into work that lasts, measured in seasons and years rather than hours.
             </p>
           </div>

@@ -123,7 +123,10 @@ export default function Home() {
           <p className="text-gray-300 max-w-2xl mx-auto text-center mb-10">
             The campus is not a new charity. It is housing and community wrapped around a service
             program that already works, with two funded roles so the mission no longer depends on
-            unpaid time. It is funded by grants, public support and recurring giving, not by
+            unpaid time. Free For Charity seeks to support 100 charities at a time, and the
+            Monastery will serve a cohort of not more than 20 of them: the ones further along in
+            maturity, or with rarer needs, that call for longer-term volunteers. It is funded by
+            grants, public support and recurring giving, not by
             charging anyone: the charities we serve pay nothing, and neither do the people who come
             to do the work.
           </p>
