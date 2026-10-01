@@ -112,8 +112,8 @@ export default function About() {
               service delivery to charities, partner relationships and reporting.
             </p>
             <p className={pClass}>
-              Our five-year goal is to have both positions fully funded and endowed at reasonable
-              compensation for the work, based at the campus. That is the point of the project:
+              Our five-year goal is to have both positions fully funded at reasonable compensation,
+              with their endowment under way and on a published path for the work, based at the campus. That is the point of the project:
               stability for the whole Free For Charity mission, so that it no longer depends on
               unpaid leadership.
             </p>

@@ -60,11 +60,11 @@ const steps = [
   },
   {
     when: 'Award month',
-    what: 'The board adopts personnel policies and both postings go live on every channel below. Applications open for about four weeks.',
+    what: 'The board adopts personnel policies and both postings go live on the job boards below. Applications open for about four weeks.',
   },
   {
     when: 'Weeks 4 to 10',
-    what: 'Screening, phone interviews, a panel interview with a board member and a partner representative, a short practical exercise, and references.',
+    what: 'Screening, phone interviews, a panel interview with a board member and, where possible, a referral partner, a short practical exercise, and references.',
   },
   {
     when: 'Within 120 days',
@@ -163,7 +163,7 @@ export default function Hiring() {
             <p className="font-semibold text-white mb-2">Plain statement of status</p>
             <p>
               Neither role is open today. Both are contingent on funding. They would be Free For
-              Charity&apos;s first paid staff positions, which is why the plan, the pay and the
+              Charity&apos;s first full-time paid staff positions, which is why the plan, the pay and the
               process are published here before an award rather than after.
             </p>
           </div>
@@ -227,10 +227,10 @@ export default function Hiring() {
             <h2 className={h2Class}>How we set the pay</h2>
             <p className={pClass}>
               The bands are planning ranges for a rural Pennsylvania nonprofit employer, set on
-              1 October 2026 from the public sources below. They sit above the regional median for
-              coordinator titles and below the median for community-service managers, so that the
-              roles attract people who will stay without pricing a small organization out of its own
-              plan. Both are reviewed against current data before each posting goes live, and the
+              1 October 2026 from the public sources below. They sit above the Pennsylvania volunteer-coordinator median and the regional
+              community-service-specialist median, and below the medians for nonprofit program
+              coordinators and community-service managers, so that the roles attract people who
+              will stay without pricing a small organization out of its own plan. Both are reviewed against current data before each posting goes live, and the
               grant budget carries the fully loaded cost: salary, employer taxes, benefits and the
               direct costs of the work.
             </p>
@@ -267,7 +267,7 @@ export default function Hiring() {
             </div>
             <p className="text-gray-400 text-sm text-center mt-6">
               Selection panels include a Free For Charity board member and, where possible, a
-              referral partner. Every candidate hears back.
+              referral partner. Every applicant receives a decision.
             </p>
           </div>
         </div>
@@ -319,7 +319,7 @@ export default function Hiring() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Tell us you are interested</h2>
           <p className="text-lg text-purple-100 mb-8 max-w-2xl mx-auto">
             Send a short note about yourself to {direct.name} at {direct.email}, or text{' '}
-            {direct.phoneDisplay}. We will keep it and contact you the day the posting opens.
+            {direct.phoneDisplay}. We will keep it and contact you when the posting opens.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button href={mail('Hiring interest')} variant="secondary">

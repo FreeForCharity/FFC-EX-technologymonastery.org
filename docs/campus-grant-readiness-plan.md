@@ -8,7 +8,7 @@ acceptance criteria.
 
 Free For Charity (FFC) is competing for a large grant that would fund the purchase of a rural
 property in the Clear Creek and Cook Forest area near Sigel, Pennsylvania, and its conversion
-into a charity campus under the Technology Monastery concept of operations: a non-secular,
+into a charity campus under the Technology Monastery concept of operations: a non-sectarian,
 open-to-anyone place where people who want to give back to the charitable world can live simply,
 work, learn, and serve. The first residents the concept names are veterans, survivors coming out of
 women's shelters, and people who have stabilized after drug and alcohol rehabilitation, alongside
@@ -31,7 +31,7 @@ site today finds no evidence that the campus exists as a plan, no leadership or 
 outcomes, placeholder testimonials, a contact form wired to a dummy endpoint, and buttons that do
 nothing. That gap is the problem this plan addresses.
 
-## 2. What the site says today (inventory)
+## 2. What the site said before the rewrite (inventory as of 2026-10-01, before PR #118)
 
 | Route                            | Current content                                                                    | Grant-readiness gap                                                                     |
 | -------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -66,7 +66,7 @@ are planning-stage and must be re-confirmed before they are published as commitm
 - **Planned first-phase infrastructure** (from the pilot notes): shared kitchen and gathering
   space, coworking area, community bathhouse and restrooms, roughly ten campsites, RV parking,
   site planning for accessible tiny homes, shared utility connections and outdoor spaces.
-- **Current phase.** Planning and evaluation: ownership transfer, preliminary site planning,
+- **Current phase.** Planning and evaluation: site planning,
   utility and septic evaluation, volunteer coordination, nonprofit structuring, and a long-term
   stewardship plan. A county service forester has already been consulted; forest stewardship and
   NRCS cost-share programs are candidate complements to the grant.
@@ -86,7 +86,7 @@ The pitch has five parts, and each needs a home on the site.
 
 1. **Place.** A quiet, rural campus that already works as a campground, in a recreation corridor,
    with room to grow. Show it with a regional map, non-identifying photographs and the phased plan; never a parcel map or aerial (section 8).
-2. **People served.** Open to anyone, non-secular, with named first cohorts: veterans; survivors
+2. **People served.** Open to anyone, non-sectarian, with named first cohorts: veterans; survivors
    leaving women's shelters; people in recovery who have stabilized; public-good and open-source
    technologists on sabbatical. State eligibility and the referral partners each cohort comes
    through, and the safeguards that make co-residence safe (substance-free campus, background
@@ -136,7 +136,7 @@ The pitch has five parts, and each needs a home on the site.
 
 - **A. Narrative, brand, and information architecture.** Rewrite the home and about pages so one
   story covers the service program and the campus; record and implement the TechnoMonasteries
-  relationship (volunteer partner folding under FFC's brand); add the non-secular, open-to-anyone
+  relationship (volunteer partner folding under FFC's brand); add the non-sectarian, open-to-anyone
   statement; new navigation.
 - **B. People served and the pathway.** Residents page, cohorts, eligibility, referral partners,
   safeguards and community agreements.
@@ -206,11 +206,9 @@ These cannot be invented by a developer and block the corresponding issues.
 
 ## 9. Sources consulted
 
-Internal (FFC Google Drive and mail, summarized above without private detail): Pennsylvania pilot
-project notes for the TechnoMonasteries website; land project aerial; stewardship correspondence
-with the Family Forest Carbon Program outreach forester; the current campground operator's public
-site. The internal "Technology Monastery Biz Plan Draft" is rights-managed and could not be opened
-from this session; it should be reviewed by hand and reconciled with this plan.
+Internal (FFC Google Drive and mail, summarized above without private detail): project notes for
+the TechnoMonasteries website, land stewardship correspondence, and the 2023 business plan draft,
+which has since been reviewed and is being refreshed under Epic H.
 
 Public:
 
