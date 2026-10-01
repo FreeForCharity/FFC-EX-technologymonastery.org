@@ -13,6 +13,7 @@ const quickLinks = [
   { name: 'Campus', href: '/campus/' },
   { name: 'Services', href: '/services/' },
   { name: 'Get Started', href: '/get-started/' },
+  { name: 'Hiring', href: '/hiring/' },
   { name: 'Contact', href: '/contact/' },
   // Interim FFC campaign; a project-specific campaign will replace it later.
   { name: 'Donate', href: siteConfig.integrations.zeffyDonationUrl },
