@@ -140,6 +140,9 @@ The pitch has five parts, and each needs a home on the site.
   downloadable funder packet, contact routing.
 - **G. Technical enablement.** Content moved into data files or CMS collections, metadata and
   structured data, accessibility and performance, map and document hosting.
+- **H. Business plan refresh.** Rewrite the 2023 plan as a capital-plus-five-years plan around
+  the two funded roles, the volunteer pipelines, the sustainability sources and the endowment;
+  see section 10.
 
 ## 7. Content and decisions the board must supply
 
