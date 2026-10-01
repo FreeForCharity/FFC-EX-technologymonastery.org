@@ -231,7 +231,7 @@ export default function Home() {
             <Button href="/get-started/" variant="secondary">
               Nonprofits and volunteers
             </Button>
-            <Button href="/contact/" variant="primary">
+            <Button href="/funders/" variant="primary">
               Partners and funders
             </Button>
             <a
