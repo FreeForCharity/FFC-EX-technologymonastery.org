@@ -174,3 +174,15 @@ Public:
   tech); peer recovery support literature (PMC); Domestic Violence Housing First evaluations (OJP,
   PMC); Recurse Center (programmer retreat model)
 - Capital campaign guidance (Capital Campaign Pro, Bloomerang, Double the Donation)
+
+## 10. Business plan refresh (Epic H)
+
+The existing Technology Monastery business plan is a 2023 draft written around Microsoft offers,
+a leased city office, and professional volunteer "monks", before the Pennsylvania site, the
+resident cohorts, Google support, and AI-assisted delivery existed. Its problem statement still
+holds; its service model, location, resident model, and financials do not, and several of its
+claims (notably a "Silver Partner" goal for a Microsoft tier retired in 2022, and the free M365
+grants that ended in July 2025) are still repeated on the live site. Epic H tracks the rewrite as
+a capital-plus-five-years plan in which grant-funded staff build multiple sustainability sources
+and an endowment that covers the campus's permanent floor costs. The plan itself is confidential
+and lives in Drive; only its public-safe outputs land here and on the site.
