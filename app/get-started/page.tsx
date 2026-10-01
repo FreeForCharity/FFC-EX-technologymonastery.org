@@ -80,7 +80,12 @@ export default function GetStarted() {
               You can serve from where you are today, remotely, on a defined project for a charity
               we support. As the campus opens, service stints on site, mentoring residents, and
               structured programs such as AmeriCorps terms and AI-practitioner fellowships will be
-              listed here as they become available.
+              listed here as they become available. Two paid staff roles, a Volunteer Manager and a
+              Program Coordinator, are planned for the first year of the grant; the{' '}
+              <a href="/hiring/" className="text-purple-300 underline hover:text-white">
+                hiring plan
+              </a>{' '}
+              explains both.
             </p>
             <a href={mail('Volunteering with the Technology Monastery')} className={linkClass}>
               Email us about volunteering

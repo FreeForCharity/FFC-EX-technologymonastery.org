@@ -29,8 +29,10 @@ const routes = [
   },
   {
     title: 'Funders',
-    body: 'Grant and gift conversations about the service program, the campus, and the two staff roles we are funding.',
+    body: 'Grant and gift conversations about the service program, the campus, and the two staff roles we are funding. Start with the For Funders page.',
     subject: 'Funding conversation',
+    href: '/funders/',
+    hrefLabel: 'For Funders page',
   },
   {
     title: 'Press',
@@ -67,12 +69,19 @@ export default function Contact() {
               <article key={r.title} className="flex flex-col border border-purple-500/20 rounded-lg p-6 bg-[#15102a]">
                 <h2 className="text-xl font-bold text-white mb-2">{r.title}</h2>
                 <p className="text-gray-300 text-sm mb-6 flex-1">{r.body}</p>
-                <a
-                  href={mail(r.subject)}
-                  className="self-start inline-block px-5 py-2.5 rounded-lg font-semibold bg-purple-600 text-white hover:bg-purple-700 transition"
-                >
-                  Email about this
-                </a>
+                <div className="flex flex-wrap gap-3 items-center">
+                  <a
+                    href={mail(r.subject)}
+                    className="inline-block px-5 py-2.5 rounded-lg font-semibold bg-purple-600 text-white hover:bg-purple-700 transition"
+                  >
+                    Email about this
+                  </a>
+                  {'href' in r && r.href ? (
+                    <a href={r.href} className="text-purple-300 underline hover:text-white text-sm">
+                      {r.hrefLabel}
+                    </a>
+                  ) : null}
+                </div>
               </article>
             ))}
           </div>
