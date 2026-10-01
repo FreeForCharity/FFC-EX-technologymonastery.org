@@ -70,7 +70,7 @@ export default function About() {
             <p className={pClass}>
               A monastery is a place where people live simply, keep a rhythm of work, study and
               rest, and give their effort to something larger than themselves. We borrow that
-              shape, not a creed. The Technology Monastery is non-secular and open to anyone: no
+              shape, not a creed. The Technology Monastery is non-sectarian and open to anyone: no
               religious test, every faith and none welcome, and a short set of community agreements
               in place of a rule.
             </p>
