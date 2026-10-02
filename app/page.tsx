@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import Photo from '@/components/Photo';
 import { siteConfig } from '@/lib/site.config';
 
 const problems = [
@@ -60,7 +61,23 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-36 pb-20 overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
+      <section className="relative pt-36 pb-20 overflow-hidden bg-[#1a0b2e]">
+        {/* Decorative background photo (old-growth hemlock canopy, Cook Forest State Park) under a dark overlay so the hero text keeps its contrast. */}
+        <Photo
+          src="/images/photos/cook-forest-hemlock-canopy.webp"
+          mobileSrc="/images/photos/cook-forest-hemlock-canopy-900.webp"
+          mobileWidth={900}
+          width={1440}
+          height={1080}
+          alt=""
+          loading="eager"
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#1a0b2e]/90 via-[#2d1b4e]/85 to-[#4a2c6f]/80"
+          aria-hidden="true"
+        ></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(138,43,226,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(138,43,226,0.1)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" aria-hidden="true"></div>
         <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-3xl">
@@ -151,11 +168,22 @@ export default function Home() {
       <section className="py-16 bg-[#0f0a1e]">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What we do today</h2>
-            <p className="text-gray-300 max-w-2xl mb-10">
-              Every service is free for qualifying 501(c)(3) organizations. It starts with a
-              conversation about what you have, what you need, and what we can take off your plate.
-            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-10">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What we do today</h2>
+                <p className="text-gray-300 max-w-2xl">
+                  Every service is free for qualifying 501(c)(3) organizations. It starts with a
+                  conversation about what you have, what you need, and what we can take off your plate.
+                </p>
+              </div>
+              <Photo
+                src="/images/photos/hands-typing-laptop.webp"
+                width={1800}
+                height={1192}
+                alt="Close-up of a person's hands typing on a laptop keyboard."
+                className="w-full rounded-lg border border-purple-500/20 object-cover aspect-[3/2]"
+              />
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {todayServices.map((s) => (
                 <article key={s.title} className="border border-purple-500/20 rounded-lg p-6">

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
+import Photo from '@/components/Photo';
 import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
@@ -191,6 +192,15 @@ export default function Hiring() {
               Coordinator is planned for the second year. Both are full-time, based near Clear Creek
               State Park, Cook Forest State Park and Sigel, Pennsylvania, with regular remote work.
             </p>
+            <figure className="mb-10">
+              <Photo
+                src="/images/photos/code-sprint-laptops.webp"
+                width={1800}
+                height={993}
+                alt="A row of people working on laptops together at a shared table during a code sprint."
+                className="w-full rounded-lg border border-purple-500/20 object-cover aspect-[2/1]"
+              />
+            </figure>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {roles.map((r) => (
                 <article
