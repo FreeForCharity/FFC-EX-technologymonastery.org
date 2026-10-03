@@ -18,7 +18,7 @@ export default function Credits() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Photo credits</h1>
             <p className="text-xl text-gray-300">
-              The photographers whose work appears on this site, and the licences they chose.
+              The photographers whose work appears on this site, and the licenses they chose.
             </p>
           </div>
         </div>
@@ -31,11 +31,12 @@ export default function Credits() {
             <div>
               <p className="leading-relaxed">
                 The photographs on this site are public domain or released under Creative Commons
-                licences that allow reuse with attribution. They show the region around the planned
+                licenses that allow reuse with attribution. They show the region around the planned
                 campus (Cook Forest State Park, Clear Creek State Park, the Clarion River and the
                 Allegheny National Forest) and generic scenes of people working together. None shows
                 the project property. Each image was resized and re-encoded for the web; the two hero
                 backgrounds were also cropped and softened slightly to sit under a dark overlay.
+                The thumbnails on this page are 320 pixel crops of the same files.
               </p>
             </div>
 
@@ -46,7 +47,7 @@ export default function Credits() {
                   className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-4 border border-purple-500/20 rounded-lg p-4 bg-[#15102a]"
                 >
                   <Photo
-                    src={`/images/photos/${c.file}`}
+                    src={`/images/photos/${c.file.replace(/\.webp$/, '-thumb.webp')}`}
                     width={320}
                     height={240}
                     alt={c.subject}
@@ -76,7 +77,7 @@ export default function Credits() {
                       </a>
                     </p>
                     <p>
-                      <span className="text-white font-semibold">Licence:</span>{' '}
+                      <span className="text-white font-semibold">License:</span>{' '}
                       <a
                         href={c.licenseUrl}
                         target="_blank"

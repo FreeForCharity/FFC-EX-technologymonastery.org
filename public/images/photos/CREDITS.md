@@ -1,19 +1,20 @@
 # Photo credits
 
 Every photograph in this directory is either public domain or released under a Creative Commons
-licence that permits reuse with attribution. None shows the project property; all are regional
+license that permits reuse with attribution. None shows the project property; all are regional
 (Pennsylvania Wilds) or generic subjects. Each file was resized to at most 1800 px wide and re-encoded
 as WebP; the two hero backgrounds (`-900` variants exist for mobile) were also cropped to fit and
 softened slightly because they sit under a dark overlay. CC BY and CC BY-SA require the credit line
-below to travel with the image; CC BY-SA derivatives must stay under the same licence.
+below to travel with the image; CC BY-SA derivatives must stay under the same license.
 
-The same list is rendered on the public site at `/credits/` from `lib/photo-credits.ts`.
+The same list is rendered on the public site at `/credits/` from `lib/photo-credits.ts`. Each photograph
+also has a `-thumb.webp` variant (320 by 240 pixel crop) used only for the thumbnails on that page.
 
 The link preview image `public/images/og-image.jpg` (the picture social networks and chat apps show
 when a page is shared) is derived from the public-domain `cook-forest-hemlock-canopy.webp` with a
 dark overlay and the site name added.
 
-| File | Title | Author | Licence | Source |
+| File | Title | Author | License | Source |
 | --- | --- | --- | --- | --- |
 | `cook-forest-hemlock-canopy.webp`, `cook-forest-hemlock-canopy-900.webp` | Cookcanopy.jpg — Looking up into the old-growth hemlock canopy, Cook Forest State Park, Pennsylvania | [VitaleBaby (Wikimedia Commons user)](https://commons.wikimedia.org/wiki/User:VitaleBaby) | [Public domain](https://commons.wikimedia.org/wiki/Template:PD-self) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cookcanopy.jpg) |
 | `clear-creek-hemlocks-stream.webp`, `clear-creek-hemlocks-stream-900.webp` | Clear Creek State Park Shallow — Hemlock boughs over Little Clear Creek, Clear Creek State Park, Jefferson County, Pennsylvania | [Nicholas (Flickr user 14922165@N00)](https://www.flickr.com/people/14922165@N00) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Clear_Creek_State_Park_Shallow.jpg) |
