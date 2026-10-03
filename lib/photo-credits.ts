@@ -14,7 +14,7 @@ export interface PhotoCredit {
   authorUrl: string;
   license: string;
   licenseUrl: string;
-  /** Page where the photograph's metadata and licence can be verified */
+  /** Page where the photograph's metadata and license can be verified */
   sourceUrl: string;
   usedOn: string[];
   modifications: string;
