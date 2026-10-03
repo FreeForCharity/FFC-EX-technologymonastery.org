@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
+import PrintButton from '@/components/PrintButton';
 import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
@@ -176,6 +177,7 @@ export default function Briefing() {
             <Button href="/funders/" variant="primary">
               Back to the funders page
             </Button>
+            <PrintButton />
           </div>
         </div>
       </section>
@@ -203,7 +205,7 @@ export default function Briefing() {
             <h3 className="text-2xl font-bold text-white mb-6 text-center">
               The stack a charity leaves with
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 gap-5">
               {stack.map((s, i) => (
                 <article key={s.rung} className="bg-[#15102a] border border-purple-500/20 rounded-lg p-6">
                   <p className="text-orange-300 text-sm font-semibold tracking-wide uppercase mb-1">
@@ -276,7 +278,7 @@ export default function Briefing() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className={`${h2Class} text-center`}>Year one concentrates its value in one summer</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 print:grid-cols-2 gap-5">
               {timeline.map((t) => (
                 <article key={t.when} className="bg-[#15102a] border border-purple-500/20 rounded-lg p-6">
                   <h3 className="text-lg font-bold text-white mb-2">{t.when}</h3>
@@ -296,7 +298,7 @@ export default function Briefing() {
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-300 mb-4">
                 <span className="inline-flex items-center gap-2">
                   <span
-                    className="inline-block w-3 h-3 rounded-sm"
+                    className="print-swatch inline-block w-3 h-3 rounded-sm"
                     style={{ backgroundColor: activeFill }}
                     aria-hidden="true"
                   />
@@ -304,7 +306,7 @@ export default function Briefing() {
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <span
-                    className="inline-block w-3 h-3 rounded-sm"
+                    className="print-swatch inline-block w-3 h-3 rounded-sm"
                     style={{ backgroundColor: establishedFill }}
                     aria-hidden="true"
                   />
@@ -360,6 +362,7 @@ export default function Briefing() {
                           y={chart.base - estH - 5}
                           textAnchor="middle"
                           fill="#ffffff"
+                          className="print:fill-white"
                           fontWeight="600"
                         >
                           {c.established}
@@ -466,6 +469,10 @@ export default function Briefing() {
               Documents for funders
             </Button>
           </div>
+          <p className="hidden print:block text-sm mt-6">
+            Printed from technologymonastery.org/funders/briefing/, which is the current version.
+            Counts are planning targets. Documents for funders: technologymonastery.org/funders/documents/
+          </p>
         </div>
       </section>
     </>
