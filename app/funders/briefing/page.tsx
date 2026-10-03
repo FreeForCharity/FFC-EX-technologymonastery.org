@@ -362,7 +362,6 @@ export default function Briefing() {
                           y={chart.base - estH - 5}
                           textAnchor="middle"
                           fill="#ffffff"
-                          className="print:fill-white"
                           fontWeight="600"
                         >
                           {c.established}
