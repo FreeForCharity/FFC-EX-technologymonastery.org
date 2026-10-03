@@ -79,6 +79,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://technologymonastery.org/credits/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://technologymonastery.org/privacy-policy/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>yearly</changefreq>

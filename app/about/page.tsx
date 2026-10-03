@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
+import Photo from '@/components/Photo';
 import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
@@ -22,6 +23,23 @@ export default function About() {
             A project of Free For Charity: free technology for small nonprofits today, and a campus
             where the people who deliver it can live, learn and serve.
           </p>
+        </div>
+      </section>
+
+      <section className="bg-[#0f0a1e] pt-12">
+        <div className="container mx-auto px-4">
+          <figure className="max-w-5xl mx-auto">
+            <Photo
+              src="/images/photos/allegheny-misty-lake-dawn.webp"
+              width={1800}
+              height={1200}
+              alt="Mist rising off a still forest lake at dawn, with a line of conifers reflected in the water, in the Allegheny National Forest."
+              className="w-full rounded-lg border border-purple-500/20 object-cover aspect-[21/9]"
+            />
+            <figcaption className="mt-3 text-sm text-gray-400 text-center">
+              The Pennsylvania Wilds: the forest region the campus will call home.
+            </figcaption>
+          </figure>
         </div>
       </section>
 

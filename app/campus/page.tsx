@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Button from '@/components/Button';
+import Photo from '@/components/Photo';
 
 export const metadata: Metadata = {
   title: 'The Campus - The Technology Monastery',
@@ -94,8 +95,24 @@ const pipelines = [
 export default function Campus() {
   return (
     <>
-      <section className="relative pt-36 pb-16 bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#4a2c6f]">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative pt-36 pb-16 overflow-hidden bg-[#1a0b2e]">
+        {/* Decorative background photo (hemlocks over Little Clear Creek, Clear Creek State Park) under a dark overlay for text contrast. */}
+        <Photo
+          src="/images/photos/clear-creek-hemlocks-stream.webp"
+          mobileSrc="/images/photos/clear-creek-hemlocks-stream-900.webp"
+          mobileWidth={900}
+          width={1600}
+          height={1200}
+          alt=""
+          loading="eager"
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#1a0b2e]/90 via-[#2d1b4e]/85 to-[#4a2c6f]/80"
+          aria-hidden="true"
+        ></div>
+        <div className="relative z-10 container mx-auto px-4 text-center">
           <p className="inline-block px-4 py-2 mb-6 bg-orange-500/20 border border-orange-500/50 rounded-full text-orange-300 text-sm font-semibold tracking-wide uppercase">
             In planning
           </p>
@@ -112,6 +129,18 @@ export default function Campus() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className={h2Class}>Where</h2>
+            <figure className="mb-8">
+              <Photo
+                src="/images/photos/clarion-river-forested-hills.webp"
+                width={1800}
+                height={1200}
+                alt="The Clarion River winding between forested hills under a partly cloudy sky."
+                className="w-full rounded-lg border border-purple-500/20 object-cover aspect-[3/2]"
+              />
+              <figcaption className="mt-3 text-sm text-gray-400">
+                The Clarion River, which runs past Cook Forest State Park.
+              </figcaption>
+            </figure>
             <p className={pClass}>
               The campus will sit in the forested hills of northwestern Pennsylvania near Clear Creek
               State Park, Cook Forest State Park and Sigel, in a year-round outdoor-recreation region
@@ -224,6 +253,19 @@ export default function Campus() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className={`${h2Class} text-center`}>Phases</h2>
+            <figure className="mt-8">
+              <Photo
+                src="/images/photos/state-park-walk-in-campsite.webp"
+                width={1280}
+                height={960}
+                alt="A tent and a shade canopy on a grassy walk-in campsite among trees beside a lake in a public state park."
+                className="w-full rounded-lg border border-purple-500/20 object-cover aspect-[2/1]"
+              />
+              <figcaption className="mt-3 text-sm text-gray-400 text-center">
+                Phase 1 starts small: a handful of campsites and RV pads, like those in any public
+                park campground.
+              </figcaption>
+            </figure>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {phases.map((ph) => (
                 <article key={ph.name} className="border border-purple-500/20 rounded-lg p-6 bg-[#15102a]">
