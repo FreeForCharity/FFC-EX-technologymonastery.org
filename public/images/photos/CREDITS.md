@@ -9,6 +9,10 @@ below to travel with the image; CC BY-SA derivatives must stay under the same li
 
 The same list is rendered on the public site at `/credits/` from `lib/photo-credits.ts`.
 
+The link preview image `public/images/og-image.jpg` (the picture social networks and chat apps show
+when a page is shared) is derived from the public-domain `cook-forest-hemlock-canopy.webp` with a
+dark overlay and the site name added.
+
 | File | Title | Author | Licence | Source |
 | --- | --- | --- | --- | --- |
 | `cook-forest-hemlock-canopy.webp`, `cook-forest-hemlock-canopy-900.webp` | Cookcanopy.jpg — Looking up into the old-growth hemlock canopy, Cook Forest State Park, Pennsylvania | [VitaleBaby (Wikimedia Commons user)](https://commons.wikimedia.org/wiki/User:VitaleBaby) | [Public domain](https://commons.wikimedia.org/wiki/Template:PD-self) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cookcanopy.jpg) |
