@@ -44,3 +44,112 @@
   }
 }
 
+
+/* Print: program officers print and forward pages. Strip the dark theme, the chrome and the
+   navigation buttons; keep headings, text, cards, figures and the charts legible on white. */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.6in;
+  }
+
+  html {
+    font-size: 13px;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  /* Header, cookie banner and anything else pinned to the viewport. */
+  header,
+  footer,
+  body > a[href='#main-content'],
+  body .fixed {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  main section {
+    background: transparent !important;
+    background-image: none !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  main section:first-child {
+    padding-top: 0 !important;
+  }
+
+  main *:not(.print-swatch):not(svg):not(svg *) {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    color: #111 !important;
+    border-color: #c8c8c8 !important;
+    backdrop-filter: none !important;
+  }
+
+  main a {
+    text-decoration: underline;
+  }
+
+  main a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 85%;
+    word-break: break-all;
+  }
+
+  /* Hero photographs and their overlays sit behind text; drop them on paper. */
+  main img.absolute,
+  main [aria-hidden='true'].absolute {
+    display: none !important;
+  }
+
+  main figure img {
+    max-height: 3.2in;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  main svg text {
+    fill: #333;
+  }
+
+  main svg line {
+    stroke: #bbb;
+  }
+
+  .print-swatch {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  main h1,
+  main h2,
+  main h3,
+  main h4 {
+    break-after: avoid;
+  }
+
+  main article,
+  main li,
+  main figure,
+  main table,
+  main .rounded-lg {
+    break-inside: avoid;
+  }
+
+  main .animate-float,
+  main .animate-float-slow,
+  main .animate-spin-slow,
+  main .animate-pulse {
+    animation: none !important;
+  }
+}

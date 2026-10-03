@@ -16,7 +16,7 @@ export interface PhotoCredit {
   authorUrl: string;
   license: string;
   licenseUrl: string;
-  /** Page where the photograph's metadata and licence can be verified */
+  /** Page where the photograph's metadata and license can be verified */
   sourceUrl: string;
   usedOn: string[];
   modifications: string;
@@ -33,8 +33,9 @@ export const photoCredits: PhotoCredit[] = [
     license: 'Public domain',
     licenseUrl: 'https://commons.wikimedia.org/wiki/Template:PD-self',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cookcanopy.jpg',
-    usedOn: ['Home (hero background)'],
-    modifications: 'Cropped to fit, resized, softened slightly and re-encoded as WebP',
+    usedOn: ['Home (hero background)', 'Link preview image (images/og-image.jpg)'],
+    modifications:
+      'Cropped to fit, resized, softened slightly and re-encoded as WebP; the link preview image adds a dark overlay and the site name',
   },
   {
     file: 'clear-creek-hemlocks-stream.webp',
