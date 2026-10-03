@@ -143,7 +143,6 @@ export const siteConfig: SiteConfig = {
   },
 };
 
-/** Root-relative href of the place page, with the trailing slash the static export uses. */
 /** The five-step resident pathway, shared by the place page and the Come and Serve page. */
 export const residentPathway = [
   { step: 'Arrive', body: 'Orientation, a place to stay, and the community agreements everyone keeps.' },
@@ -153,6 +152,7 @@ export const residentPathway = [
   { step: 'Launch', body: 'Employment, further study, home, or a longer role here as a mentor or staff member.' },
 ];
 
+/** Root-relative href of the place page, with the trailing slash the static export uses. */
 export function placeHref(): string {
   return `/${siteConfig.place.slug}/`;
 }

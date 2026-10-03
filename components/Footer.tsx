@@ -48,6 +48,8 @@ const policyLinks = [
     name: `${siteConfig.name} Security Acknowledgements`,
     href: '/security-acknowledgements/',
   },
+  // Attribution for the CC-licensed and public-domain photographs on the site.
+  { name: 'Photo credits', href: '/credits/' },
 ];
 
 export default function Footer() {

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import ServiceCard from '@/components/ServiceCard';
 import Button from '@/components/Button';
+import Photo from '@/components/Photo';
 import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
@@ -119,6 +120,18 @@ export default function Services() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How we work with you</h2>
           </div>
+          <figure className="max-w-5xl mx-auto mb-12">
+            <Photo
+              src="/images/photos/hackerspace-working-session.webp"
+              width={1800}
+              height={1350}
+              alt="Three people working together around a table with laptops in a shared workspace."
+              className="w-full rounded-lg border border-purple-500/20 object-cover aspect-[2/1]"
+            />
+            <figcaption className="mt-3 text-sm text-gray-400 text-center">
+              Volunteers and charity staff work side by side; every setup is explained as it is built.
+            </figcaption>
+          </figure>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {consulting.map((service) => (
               <ServiceCard key={service.title} {...service} />
