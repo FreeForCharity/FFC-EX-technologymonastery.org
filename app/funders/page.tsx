@@ -68,6 +68,10 @@ const diligence = [
     label: 'Impact and measurement: what we will count and publish',
     href: '/impact/',
   },
+  {
+    label: 'Documents for funders: what is public now, what is available on request, and what does not exist yet',
+    href: '/funders/documents/',
+  },
 ];
 
 export default function Funders() {
@@ -86,6 +90,11 @@ export default function Funders() {
             support. This page says what it buys, how the campus is funded by design, what year five
             looks like, and where the due-diligence documents are.
           </p>
+          <div className="mt-8 flex justify-center">
+            <Button href="/funders/briefing/" variant="secondary">
+              Read the plan in one page
+            </Button>
+          </div>
         </div>
       </section>
 
