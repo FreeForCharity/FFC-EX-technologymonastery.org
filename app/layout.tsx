@@ -5,18 +5,19 @@ import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import GoogleTagManager from '@/components/GoogleTagManager';
 import { basePath, siteOrigin } from '@/lib/site-config';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: 'The Technology Monastery - Free Technology for Nonprofits',
-  description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
-  keywords: ['nonprofit technology', 'free technology services', 'Microsoft 365 for nonprofits', 'Google Workspace for nonprofits', 'charity technology', 'volunteer campus Pennsylvania'],
+  description: siteConfig.description,
+  keywords: ['nonprofit technology', 'free technology services', 'Microsoft 365 for nonprofits', 'Google Workspace for nonprofits', 'charity technology', `volunteer ${siteConfig.place.nounLower} Pennsylvania`],
   authors: [{ name: 'The Technology Monastery' }],
   creator: 'The Technology Monastery',
   publisher: 'Free for Charity',
   metadataBase: new URL(`${siteOrigin}/`),
   openGraph: {
     title: 'The Technology Monastery - Free Technology for Nonprofits',
-    description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
+    description: siteConfig.description,
     url: `${siteOrigin}/`,
     siteName: 'The Technology Monastery',
     locale: 'en_US',
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'The Technology Monastery - Free Technology for Nonprofits',
-    description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
+    description: siteConfig.description,
     images: [`${basePath}/images/og-image.jpg`],
   },
 };
@@ -55,7 +56,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'The Technology Monastery',
-              description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve.',
+              description: `Free technology for small nonprofits, and a planned ${siteConfig.place.nounLower} in Pennsylvania where people who give back can live, learn and serve.`,
               url: 'https://technologymonastery.org',
               logo: 'https://technologymonastery.org/images/icon.svg',
               parentOrganization: {

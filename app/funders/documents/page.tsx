@@ -26,7 +26,7 @@ const publicNow: PublicDoc[] = [
   {
     label: 'For funders',
     href: '/funders/',
-    note: 'What the grant buys, how the campus is funded by design, and what year five looks like.',
+    note: `What the grant buys, how ${siteConfig.place.withArticle} is funded by design, and what year five looks like.`,
   },
   {
     label: 'Transparency',

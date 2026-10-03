@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import { siteConfig } from '@/lib/site.config';
 
+const place = siteConfig.place;
+
 export const metadata: Metadata = {
   title: 'Contact - The Technology Monastery',
-  description:
-    'Contact the Technology Monastery about free technology services for your nonprofit, volunteering, the campus, partnerships, funding or press.',
+  description: `Contact the Technology Monastery about free technology services for your nonprofit, volunteering, ${place.withArticle}, partnerships, funding or press.`,
 };
 
 const email = siteConfig.contactEmail;
@@ -19,7 +20,9 @@ const routes = [
   },
   {
     title: 'Volunteers and future residents',
-    body: 'Serving remotely today, or living and serving on the campus as it opens.',
+    body: `Serving remotely today, or living and serving at ${place.withArticle} as it opens.`,
+    href: '/serve/',
+    hrefLabel: 'Come and Serve page',
     subject: 'Volunteering or residency',
   },
   {
@@ -29,7 +32,7 @@ const routes = [
   },
   {
     title: 'Funders',
-    body: 'Grant and gift conversations about the service program, the campus, and the two staff roles we are funding. Start with the For Funders page.',
+    body: `Grant and gift conversations about the service program, ${place.withArticle}, and the two staff roles we are funding. Start with the For Funders page.`,
     subject: 'Funding conversation',
     href: '/funders/',
     hrefLabel: 'For Funders page',

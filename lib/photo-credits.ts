@@ -1,3 +1,5 @@
+import { siteConfig } from './site.config';
+
 // Single source of truth for photo attribution. Rendered by app/credits/page.tsx;
 // public/images/photos/CREDITS.md is generated from the same entries (keep in sync).
 
@@ -45,7 +47,7 @@ export const photoCredits: PhotoCredit[] = [
     license: 'CC BY 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Clear_Creek_State_Park_Shallow.jpg',
-    usedOn: ['Campus (hero background)'],
+    usedOn: [`${siteConfig.place.noun} (hero background)`],
     modifications: 'Cropped to fit, resized, softened slightly and re-encoded as WebP',
   },
   {
@@ -58,7 +60,7 @@ export const photoCredits: PhotoCredit[] = [
     license: 'CC BY-SA 4.0',
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Clarion_River_(US_332)_2018-10-30_055.jpg',
-    usedOn: ['Campus'],
+    usedOn: [siteConfig.place.noun],
     modifications: 'Resized and re-encoded as WebP',
   },
   {
@@ -71,7 +73,7 @@ export const photoCredits: PhotoCredit[] = [
     license: 'CC BY-SA 3.0',
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Buckhorn_State_Park_Campsite_241.jpg',
-    usedOn: ['Campus'],
+    usedOn: [siteConfig.place.noun],
     modifications: 'Resized and re-encoded as WebP',
   },
   {

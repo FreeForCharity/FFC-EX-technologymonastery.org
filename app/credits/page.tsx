@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Photo from '@/components/Photo';
 import { photoCredits } from '@/lib/photo-credits';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: 'Photo Credits - The Technology Monastery',
@@ -31,8 +32,8 @@ export default function Credits() {
             <div>
               <p className="leading-relaxed">
                 The photographs on this site are public domain or released under Creative Commons
-                licenses that allow reuse with attribution. They show the region around the planned
-                campus (Cook Forest State Park, Clear Creek State Park, the Clarion River and the
+                licenses that allow reuse with attribution. They show the region around the planned{' '}
+                {siteConfig.place.nounLower} (Cook Forest State Park, Clear Creek State Park, the Clarion River and the
                 Allegheny National Forest) and generic scenes of people working together. None shows
                 the project property. Each image was resized and re-encoded for the web; the two hero
                 backgrounds were also cropped and softened slightly to sit under a dark overlay.
