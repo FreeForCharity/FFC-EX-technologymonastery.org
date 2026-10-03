@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'The Technology Monastery - Free Technology for Nonprofits',
-    description: 'Free technology for small nonprofits, and a planned campus in Pennsylvania where people who give back can live, learn and serve. A project of Free For Charity.',
+    description: siteConfig.description,
     images: [`${basePath}/images/og-image.jpg`],
   },
 };
