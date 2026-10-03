@@ -32,7 +32,7 @@ export default function Credits() {
             <div>
               <p className="leading-relaxed">
                 The photographs on this site are public domain or released under Creative Commons
-                licences that allow reuse with attribution. They show the region around the planned
+                licences that allow reuse with attribution. They show the region around the planned{' '}
                 {siteConfig.place.nounLower} (Cook Forest State Park, Clear Creek State Park, the Clarion River and the
                 Allegheny National Forest) and generic scenes of people working together. None shows
                 the project property. Each image was resized and re-encoded for the web; the two hero

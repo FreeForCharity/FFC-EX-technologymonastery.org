@@ -111,7 +111,7 @@ export default function Serve() {
               <p className="font-semibold text-white mb-2">If you are in crisis right now</p>
               <p className="text-sm">
                 Call or text 988 (Suicide and Crisis Lifeline, United States). Veterans: call 988 and
-                press 1. Domestic violence: the National Domestic Violence Hotline is 1-800-799-7233.
+                press 1. Domestic violence: the National Domestic Violence Hotline is 1-800-799-7233.{' '}
                 {place.noun} is not an emergency service.
               </p>
             </div>
